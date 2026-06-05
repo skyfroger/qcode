@@ -13,13 +13,8 @@ print(a + b)
 
 
 ```sk-python
-def genr(n):
-    i = 0
-    while i < n:
-        yield i
-        i += 1
-
-print(list(genr(12)))
+for i in range(20):
+    print(i)
 ```
 
 

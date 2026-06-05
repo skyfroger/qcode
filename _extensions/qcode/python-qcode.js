@@ -218,7 +218,7 @@ function registerAlpineComponents() {
 
             this.term = new Terminal({
                 cursorBlink: true,
-                fontSize: 14,
+                fontSize: 15,
                 fontFamily:
                     '"Ubuntu Sans Mono", Consolas, "Liberation Mono", "Courier New", monospace',
                 theme: {
@@ -262,7 +262,7 @@ function registerAlpineComponents() {
                 return;
             const lineCount = this.term._core.buffer.y + 1;
             // xterm.js использует высоту строки примерно fontSize * 1.5
-            const lineHeight = this.term.options.fontSize * 1.5;
+            const lineHeight = this.term.options.fontSize * 1.6;
             const padding = 16; // ~0.8em с каждой стороны
             const desiredHeight = Math.min(
                 200,
@@ -321,8 +321,9 @@ function registerAlpineComponents() {
             if (this.term) {
                 this.term.reset();
                 this.currentInput = "";
-                this.fitAddon?.fit();
-                this.term?.focus();
+                this.fitAddon.fit();
+                this.term.focus();
+                this.term.write("\x1b[?25h");
             }
 
             if (window.__pyodideInterruptBuffer) {
@@ -360,6 +361,7 @@ function registerAlpineComponents() {
                 this.currentInput = "";
                 activeEditor = null;
                 this.shouldStop = false;
+                this.term.write("\x1b[?25l"); // Hides the cursor
                 this.updateTerminalHeight(); // финальная подстройка размера
             }
         },
