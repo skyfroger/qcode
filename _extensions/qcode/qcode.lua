@@ -1,15 +1,13 @@
 local function writeEnvironments()
   if quarto.doc.is_format("html:js") then
     quarto.doc.add_html_dependency({
-      name = "skulpt",
+      name = "qcode",
       version = "1",
       scripts = {
         { path = 'doc_objects.js',},
-        { path = "skulpt.min.js",    },
-        { path = "skulpt-stdlib.js"  },
-        { path = "python-skulpt.js"  }
+        { path = "python-qcode.js"  }
       },
-      stylesheets = { "skstyles.css", "prism-theme-github-light.css" }
+      stylesheets = { "qc-styles.css", "prism-theme-github-light.css" }
     })
 
     quarto.doc.add_html_dependency({
@@ -39,6 +37,10 @@ local function addAceLibsOnce()
 <script src="https://unpkg.com/fuse.js@7.2.0/dist/fuse.min.js"></script>  
 <script src="https://www.unpkg.com/ace-builds@latest/src-noconflict/ace.js"></script>
 <script src="https://www.unpkg.com/ace-builds@latest/src-noconflict/ext-language_tools.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css" />
+<script src="https://unpkg.com/xterm@5.3.0/lib/xterm.js"></script>
+<script src="https://unpkg.com/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.js"></script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
 <style>[x-cloak] { display: none !important; }</style>
 ]])
 end
@@ -227,8 +229,7 @@ function createSkulptIDE(block)
     <div>
       <div class="ide" x-ref="editorContainer"></div>
 
-      <pre id="skulpt-output]] .. id .. [[" x-ref="output" class="output__container"></pre>
-      <div id="skulpt-canvas]] .. id .. [[" x-ref="canvas" class="output__turtle"></div>
+      <div x-show="isTerminalVisible" x-cloak id="skulpt-terminal]] .. id .. [[" x-ref="terminalContainer" class="terminal-container"></div>
       <pre style="display:none" x-ref="original">]] .. block.text .. [[</pre>
     </div>
 
