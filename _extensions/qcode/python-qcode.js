@@ -247,6 +247,7 @@ function registerAlpineComponents() {
         },
 
         stdoutRaw(char) {
+            console.log(char);
             this.stdoutBuffer += String.fromCharCode(char);
             if (char !== 10) {
                 this.addOutput(this.stdoutBuffer);
@@ -304,8 +305,10 @@ function registerAlpineComponents() {
                 window.__pyodideInterruptBuffer[0] = 0;
             }
 
-            py.setStdout({ raw: (msg) => this.stdoutRaw(msg) });
-            py.setStderr({ raw: (msg) => this.stdoutRaw(msg) });
+            py.setStdout({
+                batched: (msg) => this.addOutput(`${msg}\n\r`),
+            });
+            py.setStderr({ batched: (msg) => this.addOutput(`${msg}\n\r`) });
 
             let code = this.getCode();
             const transformedCode = code.replace(

@@ -13,8 +13,15 @@ print(a + b)
 
 
 ```sk-python
-for i in range(20):
-    print(i)
+def total_cost(a, rho=1240, cost=60):
+    v = a ** 3
+    res = v * rho / cost
+    return res
+
+N = int(input("Количество деталей: "))
+d = float(input("Длина стороны куба (м): "))
+print("Ответ")
+print(total_cost(d) * N)
 ```
 
 
