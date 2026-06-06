@@ -12,6 +12,8 @@ async function initPyodide() {
 
     pyodideInstance.runPython(`
 import ast
+from pyodide.code import eval_code_async
+import builtins
 
 def __qcode_get_calls(source):
     try:
@@ -33,6 +35,10 @@ def __qcode_get_calls(source):
                 names.append(name)
     return names
 
+async def __qcode_run(source, globals_dict):
+    if '__builtins__' not in globals_dict:
+        globals_dict['__builtins__'] = builtins
+    return await eval_code_async(source, globals=globals_dict, locals=globals_dict)
 `);
 
     try {
@@ -170,6 +176,7 @@ function registerAlpineComponents() {
         },
         shouldStop: false,
         inputResolver: null,
+        pyGlobals: null,
         functionNames: [],
 
         stdoutBuffer: "",
@@ -177,8 +184,10 @@ function registerAlpineComponents() {
 
         init() {
             this.originalCode = this.$refs.original.textContent;
-            this.$nextTick(() => {
+            this.$nextTick(async () => {
                 this.initAce();
+                const py = await initPyodide();
+                this.pyGlobals = py.runPython("dict()");
                 this.getAST(this.getCode());
             });
         },
@@ -246,7 +255,6 @@ function registerAlpineComponents() {
         },
 
         addOutput(text) {
-            console.log(text);
             const out = this.$refs.output;
             out.style.display = "block";
             out.appendChild(document.createTextNode(text));
@@ -306,7 +314,8 @@ function registerAlpineComponents() {
             );
 
             try {
-                await py.runPythonAsync(transformedCode);
+                const runFunc = py.globals.get("__qcode_run");
+                await runFunc(transformedCode, this.pyGlobals);
                 this.status = this.shouldStop ? "stopped" : "finished";
             } catch (err) {
                 if (err.message.includes("KeyboardInterrupt")) {
@@ -389,6 +398,9 @@ function registerAlpineComponents() {
 
         resetCode() {
             if (this.editor) this.editor.setValue(this.originalCode, -1);
+            if (this.pyGlobals) {
+                this.pyGlobals.clear();
+            }
         },
 
         copyCode() {
