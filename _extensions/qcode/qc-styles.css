@@ -100,6 +100,14 @@
 
 .sk__editor__func code {
     cursor: pointer;
+    background: none;
+    color: black;
+    text-decoration: underline wavy var(--success-color-sk);
+    transition: text-decoration 0.3s ease-in-out;
+}
+
+.sk__editor__func code:hover {
+    text-decoration-color: #275f28;
 }
 
 button.run {

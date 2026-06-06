@@ -263,6 +263,7 @@ function registerAlpineComponents() {
         },
 
         clearOutput() {
+            this.editor.getSession().setAnnotations([]); // убираем все отметки об ошибках
             this.stdoutBuffer = "";
             this.$refs.output.innerHTML = "";
             this.$refs.output.style.display = "none";
@@ -287,6 +288,14 @@ function registerAlpineComponents() {
                 console.log(e);
                 this.functionNames = [];
             }
+        },
+
+        extractErrorMessage(message) {
+            const errorRegex =
+                /  File.+line (?<line>\d+)[\w\s^*=(){}\[\]:\.]*\s(?<type>\w+): (?<desc>.+)/gm;
+            const match = message.match(errorRegex);
+
+            console.log(match);
         },
 
         // Запуск кода
@@ -327,6 +336,14 @@ function registerAlpineComponents() {
                 } else {
                     this.status = "error";
                     this.addOutput(err.message + "\n");
+                    this.extractErrorMessage(err.message);
+                    // this.editor.getSession().setAnnotations([
+                    //     {
+                    //         row: 0,
+                    //         text: "error",
+                    //         type: "error",
+                    //     },
+                    // ]);
                 }
             } finally {
                 this.isRunning = false;
