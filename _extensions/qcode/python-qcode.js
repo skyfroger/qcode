@@ -10,6 +10,31 @@ async function initPyodide() {
 
     pyodideInstance = await pyodideReadyPromise;
 
+    pyodideInstance.runPython(`
+import ast
+
+def __qcode_get_calls(source):
+    try:
+        tree = ast.parse(source)
+    except Exception as e:
+        return []
+    names = []
+    seen = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Call):
+            if isinstance(node.func, ast.Name):
+                name = node.func.id
+            elif isinstance(node.func, ast.Attribute):
+                name = node.func.attr
+            else:
+                continue
+            if name not in seen:
+                seen.add(name)
+                names.append(name)
+    return names
+
+`);
+
     try {
         if (typeof SharedArrayBuffer !== "undefined") {
             const interruptBuffer = new Int32Array(new SharedArrayBuffer(4));
@@ -115,7 +140,6 @@ function registerAlpineComponents() {
         originalCode: "",
         isRunning: false,
         isWaitingForInput: false,
-        isTerminalVisible: false,
         hasError: false,
         status: "ready",
         statusImages: {
@@ -148,16 +172,14 @@ function registerAlpineComponents() {
         inputResolver: null,
         functionNames: [],
 
-        // Поля для xterm.js
-        term: null,
-        fitAddon: null,
-        currentInput: "",
+        stdoutBuffer: "",
+        stderrBuffer: "",
 
         init() {
             this.originalCode = this.$refs.original.textContent;
             this.$nextTick(() => {
                 this.initAce();
-                this.initXterm();
+                this.getAST(this.getCode());
             });
         },
 
@@ -211,97 +233,50 @@ function registerAlpineComponents() {
             updateHeight();
         },
 
-        // Инициализация терминала
-        initXterm() {
-            const container = this.$refs.terminalContainer;
-            if (!container) return;
-
-            this.term = new Terminal({
-                cursorBlink: true,
-                fontSize: 15,
-                fontFamily:
-                    '"Ubuntu Sans Mono", Consolas, "Liberation Mono", "Courier New", monospace',
-                theme: {
-                    background: "#51576d",
-                    foreground: "#f5f5f5",
-                    cursor: "#f5f5f5",
-                },
-                convertEol: true,
-                scrollback: 1000,
-            });
-            this.fitAddon = new FitAddon.FitAddon();
-            this.term.loadAddon(this.fitAddon);
-            this.term.open(container);
-            this.fitAddon.fit();
-
-            this.term.onData((data) => {
-                if (!this.inputResolver) return;
-
-                if (data === "\r") {
-                    this.term.writeln("");
-                    this.inputResolver(this.currentInput);
-                    this.inputResolver = null;
-                    this.currentInput = "";
-                    this.isWaitingForInput = false;
-                    this.status = "running";
-                } else if (data === "\x7F") {
-                    if (this.currentInput.length > 0) {
-                        this.currentInput = this.currentInput.slice(0, -1);
-                        this.term.write("\b \b");
-                    }
-                } else {
-                    this.currentInput += data;
-                    this.term.write(data);
-                }
-            });
-        },
-
-        // Подстройка высоты терминала под контент
-        updateTerminalHeight() {
-            if (!this.term || !this.fitAddon || !this.$refs.terminalContainer)
-                return;
-            const lineCount = this.term._core.buffer.y + 1;
-            // xterm.js использует высоту строки примерно fontSize * 1.5
-            const lineHeight = this.term.options.fontSize * 1.6;
-            const padding = 16; // ~0.8em с каждой стороны
-            const desiredHeight = Math.min(
-                200,
-                Math.max(25, lineCount * lineHeight + padding),
-            );
-            this.$refs.terminalContainer.style.height = desiredHeight + "px";
-            this.fitAddon.fit();
-        },
-
         getCode() {
             return this.editor ? this.editor.getValue() : "";
         },
 
-        // Вывод в xterm с пересчётом высоты
-        addOutput(text, isError = false) {
-            if (!this.term) return;
-            if (isError) {
-                this.term.writeln(`\x1b[31m${text}\x1b[0m`);
-            } else {
-                this.term.writeln(text);
+        stdoutRaw(char) {
+            this.stdoutBuffer += String.fromCharCode(char);
+            if (char !== 10 || char === 13) {
+                this.addOutput(this.stdoutBuffer);
+                this.stdoutBuffer = "";
             }
-            this.updateTerminalHeight();
         },
 
-        // Очистка и скрытие терминала
+        addOutput(text) {
+            console.log(text);
+            const out = this.$refs.output;
+            out.style.display = "block";
+            out.appendChild(document.createTextNode(text));
+            out.scrollTop = out.scrollHeight;
+        },
+
         clearOutput() {
-            if (this.term) {
-                this.term.reset(); // полный сброс буфера и курсора
-                this.currentInput = "";
-            }
-            if (this.$refs.terminalContainer) {
-                this.isTerminalVisible = false;
-            }
+            this.$refs.output.innerHTML = "";
+            this.$refs.output.style.display = "none";
             this.status = "ready";
         },
 
-        getAST(code) {
-            const names = [];
-            this.functionNames = names;
+        async getAST(code) {
+            const py = await initPyodide();
+            if (!py) {
+                this.functionNames = [];
+                return;
+            }
+            try {
+                const result = py.runPython(
+                    `__qcode_get_calls(${JSON.stringify(code)})`,
+                );
+                const allNames = result.toJs();
+                this.functionNames = allNames.filter((n) =>
+                    window.__NAMES__.includes(n),
+                );
+            } catch (e) {
+                console.log(e);
+                this.functionNames = [];
+            }
         },
 
         // Запуск кода
@@ -314,25 +289,14 @@ function registerAlpineComponents() {
             this.isRunning = true;
             this.status = "running";
 
-            // Показываем терминал, очищаем и сбрасываем высоту
-            if (this.$refs.terminalContainer) {
-                this.isTerminalVisible = true;
-            }
-            if (this.term) {
-                this.term.reset();
-                this.currentInput = "";
-                this.fitAddon.fit();
-                this.term.focus();
-                this.term.write("\x1b[?25h");
-            }
+            this.clearOutput();
 
             if (window.__pyodideInterruptBuffer) {
                 window.__pyodideInterruptBuffer[0] = 0;
             }
 
-            // Перенаправляем потоки на терминал этого редактора
-            py.setStdout({ batched: (msg) => this.addOutput(msg, false) });
-            py.setStderr({ batched: (msg) => this.addOutput(msg, true) });
+            py.setStdout({ raw: (msg) => this.stdoutRaw(msg) });
+            py.setStderr({ raw: (msg) => this.stdoutRaw(msg) });
 
             let code = this.getCode();
             const transformedCode = code.replace(
@@ -345,62 +309,81 @@ function registerAlpineComponents() {
                 this.status = this.shouldStop ? "stopped" : "finished";
             } catch (err) {
                 if (err.message.includes("KeyboardInterrupt")) {
-                    this.addOutput(
-                        "\n\x1b[33mВыполнение остановлено пользователем.\x1b[0m\n",
-                        false,
-                    );
+                    this.addOutput("\nВыполнение остановлено пользователем.\n");
                     this.status = "stopped";
                 } else {
                     this.status = "error";
-                    this.addOutput(err.message + "\n", true);
+                    this.addOutput(err.message + "\n");
                 }
             } finally {
                 this.isRunning = false;
                 this.inputResolver = null;
                 this.isWaitingForInput = false;
-                this.currentInput = "";
                 activeEditor = null;
                 this.shouldStop = false;
-                this.term.write("\x1b[?25l"); // Hides the cursor
-                this.updateTerminalHeight(); // финальная подстройка размера
             }
         },
 
-        // Остановка
         stop() {
             if (!this.isRunning) return;
             this.shouldStop = true;
 
+            // Если ждём ввода — удаляем <input> и разрешаем Promise пустой строкой
             if (this.inputResolver) {
-                this.inputResolver(null);
+                const out = this.$refs.output;
+                const inputEl = out.querySelector("input");
+                if (inputEl) out.removeChild(inputEl);
+
+                this.inputResolver("");
                 this.inputResolver = null;
-                this.currentInput = "";
                 this.isWaitingForInput = false;
-                if (pyodideInstance) {
-                    pyodideInstance
-                        .runPythonAsync(`raise KeyboardInterrupt()`)
-                        .catch(() => {});
-                }
-            } else if (window.__pyodideInterruptBuffer) {
-                window.__pyodideInterruptBuffer[0] = 2;
-            } else {
-                this.addOutput(
-                    "\n\x1b[31mНевозможно остановить код без SharedArrayBuffer.\x1b[0m\n",
-                    true,
-                );
             }
+
+            // Прерывание вычислений
+            if (window.__pyodideInterruptBuffer) {
+                window.__pyodideInterruptBuffer[0] = 2;
+            } else if (pyodideInstance) {
+                pyodideInstance
+                    .runPythonAsync(`raise KeyboardInterrupt()`)
+                    .catch(() => {});
+            }
+
+            this.isRunning = false;
+            this.status = "stopped";
+            activeEditor = null;
         },
 
-        // Ожидание ввода (вызывается из глобального __skGetInput)
         startInput(prompt, resolve) {
             this.inputResolver = resolve;
             this.isWaitingForInput = true;
             this.status = "waiting-input";
-            this.currentInput = "";
-            if (prompt && this.term) {
-                this.term.write(prompt);
-            }
-            this.updateTerminalHeight();
+
+            // Выводим prompt в <pre>
+            this.addOutput(prompt);
+
+            const out = this.$refs.output;
+            const inputEl = document.createElement("input");
+            inputEl.type = "text";
+
+            inputEl.onkeydown = (e) => {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    const value = inputEl.value;
+
+                    // Отображаем введённое значение и перенос строки
+                    this.addOutput(value + "\n");
+                    out.removeChild(inputEl);
+
+                    this.isWaitingForInput = false;
+                    this.inputResolver = null;
+                    if (!this.shouldStop) this.status = "running";
+
+                    resolve(value);
+                }
+            };
+
+            out.appendChild(inputEl);
+            inputEl.focus();
         },
 
         resetCode() {
@@ -465,7 +448,6 @@ if (window.Alpine) {
     registerAlpineComponents();
 } else {
     document.addEventListener("alpine:init", () => {
-        registerAlpineComponents();
         initPyodide().then((py) => {
             // Асинхронная обёртка для input() без дублирующего print()
             py.runPythonAsync(`
@@ -478,5 +460,6 @@ async def __sk_input(prompt=""):
 builtins.input = __sk_input
 `);
         });
+        registerAlpineComponents();
     });
 }

@@ -37,9 +37,6 @@ local function addAceLibsOnce()
 <script src="https://unpkg.com/fuse.js@7.2.0/dist/fuse.min.js"></script>  
 <script src="https://www.unpkg.com/ace-builds@latest/src-noconflict/ace.js"></script>
 <script src="https://www.unpkg.com/ace-builds@latest/src-noconflict/ext-language_tools.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css" />
-<script src="https://unpkg.com/xterm@5.3.0/lib/xterm.js"></script>
-<script src="https://unpkg.com/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.js"></script>
 <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
 <style>[x-cloak] { display: none !important; }</style>
 ]])
@@ -228,8 +225,7 @@ function createSkulptIDE(block)
 
     <div>
       <div class="ide" x-ref="editorContainer"></div>
-
-      <div x-show="isTerminalVisible" x-cloak id="skulpt-terminal]] .. id .. [[" x-ref="terminalContainer" class="terminal-container"></div>
+      <pre id="skulpt-output]] .. id .. [[" x-ref="output" class="output__container"></pre>
       <pre style="display:none" x-ref="original">]] .. block.text .. [[</pre>
     </div>
 
