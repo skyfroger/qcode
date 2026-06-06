@@ -1,9 +1,9 @@
-# SkPython
+# qCode
 
 ## Установка
 
 ```bash
-quarto add skyfroger/skpython
+quarto add skyfroger/qcode
 ```
 
 ## Применение
