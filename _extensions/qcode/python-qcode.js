@@ -239,7 +239,7 @@ function registerAlpineComponents() {
 
         stdoutRaw(char) {
             this.stdoutBuffer += String.fromCharCode(char);
-            if (char !== 10 || char === 13) {
+            if (char !== 10) {
                 this.addOutput(this.stdoutBuffer);
                 this.stdoutBuffer = "";
             }
@@ -254,6 +254,7 @@ function registerAlpineComponents() {
         },
 
         clearOutput() {
+            this.stdoutBuffer = "";
             this.$refs.output.innerHTML = "";
             this.$refs.output.style.display = "none";
             this.status = "ready";
