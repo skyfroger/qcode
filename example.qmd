@@ -1,17 +1,38 @@
 ---
-title: "Формирующее оценивание"
-lang: ru
+title: "Python IDE in the Browser"
+lang: en
 filters:
   - qcode
 ---
 
-```sk-python
-a = input('enter a: ')
-b = input('enter b: ')
+**qCode** is a Quarto extension that adds an interactive Python IDE directly to the page. Code runs in the browser via Pyodide, with no server required.
 
-print(a + b)
+
+## Basic Example
+
+A simple loop that prints characters of a string:
+
+```sk-python
+for letter in "Hello, world":
+    print(letter)
 ```
 
+
+## Working with Input
+
+The `input()` function works interactively — enter values in the input field that appears and press `Enter`:
+
+```sk-python
+a = input('Enter a: ')
+b = input('Enter b: ')
+
+print("Result:", a + b)
+```
+
+
+## Functions and Math
+
+The editor automatically detects used functions. Click on a function name in the bar below the editor to open its documentation:
 
 ```sk-python
 def total_cost(a, rho=1240, cost=60):
@@ -19,15 +40,34 @@ def total_cost(a, rho=1240, cost=60):
     res = v * rho / cost
     return res
 
-N = int(input("Количество деталей: "))
-d = float(input("Длина стороны куба (м): "))
-print("Ответ")
+N = int(input("Number of parts: "))
+d = float(input("Cube side length (m): "))
+print("Answer:")
 print(total_cost(d) * N)
 ```
 
 
+## Documentation Search
+
+Use the `.sk-api-search` block to add a Python documentation search field. Start typing a function name — suggestions will appear. Clicking a result opens a modal window with a detailed description.
+
 :::{.sk-api-search}
-Документация содержит стандартные функции языка Python и методы встроенных типов.
+The documentation contains standard Python language functions and built-in type methods.
 :::
 
-После поиска идёт другой текст страницы, который должен перекрываться результатами поиска.
+
+## Error Handling
+
+When an error occurs in the code, it will be displayed in the output window, and the editor status will change to <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNlMzRhNmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1iYWRnZS1hbGVydC1pY29uIGx1Y2lkZS1iYWRnZS1hbGVydCI+PHBhdGggZD0iTTMuODUgOC42MmE0IDQgMCAwIDEgNC43OC00Ljc3IDQgNCAwIDAgMSA2Ljc0IDAgNCA0IDAgMCAxIDQuNzggNC43OCA0IDQgMCAwIDEgMCA2Ljc0IDQgNCAwIDAgMS00Ljc3IDQuNzggNCA0IDAgMCAxLTYuNzUgMCA0IDQgMCAwIDEtNC43OC00Ljc3IDQgNCAwIDAgMSAwLTYuNzVaIi8+PGxpbmUgeDE9IjEyIiB4Mj0iMTIiIHkxPSI4IiB5Mj0iMTIiLz48bGluZSB4MT0iMTIiIHgyPSIxMi4wMSIgeTE9IjE2IiB5Mj0iMTYiLz48L3N2Zz4=" />:
+
+```sk-python
+# This code will raise an error
+print(undefined_variable)
+```
+
+
+## Tips
+
+- Each editor has an independent execution environment.
+- Use the "Stop" button to interrupt infinite loops.
+- Documentation display settings (parameters, types, diagram) are saved in the browser.

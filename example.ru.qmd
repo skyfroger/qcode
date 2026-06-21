@@ -1,0 +1,73 @@
+---
+title: "Python IDE в браузере"
+lang: ru
+filters:
+  - qcode
+---
+
+**qCode** - расширение для Quarto, которое добавляет интерактивную Python IDE прямо на страницу. Код выполняется в браузере через Pyodide, без необходимости сервера.
+
+
+## Базовый пример
+
+Простой цикл, который выводит символы строки:
+
+```sk-python
+for letter in "Привет, мир":
+    print(letter)
+```
+
+
+## Работа с вводом данных
+
+Функция `input()` работает интерактивно - введите значения в появившееся поле и нажмите `Enter`:
+
+```sk-python
+a = input('Введите a: ')
+b = input('Введите b: ')
+
+print("Результат:", a + b)
+```
+
+
+## Функции и математика
+
+Редактор автоматически обнаруживает используемые функции. Кликните по имени функции в строке под редактором, чтобы открыть её документацию:
+
+```sk-python
+def total_cost(a, rho=1240, cost=60):
+    v = a ** 3
+    res = v * rho / cost
+    return res
+
+N = int(input("Количество деталей: "))
+d = float(input("Длина стороны куба (м): "))
+print("Ответ:")
+print(total_cost(d) * N)
+```
+
+
+## Поиск по документации
+
+Используйте блок `.sk-api-search` для добавления поля поиска по документации Python. Начните вводить название функции - появятся подсказки. Клик по результату откроет модальное окно с подробным описанием.
+
+:::{.sk-api-search}
+Документация содержит стандартные функции языка Python и методы встроенных типов.
+:::
+
+
+## Обработка ошибок
+
+При возникновении ошибки в коде она отобразится в окне вывода, а статус редактора изменится на <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNlMzRhNmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1iYWRnZS1hbGVydC1pY29uIGx1Y2lkZS1iYWRnZS1hbGVydCI+PHBhdGggZD0iTTMuODUgOC42MmE0IDQgMCAwIDEgNC43OC00Ljc3IDQgNCAwIDAgMSA2Ljc0IDAgNCA0IDAgMCAxIDQuNzggNC43OCA0IDQgMCAwIDEgMCA2Ljc0IDQgNCAwIDAgMS00Ljc3IDQuNzggNCA0IDAgMCAxLTYuNzUgMCA0IDQgMCAwIDEtNC43OC00Ljc3IDQgNCAwIDAgMSAwLTYuNzVaIi8+PGxpbmUgeDE9IjEyIiB4Mj0iMTIiIHkxPSI4IiB5Mj0iMTIiLz48bGluZSB4MT0iMTIiIHgyPSIxMi4wMSIgeTE9IjE2IiB5Mj0iMTYiLz48L3N2Zz4=" />:
+
+```sk-python
+# Этот код вызовет ошибку
+print(undefined_variable)
+```
+
+
+## Советы
+
+- Каждый редактор имеет независимое окружение выполнения.
+- Используйте кнопку «Стоп» для прерывания бесконечных циклов.
+- Настройки отображения документации (параметры, типы, диаграмма) сохраняются в браузере.
