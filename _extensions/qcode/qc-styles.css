@@ -399,10 +399,15 @@ code[class*="language-"] {
     font-size: 0.95rem !important;
 }
 
-.modal-toolbar {
+.modal-toolbar,
+.modal-toolbar-options {
     display: flex;
     gap: var(--space-sm);
     justify-content: center;
+}
+
+.modal-toolbar {
+    justify-content: space-between;
 }
 
 .modal-toolbar label {
@@ -484,4 +489,17 @@ code[class*="language-"] {
     padding-inline-start: var(--space-sm);
     width: 100%;
     transform: translateY(-0.5rem);
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #6c757d;
+    cursor: pointer;
+    line-height: 1rem;
+}
+
+.btn-close:hover {
+    color: #343a40;
 }
