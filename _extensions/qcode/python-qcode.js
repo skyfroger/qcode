@@ -303,6 +303,8 @@ function registerAlpineComponents() {
             if (this.isRunning || activeEditor) return;
 
             const py = await initPyodide();
+            this.pyGlobals = py.runPython("dict()"); // reset Globals before run
+
             activeEditor = this;
 
             this.isRunning = true;
