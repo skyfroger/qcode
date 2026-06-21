@@ -1,5 +1,5 @@
 
--- // LOCALISATIONS STRINGS //
+-- // LOCALIZATION STRINGS //
 local loc_data = {
   en = {
     showOptionalParams = "Show optional parameters",
@@ -40,7 +40,7 @@ local loc_data = {
     searchInputPlaceholder = "Введите название функции или метода",
   }
 }
--- // END OF LOCALISATION STRINGS //
+-- // END OF LOCALIZATION STRINGS //
 
 -- localisation helper function
 local M = {}
