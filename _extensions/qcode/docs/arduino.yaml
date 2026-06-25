@@ -1,0 +1,840 @@
+- name: pinMode
+  category: Цифровой ввод/вывод
+  description: Устанавливает режим работы заданного вывода как входа или как выхода.
+  class_name: ''
+  parameters:
+    - name: pin
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Номер вывода
+    - name: mode
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Режим работы (INPUT, OUTPUT, INPUT_PULLUP)
+  returns:
+    type: None
+    description: Нет возвращаемого значения
+  examples:
+    - code: pinMode(13, OUTPUT)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/PinMode
+
+- name: digitalWrite
+  category: Цифровой ввод/вывод
+  description: Подает HIGH или LOW значение на цифровой вывод.
+  class_name: ''
+  parameters:
+    - name: pin
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Номер вывода
+    - name: value
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Значение HIGH или LOW
+  returns:
+    type: None
+    description: Нет возвращаемого значения
+  examples:
+    - code: digitalWrite(13, HIGH)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/DigitalWrite
+
+- name: digitalRead
+  category: Цифровой ввод/вывод
+  description: Считывает значение с заданного цифрового вывода (HIGH или LOW).
+  class_name: ''
+  parameters:
+    - name: pin
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Номер вывода
+  returns:
+    type: int
+    description: HIGH или LOW
+  examples:
+    - code: val = digitalRead(inPin)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/DigitalRead
+
+- name: analogRead
+  category: Аналоговый ввод/вывод
+  description: Считывает значение с указанного аналогового входа (0–1023).
+  class_name: ''
+  parameters:
+    - name: pin
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Номер аналогового входа (A0–A5 для большинства плат)
+  returns:
+    type: int
+    description: Значение от 0 до 1023
+  examples:
+    - code: val = analogRead(A0)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/AnalogRead
+
+- name: analogWrite
+  category: Аналоговый ввод/вывод
+  description: Выдает аналоговую величину (ШИМ-сигнал) на вывод.
+  class_name: ''
+  parameters:
+    - name: pin
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Номер вывода, поддерживающего ШИМ
+    - name: value
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Значение от 0 (выключено) до 255 (постоянно включено)
+  returns:
+    type: None
+    description: Нет возвращаемого значения
+  examples:
+    - code: analogWrite(9, 128)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/AnalogWrite
+
+- name: analogReference
+  category: Аналоговый ввод/вывод
+  description: Определяет опорное напряжение для аналоговых измерений.
+  class_name: ''
+  parameters:
+    - name: type
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Тип опорного напряжения (DEFAULT, INTERNAL, EXTERNAL и др.)
+  returns:
+    type: None
+    description: Нет возвращаемого значения
+  examples:
+    - code: analogReference(INTERNAL)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/AnalogReference
+
+- name: shiftOut
+  category: Дополнительные функции ввода/вывода
+  description: Выдает байт данных через последовательный сдвиговый регистр.
+  class_name: ''
+  parameters:
+    - name: dataPin
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Номер вывода данных
+    - name: clockPin
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Номер тактового вывода
+    - name: bitOrder
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Порядок бит (LSBFIRST или MSBFIRST)
+    - name: value
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Выводимое значение (байт)
+  returns:
+    type: None
+    description: Нет возвращаемого значения
+  examples:
+    - code: shiftOut(dataPin, clockPin, LSBFIRST, 0xFF)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/ShiftOut
+
+- name: shiftIn
+  category: Дополнительные функции ввода/вывода
+  description: Считывает байт данных из последовательного сдвигового регистра.
+  class_name: ''
+  parameters:
+    - name: dataPin
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Номер вывода данных
+    - name: clockPin
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Номер тактового вывода
+    - name: bitOrder
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Порядок бит (LSBFIRST или MSBFIRST)
+  returns:
+    type: int
+    description: Считанное значение (байт)
+  examples:
+    - code: val = shiftIn(dataPin, clockPin, LSBFIRST)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/ShiftIn
+
+- name: pulseIn
+  category: Дополнительные функции ввода/вывода
+  description: Измеряет длительность импульса на выводе.
+  class_name: ''
+  parameters:
+    - name: pin
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Номер вывода
+    - name: value
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Тип импульса (HIGH или LOW)
+    - name: timeout
+      type_hint: int
+      required: false
+      positional_only: true
+      description: Таймаут в микросекундах (по умолчанию 1 секунда)
+  returns:
+    type: int
+    description: Длительность импульса в микросекундах или 0 при таймауте
+  examples:
+    - code: duration = pulseIn(7, HIGH)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/PulseIn
+
+- name: pulseInLong
+  category: Дополнительные функции ввода/вывода
+  description: Измеряет длительность импульса на выводе с более высокой точностью.
+  class_name: ''
+  parameters:
+    - name: pin
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Номер вывода
+    - name: value
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Тип импульса (HIGH или LOW)
+    - name: timeout
+      type_hint: int
+      required: false
+      positional_only: true
+      description: Таймаут в микросекундах (по умолчанию 1 секунда)
+  returns:
+    type: int
+    description: Длительность импульса в микросекундах или 0 при таймауте
+  examples:
+    - code: duration = pulseInLong(7, HIGH)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/PulseInLong
+
+- name: tone
+  category: Дополнительные функции ввода/вывода
+  description: Генерирует звуковой сигнал заданной частоты на выводе.
+  class_name: ''
+  parameters:
+    - name: pin
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Номер вывода
+    - name: frequency
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Частота в герцах
+    - name: duration
+      type_hint: int
+      required: false
+      positional_only: true
+      description: Длительность сигнала в миллисекундах (по умолчанию бесконечно)
+  returns:
+    type: None
+    description: Нет возвращаемого значения
+  examples:
+    - code: tone(8, 440, 1000)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/Tone
+
+- name: noTone
+  category: Дополнительные функции ввода/вывода
+  description: Останавливает генерацию звукового сигнала на выводе.
+  class_name: ''
+  parameters:
+    - name: pin
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Номер вывода
+  returns:
+    type: None
+    description: Нет возвращаемого значения
+  examples:
+    - code: noTone(8)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/NoTone
+
+- name: millis
+  category: Работа со временем
+  description: Возвращает количество миллисекунд с момента запуска программы.
+  class_name: ''
+  parameters: []
+  returns:
+    type: unsigned long
+    description: Количество миллисекунд
+  examples:
+    - code: unsigned long time = millis()
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/Millis
+
+- name: micros
+  category: Работа со временем
+  description: Возвращает количество микросекунд с момента запуска программы.
+  class_name: ''
+  parameters: []
+  returns:
+    type: unsigned long
+    description: Количество микросекунд
+  examples:
+    - code: unsigned long time = micros()
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/Micros
+
+- name: delay
+  category: Работа со временем
+  description: Приостанавливает выполнение программы на заданное количество миллисекунд.
+  class_name: ''
+  parameters:
+    - name: ms
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Время задержки в миллисекундах
+  returns:
+    type: None
+    description: Нет возвращаемого значения
+  examples:
+    - code: delay(1000)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/Delay
+
+- name: delayMicroseconds
+  category: Работа со временем
+  description: Приостанавливает выполнение программы на заданное количество микросекунд.
+  class_name: ''
+  parameters:
+    - name: us
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Время задержки в микросекундах
+  returns:
+    type: None
+    description: Нет возвращаемого значения
+  examples:
+    - code: delayMicroseconds(100)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/DelayMicroseconds
+
+- name: min
+  category: Математические функции
+  description: Возвращает меньшее из двух чисел.
+  class_name: ''
+  parameters:
+    - name: x
+      type_hint: int | float
+      required: true
+      positional_only: true
+      description: Первое число
+    - name: y
+      type_hint: int | float
+      required: true
+      positional_only: true
+      description: Второе число
+  returns:
+    type: int | float
+    description: Меньшее число
+  examples:
+    - code: min(10, 20)
+      output: '10'
+  is_class: false
+  url: https://arduino.ru/Reference/Min
+
+- name: max
+  category: Математические функции
+  description: Возвращает большее из двух чисел.
+  class_name: ''
+  parameters:
+    - name: x
+      type_hint: int | float
+      required: true
+      positional_only: true
+      description: Первое число
+    - name: y
+      type_hint: int | float
+      required: true
+      positional_only: true
+      description: Второе число
+  returns:
+    type: int | float
+    description: Большее число
+  examples:
+    - code: max(10, 20)
+      output: '20'
+  is_class: false
+  url: https://arduino.ru/Reference/Max
+
+- name: abs
+  category: Математические функции
+  description: Возвращает абсолютное значение числа.
+  class_name: ''
+  parameters:
+    - name: x
+      type_hint: int | float
+      required: true
+      positional_only: true
+      description: Число
+  returns:
+    type: int | float
+    description: Абсолютное значение
+  examples:
+    - code: abs(-5)
+      output: '5'
+  is_class: false
+  url: https://arduino.ru/Reference/Abs
+
+- name: constrain
+  category: Математические функции
+  description: Ограничивает число заданным диапазоном.
+  class_name: ''
+  parameters:
+    - name: x
+      type_hint: int | float
+      required: true
+      positional_only: true
+      description: Число для ограничения
+    - name: a
+      type_hint: int | float
+      required: true
+      positional_only: true
+      description: Нижняя граница
+    - name: b
+      type_hint: int | float
+      required: true
+      positional_only: true
+      description: Верхняя граница
+  returns:
+    type: int | float
+    description: Ограниченное число
+  examples:
+    - code: constrain(15, 0, 10)
+      output: '10'
+  is_class: false
+  url: https://arduino.ru/Reference/Constrain
+
+- name: map
+  category: Математические функции
+  description: Пересчитывает число из одного диапазона в другой.
+  class_name: ''
+  parameters:
+    - name: value
+      type_hint: int | float
+      required: true
+      positional_only: true
+      description: Число для пересчета
+    - name: fromLow
+      type_hint: int | float
+      required: true
+      positional_only: true
+      description: Нижняя граница исходного диапазона
+    - name: fromHigh
+      type_hint: int | float
+      required: true
+      positional_only: true
+      description: Верхняя граница исходного диапазона
+    - name: toLow
+      type_hint: int | float
+      required: true
+      positional_only: true
+      description: Нижняя граница целевого диапазона
+    - name: toHigh
+      type_hint: int | float
+      required: true
+      positional_only: true
+      description: Верхняя граница целевого диапазона
+  returns:
+    type: int | float
+    description: Пересчитанное число
+  examples:
+    - code: map(50, 0, 100, 0, 255)
+      output: '127'
+  is_class: false
+  url: https://arduino.ru/Reference/Map
+
+- name: pow
+  category: Математические функции
+  description: Возводит число в заданную степень.
+  class_name: ''
+  parameters:
+    - name: base
+      type_hint: float
+      required: true
+      positional_only: true
+      description: Основание
+    - name: exponent
+      type_hint: float
+      required: true
+      positional_only: true
+      description: Показатель степени
+  returns:
+    type: float
+    description: Результат возведения в степень
+  examples:
+    - code: pow(2, 3)
+      output: '8.0'
+  is_class: false
+  url: https://arduino.ru/Reference/Pow
+
+- name: sq
+  category: Математические функции
+  description: Возвращает квадрат числа.
+  class_name: ''
+  parameters:
+    - name: x
+      type_hint: float
+      required: true
+      positional_only: true
+      description: Число
+  returns:
+    type: float
+    description: Квадрат числа
+  examples:
+    - code: sq(3)
+      output: '9.0'
+  is_class: false
+  url: https://arduino.ru/Reference/Sq
+
+- name: sqrt
+  category: Математические функции
+  description: Возвращает квадратный корень числа.
+  class_name: ''
+  parameters:
+    - name: x
+      type_hint: float
+      required: true
+      positional_only: true
+      description: Число
+  returns:
+    type: float
+    description: Квадратный корень
+  examples:
+    - code: sqrt(9)
+      output: '3.0'
+  is_class: false
+  url: https://arduino.ru/Reference/Sqrt
+
+- name: sin
+  category: Тригонометрические функции
+  description: Возвращает синус угла (в радианах).
+  class_name: ''
+  parameters:
+    - name: angle
+      type_hint: float
+      required: true
+      positional_only: true
+      description: Угол в радианах
+  returns:
+    type: float
+    description: Синус угла
+  examples:
+    - code: sin(PI/2)
+      output: '1.0'
+  is_class: false
+  url: https://arduino.ru/Reference/Sin
+
+- name: cos
+  category: Тригонометрические функции
+  description: Возвращает косинус угла (в радианах).
+  class_name: ''
+  parameters:
+    - name: angle
+      type_hint: float
+      required: true
+      positional_only: true
+      description: Угол в радианах
+  returns:
+    type: float
+    description: Косинус угла
+  examples:
+    - code: cos(0)
+      output: '1.0'
+  is_class: false
+  url: https://arduino.ru/Reference/Cos
+
+- name: tan
+  category: Тригонометрические функции
+  description: Возвращает тангенс угла (в радианах).
+  class_name: ''
+  parameters:
+    - name: angle
+      type_hint: float
+      required: true
+      positional_only: true
+      description: Угол в радианах
+  returns:
+    type: float
+    description: Тангенс угла
+  examples:
+    - code: tan(PI/4)
+      output: '1.0'
+  is_class: false
+  url: https://arduino.ru/Reference/Tan
+
+- name: randomSeed
+  category: Генераторы случайных значений
+  description: Устанавливает начальное значение для генератора случайных чисел.
+  class_name: ''
+  parameters:
+    - name: seed
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Начальное значение
+  returns:
+    type: None
+    description: Нет возвращаемого значения
+  examples:
+    - code: randomSeed(analogRead(0))
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/RandomSeed
+
+- name: random
+  category: Генераторы случайных значений
+  description: Возвращает случайное число в заданном диапазоне.
+  class_name: ''
+  parameters:
+    - name: min
+      type_hint: int
+      required: false
+      positional_only: true
+      description: Нижняя граница (включительно)
+    - name: max
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Верхняя граница (не включительно)
+  returns:
+    type: int
+    description: Случайное число
+  examples:
+    - code: random(100)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/Random
+
+- name: attachInterrupt
+  category: Внешние прерывания
+  description: Назначает функцию для обработки внешнего прерывания.
+  class_name: ''
+  parameters:
+    - name: pin
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Номер вывода (рекомендуется использовать digitalPinToInterrupt(pin))
+    - name: ISR
+      type_hint: function
+      required: true
+      positional_only: true
+      description: Функция-обработчик прерывания
+    - name: mode
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Режим срабатывания (LOW, CHANGE, RISING, FALLING)
+  returns:
+    type: None
+    description: Нет возвращаемого значения
+  examples:
+    - code: attachInterrupt(digitalPinToInterrupt(2), myISR, CHANGE)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/AttachInterrupt
+
+- name: detachInterrupt
+  category: Внешние прерывания
+  description: Отключает обработчик внешнего прерывания.
+  class_name: ''
+  parameters:
+    - name: pin
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Номер вывода
+  returns:
+    type: None
+    description: Нет возвращаемого значения
+  examples:
+    - code: detachInterrupt(digitalPinToInterrupt(2))
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/DetachInterrupt
+
+- name: interrupts
+  category: Внешние прерывания
+  description: Включает обработку прерываний (глобально).
+  class_name: ''
+  parameters: []
+  returns:
+    type: None
+    description: Нет возвращаемого значения
+  examples:
+    - code: interrupts()
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/Interrupts
+
+- name: noInterrupts
+  category: Внешние прерывания
+  description: Отключает обработку прерываний (глобально).
+  class_name: ''
+  parameters: []
+  returns:
+    type: None
+    description: Нет возвращаемого значения
+  examples:
+    - code: noInterrupts()
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/NoInterrupts
+
+- name: Serial.begin
+  category: Функции передачи данных
+  description: Инициализирует последовательный порт с заданной скоростью.
+  class_name: Serial
+  parameters:
+    - name: speed
+      type_hint: int
+      required: true
+      positional_only: true
+      description: Скорость передачи данных (бод)
+  returns:
+    type: None
+    description: Нет возвращаемого значения
+  examples:
+    - code: Serial.begin(9600)
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/SerialBegin
+
+- name: Serial.read
+  category: Функции передачи данных
+  description: Считывает один байт из буфера последовательного порта.
+  class_name: Serial
+  parameters: []
+  returns:
+    type: int
+    description: Считанный байт или -1, если данных нет
+  examples:
+    - code: incomingByte = Serial.read()
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/SerialRead
+
+- name: Serial.write
+  category: Функции передачи данных
+  description: Отправляет байт или строку через последовательный порт.
+  class_name: Serial
+  parameters:
+    - name: val
+      type_hint: int | char | string
+      required: true
+      positional_only: true
+      description: Данные для отправки
+  returns:
+    type: int
+    description: Количество отправленных байт
+  examples:
+    - code: Serial.write('A')
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/SerialWrite
+
+- name: Serial.print
+  category: Функции передачи данных
+  description: Отправляет текст или значение через последовательный порт.
+  class_name: Serial
+  parameters:
+    - name: val
+      type_hint: любой тип
+      required: true
+      positional_only: true
+      description: Данные для отправки
+  returns:
+    type: int
+    description: Количество отправленных байт
+  examples:
+    - code: Serial.print("Hello")
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/SerialPrint
+
+- name: Serial.println
+  category: Функции передачи данных
+  description: Отправляет текст или значение через последовательный порт с переводом строки.
+  class_name: Serial
+  parameters:
+    - name: val
+      type_hint: любой тип
+      required: true
+      positional_only: true
+      description: Данные для отправки
+  returns:
+    type: int
+    description: Количество отправленных байт
+  examples:
+    - code: Serial.println("Hello")
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/SerialPrintln
+
+- name: Serial.available
+  category: Функции передачи данных
+  description: Возвращает количество байт, доступных для чтения в буфере.
+  class_name: Serial
+  parameters: []
+  returns:
+    type: int
+    description: Количество доступных байт
+  examples:
+    - code: if (Serial.available() > 0) { ... }
+      output: ''
+  is_class: false
+  url: https://arduino.ru/Reference/SerialAvailable

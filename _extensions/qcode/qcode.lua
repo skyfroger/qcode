@@ -1,6 +1,6 @@
 local EXTENSION_NAME = "qcode"
 
-local l10n  = require("./localize")
+local l10n  = require("./utils/localize")
 
 local function writeEnvironments()
   if quarto.doc.is_format("html:js") then
@@ -8,8 +8,7 @@ local function writeEnvironments()
       name = "qcode",
       version = "1",
       scripts = {
-        { path = 'doc_objects.js',},
-        { path = "python-qcode.js"  }
+        { path = "python-qcode.js"  , afterBody = "true"}
       },
       stylesheets = { "qc-styles.css", "prism-theme-github-light.css" }
     })
@@ -33,6 +32,7 @@ local function writeEnvironments()
   end
 end
 
+local docsJSON = "" -- JSON from yaml documentation file
 local aceLibsAdded = false
 local function addAceLibsOnce()
   if aceLibsAdded then return end
@@ -42,6 +42,10 @@ local function addAceLibsOnce()
 <script src="https://www.unpkg.com/ace-builds@latest/src-noconflict/ace.js"></script>
 <script src="https://www.unpkg.com/ace-builds@latest/src-noconflict/ext-language_tools.js"></script>
 <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+<script>
+  window.__DOCS__ = ]]..docsJSON..[[;
+  window.__NAMES__ = window.__DOCS__.map((entry) => entry.name);
+</script>
 <style>[x-cloak] { display: none !important; }</style>
 ]])
 end
@@ -277,9 +281,24 @@ function createSkAPISearch(div)
   return pandoc.Div(content, { class = "sk-api-search__formated" })
 end
 
+-- Загрузка YAML-файла локализации
+local function parse_yaml_to_table(path)
+  local metafile = io.open(path, 'r')
+  local content = metafile:read("*a")
+  metafile:close()
+  local yamlDocs = require("./utils/tinyyaml").parse(content)
+  return yamlDocs
+end
+
 local function render_elements(options)
 
   l10n.load(options.lang)
+
+  local extension_path = pandoc.path.directory(
+    pandoc.path.normalize(PANDOC_SCRIPT_FILE)
+  )
+  local docs = parse_yaml_to_table(extension_path.."/docs/python.yaml")
+  docsJSON = quarto.json.encode(docs)
 
   return {
     CodeBlock = function(block)
