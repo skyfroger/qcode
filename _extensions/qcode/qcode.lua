@@ -8,7 +8,7 @@ local function writeEnvironments()
       name = "qcode",
       version = "1",
       scripts = {
-        { path = "python-qcode.js"  , afterBody = "true"}
+        { path = "python-qcode.js"}
       },
       stylesheets = { "qc-styles.css", "prism-theme-github-light.css" }
     })
