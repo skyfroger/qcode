@@ -114,3 +114,21 @@ Settings are saved to `localStorage` and apply to all modal windows.
 2. **Multiple editors.** A page can contain multiple `sk-python` blocks - each gets its own editor with an independent execution environment.
 3. **Interrupting execution.** To stop an infinite loop, use the "Stop" button (if the browser supports `SharedArrayBuffer`).
 4. **Security.** Code runs in an isolated Pyodide environment inside the browser, without access to the user's file system.
+
+## Credits
+
+The following third-party libraries and modules were used in the development of the extension:
+
+- [Alpine.js](https://alpinejs.dev) for UI reactivity. MIT license.
+- [Ace](https://ace.c9.io) for embedding the code editor. BSD License.
+- [Pyodide](https://pyodide.org/en/stable/index.html) for running Python code in the browser. MPL-2.0 License.
+- [Prism](https://prismjs.com) for syntax highlighting outside of the Ace editor. MIT License.
+- [prism-theme-github](https://github.com/katorlys/prism-theme-github) - GitHub theme for Prism. MIT License.
+- [Fuse.js](https://www.fusejs.io) for searching interactive documentation.
+- [lua-tinyyaml](https://github.com/peposso/lua-tinyyaml) for parsing yaml files with programming language documentation.
+
+The extension's functionality and appearance were inspired by the following projects:
+
+- [naquiz extension for Quarto](https://github.com/nareal/naquiz) - the idea of ​​using Alpine.js for interface reactivity.
+- [pyodide extension for Quarto](https://github.com/coatless-quarto/pyodide) - the idea of ​​using pyodide for code execution. The first version of my extension used the [Skulpt](https://skulpt.org) library.
+- [PyTamaro](https://pytamaro.si.usi.ch) - the idea of ​​interactive documentation in the IDE. The editor displays a list of standard functions used in the code. The idea of ​​choosing the level of documentation detail was also taken from this project: diagrams, optional parameters, and data types.
