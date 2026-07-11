@@ -80,6 +80,22 @@ function registerAlpineComponents() {
         localStorage.setItem("vis-filter", JSON.stringify(filter));
     });
 
+    Alpine.data("inlineDoc", (name) => ({
+        name: name,
+        item: null,
+        init() {
+            const index = window.__NAMES__.indexOf(this.name);
+            this.item = window.__DOCS__[index];
+        },
+        openModal() {
+            this.$store.vis.selectedItem = this.item;
+            this.$store.vis.showModal = true;
+            this.$nextTick(() => {
+                Prism.highlightAll();
+            });
+        },
+    }));
+
     Alpine.data("docModal", () => ({
         init() {
             this.$watch("$store.vis.visFilter", (value) => {

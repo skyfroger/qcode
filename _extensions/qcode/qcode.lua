@@ -290,6 +290,16 @@ local function parse_yaml_to_table(path)
   return yamlDocs
 end
 
+
+local function get_function_names(t)
+  local names={}
+  for key,value in pairs(t) do
+    names[value["name"]] = key
+  end
+  return names
+end
+
+
 local function render_elements(options)
 
   l10n.load(options.lang)
@@ -298,9 +308,34 @@ local function render_elements(options)
     pandoc.path.normalize(PANDOC_SCRIPT_FILE)
   )
   local docs = parse_yaml_to_table(extension_path.."/docs/python.yaml")
+  local functionNames = get_function_names(docs)
   docsJSON = quarto.json.encode(docs)
 
   return {
+    Code = function(code)
+      local codeText = code.text
+      local name = string.match(codeText, "(%a+)%(.*%)")
+      if functionNames[name] == nil then
+        return code
+      end
+
+      writeEnvironments()
+      addModal()
+
+      local markup = pandoc.RawInline("html",[[
+      <span x-data="inlineDoc(']]..name..[[')" @click="openModal">
+        <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: -0.2em;" width="1em" height="1em" viewBox="0 0 36 36">
+          <path d="M0 0h36v36H0z" fill="none" />
+          <path fill="#9aaab4" d="M27.388 24.642L24.56 27.47l-4.95-4.95l2.828-2.828z" />
+          <path fill="#66757f" d="m34.683 29.11l-5.879-5.879a2 2 0 0 0-2.828 0l-2.828 2.828a2 2 0 0 0 0 2.828l5.879 5.879a4 4 0 1 0 5.656-5.656" />
+          <circle cx="13.586" cy="13.669" r="13.5" fill="#8899a6" />
+          <circle cx="13.586" cy="13.669" r="9.5" fill="#bbddf5" />
+        </svg>
+        <span class="doc_text">]]..code.text..[[</span>
+      </span>
+    ]])
+      return pandoc.Span(markup, {class="sk-api-inline"})
+    end,
     CodeBlock = function(block)
       if quarto.doc.isFormat("html:js") and block.classes:includes("sk-python") then
         addAceLibsOnce()

@@ -101,13 +101,12 @@
 .sk__editor__func code {
     cursor: pointer;
     background: none;
-    color: black;
-    text-decoration: underline wavy var(--success-color-sk);
-    transition: text-decoration 0.3s ease-in-out;
+    color: #0a3069;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .sk__editor__func code:hover {
-    text-decoration-color: #275f28;
+    background-color: var(--color-bg-soft);
 }
 
 button.run {
@@ -502,4 +501,28 @@ code[class*="language-"] {
 
 .btn-close:hover {
     color: #343a40;
+}
+
+.sk-api-inline {
+    display: inline-flex;
+    align-items: baseline;
+    padding: 0 0.15em;
+    border-radius: 0.25em;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.sk-api-inline:hover {
+    background-color: var(--color-bg-soft);
+}
+
+.sk-api-inline span.doc_text {
+    font-size: 0.875em;
+    word-wrap: break-word;
+
+    font-family:
+        "Ubuntu Sans Mono", Consolas, Monaco, "Andale Mono", "Ubuntu Mono",
+        monospace;
+    color: #0a3069;
 }
