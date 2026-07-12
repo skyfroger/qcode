@@ -55,6 +55,15 @@ Use the `.sk-api-search` block to add a Python documentation search field. Start
 The documentation contains standard Python language functions and built-in type methods.
 :::
 
+Inline code blocks containing the name of a function contained in the documentation will become active links. Clicking on such a function name will open a modal window with the documentation. To disable this behavior, set the `inline-doc` option to `false`:
+
+```yaml
+qcode:
+inline-doc: false
+```
+
+The print() markup is converted to `print()`. For the filter to work, parentheses must follow the function name.
+
 
 ## Error Handling
 

@@ -282,10 +282,20 @@ function createSkAPISearch(div)
 end
 
 -- Загрузка YAML-файла локализации
-local function parse_yaml_to_table(path)
-  local metafile = io.open(path, 'r')
-  local content = metafile:read("*a")
+local function parse_yaml_to_table(ext_path, lang)
+  local full_path = ext_path .. "/docs/python_" .. lang .. ".yaml"
+
+  local content = nil
+  local metafile = io.open(full_path, 'r')
+  if metafile ~= nil then
+    content = metafile:read("*a")
+  else
+    full_path = ext_path .. "/docs/python_en.yaml"
+    metafile = io.open(full_path, 'r')
+    content = metafile:read("*a")
+  end
   metafile:close()
+
   local yamlDocs = require("./utils/tinyyaml").parse(content)
   return yamlDocs
 end
@@ -307,12 +317,16 @@ local function render_elements(options)
   local extension_path = pandoc.path.directory(
     pandoc.path.normalize(PANDOC_SCRIPT_FILE)
   )
-  local docs = parse_yaml_to_table(extension_path.."/docs/python.yaml")
+  local docs = parse_yaml_to_table(extension_path, options.lang)
   local functionNames = get_function_names(docs)
   docsJSON = quarto.json.encode(docs)
 
   return {
     Code = function(code)
+      if options["inline-doc"] == "false" then
+        return code
+      end
+
       local codeText = code.text
       local name = string.match(codeText, "(%a+)%(.*%)")
       if functionNames[name] == nil then
@@ -360,6 +374,7 @@ end
 function Pandoc(doc)
   -- default options
   local options = {
+    ["inline-doc"] = true,
     lang = pandoc.utils.stringify(doc.meta.lang)
   }
 
