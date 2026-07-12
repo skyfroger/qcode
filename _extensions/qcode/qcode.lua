@@ -328,7 +328,7 @@ local function render_elements(options)
       end
 
       local codeText = code.text
-      local name = string.match(codeText, "(%a+)%(.*%)")
+      local name = string.match(codeText, "(%a+)%(%)")
       if functionNames[name] == nil then
         return code
       end
