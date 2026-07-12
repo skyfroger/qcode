@@ -237,7 +237,7 @@ function createSkulptIDE(block)
     </div>
 
     <div class="sk__editor__func" x-show="functionNames.length !== 0" x-transition>
-    <img title="]]..l10n("listOfFunctions")..[[" style="height: 18px;" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM1MTU3NmQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1ib29rLW1hcmtlZC1pY29uIGx1Y2lkZS1ib29rLW1hcmtlZCI+PHBhdGggZD0iTTEwIDJ2OGwzLTMgMyAzVjIiLz48cGF0aCBkPSJNNCAxOS41di0xNUEyLjUgMi41IDAgMCAxIDYuNSAySDE5YTEgMSAwIDAgMSAxIDF2MThhMSAxIDAgMCAxLTEgMUg2LjVhMSAxIDAgMCAxIDAtNUgyMCIvPjwvc3ZnPg=="/>
+    <img title="]]..l10n("listOfFunctions")..[[" style="height: 18px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACuElEQVR4AeybUXLbIBCGf5QTdJw+175JfYzEL81Jmp4kebFzjPQm1nvj6Q1EWBTPiJ0kWlAEWMBYM0YWWvbbRVi/UIPCSwVQeAKgZkDNgMIJhA+Bp/9r7E/3OLw843DSGW1HPP37KY1rGAByXHdHKPwGlNgY4pQ1dPMgNeUPgCJuHZeaSHLcWmrVD8D+5RfyizimFDkAGvNK8dRqofUdbldqdOO9lLQZHjPWnv8urMsBdJ2JvnPW1ji9we760dl7YRU5AOCH45vWf5z6hVbkABTcq31z9RcLKHIAgHtlvfnWYgHFB8AC3AW4ExUAJ1JavWZAaRHn/tYM4ERKq9cMKC3i3N98MoButQ+no1GWjlZp4j2dqZ4HgP3pAf2tNv3dXoMEF1KdZnJ6eNq0AEhj6BUmfqsNC4Eygo7BfCUdAEp50hU/V5iMvtc9zzkk0gHoU56Hlu4waRvu74fEcM8Xfk8HgDuh8WgVJtVsoRFNbMkDAOmKu9UdqJDOsFvdx4KQGkAL1W3f1RUJgmo2hklrtuDPWMOIALQroZ1T/ua7u3/YY8qGd4cEO9ewjef3eADUlUlx2/HWSunnlB/rMEGgbLDXhbf26usE2XgAyJHb66290IVI6QTh3P6zrBkDyn6PB4AZzqVaAeQSiVT9qBmQinwudmsG5BKJVP2oGZCKfC52awbkEolU/QjPANLqSLgkTS+HdYKBBMMBkJ6nkN06QV8O4QB8LUU93t42iywuEUALD71gKoBe3Biu50v/fQMPvWAKgOLWCbpjqrh1gq77QIHrBF0ENA3mMP/b54fy9wNcJ0wc+Y4LrJvnh/L3A7h/HhdB+dzKjcxf122oDTkAO7fqjx9ihPZgervWZ97n5uQAaG7tdfnxdwPi/hfwmvfDAfCWC6nLM2AhDnM3KgBOpLT6xWfA1IC9AgAA///5AjlaAAAABklEQVQDAMuS1ZDl+czpAAAAAElFTkSuQmCC"/>
     <template x-for="(func, index) in functionNames" :key="index">
       <code x-text="func" @click="openModal(func)"></code>
     </template>
@@ -323,12 +323,12 @@ local function render_elements(options)
 
   return {
     Code = function(code)
-      if options["inline-doc"] == "false" then
+      if not quarto.doc.isFormat("html:js") or options["inline-doc"] == "false" then
         return code
       end
 
       local codeText = code.text
-      local name = string.match(codeText, "(%a+)%(%)")
+      local name = string.match(codeText, "(%a+)%(.*%)")
       if functionNames[name] == nil then
         return code
       end
@@ -337,15 +337,12 @@ local function render_elements(options)
       addModal()
 
       local markup = pandoc.RawInline("html",[[
-      <span x-data="inlineDoc(']]..name..[[')" @click="openModal">
-        <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: -0.2em;" width="1em" height="1em" viewBox="0 0 36 36">
-          <path d="M0 0h36v36H0z" fill="none" />
-          <path fill="#9aaab4" d="M27.388 24.642L24.56 27.47l-4.95-4.95l2.828-2.828z" />
-          <path fill="#66757f" d="m34.683 29.11l-5.879-5.879a2 2 0 0 0-2.828 0l-2.828 2.828a2 2 0 0 0 0 2.828l5.879 5.879a4 4 0 1 0 5.656-5.656" />
-          <circle cx="13.586" cy="13.669" r="13.5" fill="#8899a6" />
-          <circle cx="13.586" cy="13.669" r="9.5" fill="#bbddf5" />
+      <span x-data="inlineDoc(']]..name..[[')" @click.stop="openModal">
+        <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: -0.2em" width="1em" height="1em" viewBox="0 0 256 256">
+          <path d="M0 0h256v256H0z" fill="none" />
+          <path fill="#00a6ed" d="M208 24H72a32 32 0 0 0-32 32v168a8 8 0 0 0 8 8h144a8 8 0 0 0 0-16H56a16 16 0 0 1 16-16h136a8 8 0 0 0 8-8V32a8 8 0 0 0-8-8m-88 16h48v72l-19.21-14.4a8 8 0 0 0-9.6 0L120 112Zm80 144H72a31.8 31.8 0 0 0-16 4.29V56a16 16 0 0 1 16-16h32v88a8 8 0 0 0 12.8 6.4L144 114l27.21 20.4A8 8 0 0 0 176 136a8 8 0 0 0 8-8V40h16Z" />
         </svg>
-        <span class="doc_text">]]..code.text..[[</span>
+        <code class="language-python doc_text">]]..code.text..[[</code>
       </span>
     ]])
       return pandoc.Span(markup, {class="sk-api-inline"})

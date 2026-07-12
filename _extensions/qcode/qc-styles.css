@@ -102,6 +102,7 @@
     cursor: pointer;
     background: none;
     color: #0a3069;
+    border-radius: 0.3em;
     transition: background-color 0.3s ease-in-out;
 }
 
@@ -514,15 +515,10 @@ code[class*="language-"] {
 }
 
 .sk-api-inline:hover {
-    background-color: var(--color-bg-soft);
+    background-color: #c5e7c693;
 }
 
-.sk-api-inline span.doc_text {
-    font-size: 0.875em;
-    word-wrap: break-word;
-
-    font-family:
-        "Ubuntu Sans Mono", Consolas, Monaco, "Andale Mono", "Ubuntu Mono",
-        monospace;
-    color: #0a3069;
+.sk-api-inline .language-python {
+    padding: 0;
+    background: none !important;
 }
