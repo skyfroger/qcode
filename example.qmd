@@ -62,7 +62,7 @@ qcode:
 inline-doc: false
 ```
 
-The print() markup is converted to `print()`. For the filter to work, parentheses must follow the function name.
+The \`print(){.python}\` markup is converted to `print(){.python}`. For the filter to work, empty parentheses must follow the function name.
 
 
 ## Error Handling

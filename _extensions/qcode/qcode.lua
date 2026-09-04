@@ -328,8 +328,8 @@ local function render_elements(options)
       end
 
       local codeText = code.text
-      local name = string.match(codeText, "(%a+)%(.*%)")
-      if functionNames[name] == nil then
+      local name = string.match(codeText, "(%a+)%(%)")
+      if functionNames[name] == nil or code.classes[1] ~= "python" then
         return code
       end
 
