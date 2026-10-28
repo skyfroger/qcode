@@ -340,6 +340,7 @@ local function render_elements(options)
         return code
       end
 
+      addAceLibsOnce()
       writeEnvironments()
       addModal()
 
