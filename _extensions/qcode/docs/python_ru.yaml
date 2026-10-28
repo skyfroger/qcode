@@ -19,8 +19,8 @@
   - code: "# Модуль дробного числа\nabs(-2.5)"
     output: '2.5'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/functions.html#abs
+  module: Встроенная функция
 - name: all
   category: A
   description: Возвращает True, если все элементы последовательности объектов истинны.
@@ -42,8 +42,8 @@
   - code: "# Пустая последовательность возвращает True\nall([])"
     output: 'True'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/functions.html#all
+  module: Встроенная функция
 - name: any
   category: A
   description: Возвращает True, если хотя бы один элемент последовательности объектов истинен.
@@ -65,8 +65,8 @@
   - code: "# Пустая последовательность возвращает False\nany([])"
     output: 'False'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/functions.html#any
+  module: Встроенная функция
 - name: len
   category: L
   description: Возвращает количество элементов в объекте.
@@ -88,8 +88,8 @@
   - code: "# Длина словаря — число ключей\nlen({'a': 1, 'b': 2})"
     output: '2'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/functions.html#len
+  module: Встроенная функция
 - name: print
   category: P
   description: Выводит объекты на экран.
@@ -134,8 +134,8 @@
   - code: "# Вывод нескольких значений подряд\nprint(1, 2, 3)"
     output: 1 2 3
   sideeffects: Выводит текст в стандартный поток вывода (stdout)
-  is_class: false
   url: https://docs.python.org/3/library/functions.html#print
+  module: Встроенная функция
 - name: input
   category: I
   description: Считывает строку из ввода.
@@ -153,8 +153,8 @@
   - code: "# Считывание строки с подсказкой\nname = input('Имя: ')"
     output: 'Имя: Анна ⏎'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/functions.html#input
+  module: Встроенная функция
 - name: int
   category: I
   description: Возвращает целочисленный объект.
@@ -181,8 +181,8 @@
   - code: "# Отбрасывание дробной части\nint(3.99)"
     output: '3'
   sideeffects: ''
-  is_class: true
   url: https://docs.python.org/3/library/functions.html#int
+  module: Встроенная функция
 - name: float
   category: F
   description: Возвращает число с плавающей точкой.
@@ -202,8 +202,8 @@
   - code: "# Целое в дробное\nfloat(5)"
     output: '5.0'
   sideeffects: ''
-  is_class: true
   url: https://docs.python.org/3/library/functions.html#float
+  module: Встроенная функция
 - name: str
   category: S
   description: Возвращает строковую версию объекта.
@@ -223,8 +223,8 @@
   - code: "# Логическое значение в строку\nstr(True)"
     output: '''True'''
   sideeffects: ''
-  is_class: true
   url: https://docs.python.org/3/library/functions.html#str
+  module: Встроенные типы данных
 - name: range
   category: R
   description: Возвращает неизменяемую последовательность чисел.
@@ -256,8 +256,8 @@
   - code: "# С шагом\nlist(range(0, 10, 3))"
     output: '[0, 3, 6, 9]'
   sideeffects: ''
-  is_class: true
   url: https://docs.python.org/3/library/functions.html#range
+  module: Встроенная функция
 - name: list
   category: L
   description: Создаёт список из последовательности объектов.
@@ -277,8 +277,8 @@
   - code: "# Диапазон в список\nlist(range(3))"
     output: '[0, 1, 2]'
   sideeffects: ''
-  is_class: true
   url: https://docs.python.org/3/library/functions.html#list
+  module: Встроенные типы данных
 - name: dict
   category: D
   description: Создаёт новый словарь.
@@ -297,8 +297,8 @@
   - code: "# Из списка пар ключ-значение\ndict([('x', 10), ('y', 20)])"
     output: '{''x'': 10, ''y'': 20}'
   sideeffects: ''
-  is_class: true
   url: https://docs.python.org/3/library/functions.html#dict
+  module: Встроенные типы данных
 - name: set
   category: S
   description: Создаёт новое множество.
@@ -316,8 +316,8 @@
   - code: "# Дубликаты удаляются\nset([1, 2, 2, 3])"
     output: '{1, 2, 3}'
   sideeffects: ''
-  is_class: true
   url: https://docs.python.org/3/library/functions.html#set
+  module: Встроенные типы данных
 - name: open
   category: O
   description: Открывает файл и возвращает файловый объект.
@@ -346,8 +346,8 @@
   - code: "# Запись в файл\nwith open('out.txt', 'w', encoding='utf-8') as f:\n    f.write('Привет')"
     output: ''
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/functions.html#open
+  module: Встроенная функция
 - name: type
   category: T
   description: Возвращает тип объекта.
@@ -367,8 +367,8 @@
   - code: "# Тип строки\ntype('hello')"
     output: <class 'str'>
   sideeffects: ''
-  is_class: true
   url: https://docs.python.org/3/library/functions.html#type
+  module: Встроенная функция
 - name: isinstance
   category: I
   description: Проверяет, является ли объект экземпляром класса или кортежа классов.
@@ -393,8 +393,8 @@
   - code: "# Проверка на один из типов\nisinstance(\"a\", (int, str))"
     output: 'True'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/functions.html#isinstance
+  module: Встроенная функция
 - name: chr
   category: C
   description: Возвращает строку из одного символа с кодом Unicode.
@@ -414,8 +414,8 @@
   - code: "# Код русской буквы\nchr(1040)"
     output: '''А'''
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/functions.html#chr
+  module: Встроенная функция
 - name: ord
   category: O
   description: Возвращает код Unicode символа.
@@ -435,8 +435,8 @@
   - code: "# Код русской буквы\nord(\"я\")"
     output: '1103'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/functions.html#ord
+  module: Встроенная функция
 - name: sum
   category: S
   description: Возвращает сумму элементов последовательности объектов.
@@ -464,8 +464,8 @@
   - code: "# Сумма диапазона\nsum(range(5))"
     output: '10'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/functions.html#sum
+  module: Встроенная функция
 - name: min
   category: M
   description: Возвращает наименьший элемент.
@@ -494,8 +494,8 @@
   - code: "# Самое короткое слово\nmin(['a', 'abc', 'ab'], key=len)"
     output: '''a'''
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/functions.html#min
+  module: Встроенная функция
 - name: max
   category: M
   description: Возвращает наибольший элемент.
@@ -524,8 +524,8 @@
   - code: "# Самое длинное слово\nmax(['a', 'abc', 'ab'], key=len)"
     output: '''abc'''
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/functions.html#max
+  module: Встроенная функция
 - name: round
   category: R
   description: Округляет число до заданного количества знаков после запятой.
@@ -550,8 +550,8 @@
   - code: "# Округление до целого\nround(2.7)"
     output: '3'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/functions.html#round
+  module: Встроенная функция
 - name: pow
   category: P
   description: Возводит base в степень exp, по модулю mod (если указан).
@@ -581,8 +581,8 @@
   - code: "# Степень по модулю\npow(2, 3, 5)"
     output: '3'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/functions.html#pow
+  module: Встроенная функция
 - name: strip
   category: S
   description: Возвращает копию строки с удалёнными ведущими и замыкающими символами.
@@ -601,8 +601,8 @@
   - code: "# Удаление заданных символов с краёв\n'www.example.com'.strip('wcm.')"
     output: '''example'''
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.strip
+  module: Встроенные типы данных
 - name: split
   category: S
   description: Разбивает строку на список подстрок по разделителю.
@@ -628,8 +628,8 @@
   - code: "# Ограничение числа частей\n'a,b,c'.split(',', 1)"
     output: '[''a'', ''b,c'']'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.split
+  module: Встроенные типы данных
 - name: join
   category: S
   description: Объединяет строки из последовательности объектов, используя строку как разделитель.
@@ -648,8 +648,8 @@
   - code: "# Соединение без разделителя\n''.join(['П', 'у', 'т', 'ь'])"
     output: '''Путь'''
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.join
+  module: Встроенные типы данных
 - name: lower
   category: S
   description: Возвращает копию строки в нижнем регистре.
@@ -662,8 +662,8 @@
   - code: "# Строка в нижнем регистре\n'HELLO'.lower()"
     output: '''hello'''
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.lower
+  module: Встроенные типы данных
 - name: upper
   category: S
   description: Возвращает копию строки в верхнем регистре.
@@ -676,8 +676,8 @@
   - code: "# Строка в верхнем регистре\n'hello'.upper()"
     output: '''HELLO'''
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.upper
+  module: Встроенные типы данных
 - name: replace
   category: S
   description: Возвращает копию строки с заменой подстрок.
@@ -705,8 +705,8 @@
   - code: "# Только первые две замены\n'aaa'.replace('a', 'b', 2)"
     output: '''bba'''
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.replace
+  module: Встроенные типы данных
 - name: find
   category: S
   description: Возвращает индекс первого вхождения подстроки или -1.
@@ -733,8 +733,8 @@
   - code: "# Подстрока не найдена\n\"hello\".find(\"x\")"
     output: '-1'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.find
+  module: Встроенные типы данных
 - name: startswith
   category: S
   description: Проверяет, начинается ли строка с указанной подстроки.
@@ -761,8 +761,8 @@
   - code: "# Один из префиксов\n'photo.png'.startswith(('photo', 'image'))"
     output: 'True'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.startswith
+  module: Встроенные типы данных
 - name: count
   category: C
   description: Возвращает количество вхождений подстроки/значения.
@@ -789,8 +789,8 @@
   - code: "# Число вхождений в списке\n[1, 2, 2, 3].count(2)"
     output: '2'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.count
+  module: Встроенные типы данных
 - name: append
   category: A
   description: Добавляет объект в конец списка.
@@ -808,8 +808,8 @@
   - code: "# Добавление в конец списка\nlst = [1, 2]\nlst.append(3)\nlst"
     output: '[1, 2, 3]'
   sideeffects: 'Изменяет исходный список: добавляет элемент в его конец'
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.append
+  module: Встроенные типы данных
 - name: pop
   category: P
   description: Удаляет и возвращает элемент по индексу (список) или ключу (словарь).
@@ -830,8 +830,8 @@
   - code: "# Удаление по индексу\nlst = [1, 2, 3]\nlst.pop(0)\nlst"
     output: '[2, 3]'
   sideeffects: 'Изменяет исходный список: удаляет из него элемент'
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.pop
+  module: Встроенные типы данных
 - name: insert
   category: I
   description: Вставляет объект перед указанным индексом.
@@ -854,8 +854,8 @@
   - code: "# Вставка перед индексом\nlst = [1, 3]\nlst.insert(1, 2)\nlst"
     output: '[1, 2, 3]'
   sideeffects: 'Изменяет исходный список: вставляет элемент'
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.insert
+  module: Встроенные типы данных
 - name: remove
   category: R
   description: Удаляет первое вхождение значения (список) или элемент (множество).
@@ -873,8 +873,8 @@
   - code: "# Удаляется первое вхождение\nlst = [1, 2, 2, 3]\nlst.remove(2)\nlst"
     output: '[1, 2, 3]'
   sideeffects: 'Изменяет исходный список: удаляет первое вхождение значения'
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.remove
+  module: Встроенные типы данных
 - name: clear
   category: C
   description: Удаляет все элементы из коллекции.
@@ -887,8 +887,8 @@
   - code: "# Удаление всех элементов\nlst = [1, 2, 3]\nlst.clear()\nlst"
     output: '[]'
   sideeffects: 'Изменяет исходную коллекцию: удаляет все её элементы'
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.clear
+  module: Встроенные типы данных
 - name: index
   category: I
   description: Возвращает индекс первого вхождения значения.
@@ -915,8 +915,8 @@
   - code: "# Поиск с заданной позиции\n[1, 2, 2].index(2, 2)"
     output: '2'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.index
+  module: Встроенные типы данных
 - name: get
   category: G
   description: Возвращает значение по ключу или default, если ключ не найден.
@@ -940,8 +940,8 @@
   - code: "# Значение по умолчанию при отсутствии ключа\nd = {'a': 1}\nd.get('b', 0)"
     output: '0'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#dict.get
+  module: Встроенные типы данных
 - name: update
   category: U
   description: Обновляет словарь элементами из другого словаря или последовательности объектов пар.
@@ -960,8 +960,8 @@
   - code: "# Обновление списком пар\nd = {'a': 1}\nd.update([('b', 2)])\nd"
     output: '{''a'': 1, ''b'': 2}'
   sideeffects: 'Изменяет исходный словарь: добавляет или перезаписывает пары ключ-значение'
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#dict.update
+  module: Встроенные типы данных
 - name: keys
   category: K
   description: Возвращает представление ключей словаря.
@@ -974,8 +974,8 @@
   - code: "# Список ключей\nlist({'a': 1, 'b': 2}.keys())"
     output: '[''a'', ''b'']'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#dict.keys
+  module: Встроенные типы данных
 - name: values
   category: V
   description: Возвращает представление значений словаря.
@@ -988,8 +988,8 @@
   - code: "# Список значений\nlist({'a': 1, 'b': 2}.values())"
     output: '[1, 2]'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#dict.values
+  module: Встроенные типы данных
 - name: items
   category: I
   description: Возвращает представление пар ключ-значение словаря.
@@ -1002,8 +1002,8 @@
   - code: "# Список пар ключ-значение\nlist({'a': 1}.items())"
     output: '[(''a'', 1)]'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#dict.items
+  module: Встроенные типы данных
 - name: add
   category: A
   description: Добавляет элемент во множество.
@@ -1020,8 +1020,8 @@
   - code: "# Добавление элемента во множество\ns = {1, 2}\ns.add(3)\nprint(s)"
     output: '{1, 2, 3}'
   sideeffects: 'Изменяет исходное множество: добавляет элемент'
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#set.add
+  module: Встроенные типы данных
 - name: discard
   category: D
   description: Удаляет элемент из множества, если он присутствует (не вызывает ошибку, если отсутствует).
@@ -1040,8 +1040,8 @@
   - code: "# Отсутствующий элемент не вызывает ошибку\ns = {1, 2}\ns.discard(99)\ns"
     output: '{1, 2}'
   sideeffects: 'Изменяет исходное множество: удаляет элемент, если он присутствует'
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#set.discard
+  module: Встроенные типы данных
 - name: union
   category: U
   description: Возвращает новое множество с элементами из данного и других множеств.
@@ -1057,8 +1057,8 @@
   - code: "# Объединение множеств\n{1, 2}.union({2, 3})"
     output: '{1, 2, 3}'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#set.union
+  module: Встроенные типы данных
 - name: intersection
   category: I
   description: Возвращает новое множество с общими элементами.
@@ -1074,8 +1074,8 @@
   - code: "# Общие элементы множеств\n{1, 2, 3}.intersection({2, 3, 4})"
     output: '{2, 3}'
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#set.intersection
+  module: Встроенные типы данных
 - name: read
   category: R
   description: Читает до size байт/символов из файла.
@@ -1095,8 +1095,8 @@
   - code: "# Чтение первых 5 символов\nwith open('file.txt') as f:\n    content = f.read(5)"
     output: ''
   sideeffects: ''
-  is_class: false
   url: https://docs.python.org/3/library/io.html#io.TextIOWrapper.read
+  module: io
 - name: write
   category: W
   description: Записывает строку/байты в файл.
@@ -1113,8 +1113,8 @@
   - code: "# Запись строки в файл\nwith open('out.txt', 'w') as f:\n    f.write('Hello')"
     output: ''
   sideeffects: Записывает данные в файл
-  is_class: false
   url: https://docs.python.org/3/library/io.html#io.TextIOWrapper.write
+  module: io
 - name: close
   category: C
   description: Закрывает файл, освобождая ресурсы.
@@ -1127,8 +1127,8 @@
   - code: "# Явное закрытие файла\nf = open('file.txt')\nf.close()"
     output: ''
   sideeffects: Закрывает файл, освобождая системные ресурсы
-  is_class: false
   url: https://docs.python.org/3/library/io.html#io.IOBase.close
+  module: io
 - name: seek
   category: S
   description: Перемещает указатель файла в новую позицию.
@@ -1150,8 +1150,8 @@
   - code: "# Возврат указателя в начало файла\nf = open('file.txt')\nf.seek(0)\nf.close()"
     output: ''
   sideeffects: Перемещает указатель позиции в файле
-  is_class: false
   url: https://docs.python.org/3/library/io.html#io.IOBase.seek
+  module: io
 - name: flush
   category: F
   description: Сбрасывает внутренний буфер вывода на диск.
@@ -1164,62 +1164,1554 @@
   - code: "# Принудительная запись буфера на диск\nf = open('log.txt', 'w')\nf.write('Hi')\nf.flush()"
     output: ''
   sideeffects: Принудительно записывает содержимое буфера на диск
-  is_class: false
   url: https://docs.python.org/3/library/io.html#io.IOBase.flush
-- name: group
-  category: G
-  description: Возвращает одну или несколько подгрупп совпадения.
-  class_name: re.Match
-  parameters:
-  - name: group
-    type_hint: int | str
-    required: false
-    variadic: true
-    description: Номер или имя группы
-  returns:
-    type: str | tuple[str]
-    description: Строка совпадения или кортеж
-  examples:
-  - code: "# Первая группа совпадения\nimport re\nm = re.match(r'(\\w+)', 'hello')\nm.group(1)"
-    output: '''hello'''
-  - code: "# Вся строка совпадения\nimport re\nm = re.search(r'\\d+', 'abc123')\nm.group(0)"
-    output: '''123'''
-  sideeffects: ''
-  is_class: false
-  url: https://docs.python.org/3/library/re.html#re.Match.group
-- name: start
+  module: io
+- name: seed
   category: S
-  description: Возвращает начальный индекс совпадения группы.
-  class_name: re.Match
+  description: Инициализирует генератор псевдослучайных чисел.
+  class_name: ''
   parameters:
-  - name: group
-    type_hint: int | str
+  - name: a
+    type_hint: int | float | str | bytes | bytearray | None
     required: false
-    description: Номер или имя группы
+    description: Начальное значение
+  - name: version
+    type_hint: int
+    required: false
+    default_value: '2'
+    description: Версия алгоритма
+  returns:
+    type: None
+    description: Инициализирует генератор псевдослучайных чисел.
+  examples:
+  - code: "import random\nrandom.seed(42)"
+    output: None
+  sideeffects: Изменяет состояние генератора случайных чисел
+  url: https://docs.python.org/3/library/random.html#random.seed
+  module: random
+- name: getstate
+  category: G
+  description: Возвращает текущее внутреннее состояние генератора.
+  class_name: ''
+  parameters: []
+  returns:
+    type: float
+    description: Возвращает текущее внутреннее состояние генератора.
+  examples:
+  - code: "import random\nrandom.getstate()"
+    output: Состояние генератора
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.getstate
+  module: random
+- name: setstate
+  category: S
+  description: Восстанавливает ранее сохранённое состояние генератора.
+  class_name: ''
+  parameters:
+  - name: state
+    type_hint: object
+    required: true
+    description: Ранее сохранённое состояние
+  returns:
+    type: None
+    description: Восстанавливает ранее сохранённое состояние генератора.
+  examples:
+  - code: "import random\nrandom.setstate(state)"
+    output: None
+  sideeffects: Изменяет состояние генератора случайных чисел
+  url: https://docs.python.org/3/library/random.html#random.setstate
+  module: random
+- name: randbytes
+  category: R
+  description: Возвращает n случайных байтов.
+  class_name: ''
+  parameters:
+  - name: n
+    type_hint: int
+    required: true
+    description: Количество байтов
+  returns:
+    type: bytes
+    description: Возвращает n случайных байтов.
+  examples:
+  - code: "import random\nrandom.randbytes(4)"
+    output: b'...'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.randbytes
+  module: random
+- name: randrange
+  category: R
+  description: Возвращает случайный элемент заданного диапазона.
+  class_name: ''
+  parameters:
+  - name: start
+    type_hint: int
+    required: true
+    description: Начало или конец диапазона
+  - name: stop
+    type_hint: int | None
+    required: false
+    description: Конец диапазона
+  - name: step
+    type_hint: int
+    required: false
+    default_value: '1'
+    description: Шаг
   returns:
     type: int
-    description: Начальный индекс
+    description: Возвращает случайный элемент заданного диапазона.
   examples:
-  - code: "# Начальный индекс совпадения\nimport re\nm = re.search('world', 'hello world')\nm.start()"
+  - code: "import random\nrandom.randrange(1, 10)"
+    output: '7'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.randrange
+  module: random
+- name: randint
+  category: R
+  description: Возвращает случайное целое число от a до b включительно.
+  class_name: ''
+  parameters:
+  - name: a
+    type_hint: int
+    required: true
+    description: Нижняя граница
+  - name: b
+    type_hint: int
+    required: true
+    description: Верхняя граница
+  returns:
+    type: int
+    description: Возвращает случайное целое число от a до b включительно.
+  examples:
+  - code: "import random\nrandom.randint(1, 6)"
+    output: '4'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.randint
+  module: random
+- name: getrandbits
+  category: G
+  description: Возвращает неотрицательное целое число из k случайных битов.
+  class_name: ''
+  parameters:
+  - name: k
+    type_hint: int
+    required: true
+    description: Количество битов
+  returns:
+    type: int
+    description: Возвращает неотрицательное целое число из k случайных битов.
+  examples:
+  - code: "import random\nrandom.getrandbits(4)"
+    output: '10'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.getrandbits
+  module: random
+- name: choice
+  category: C
+  description: Выбирает случайный элемент непустой последовательности.
+  class_name: ''
+  parameters:
+  - name: seq
+    type_hint: Sequence
+    required: true
+    description: Последовательность
+  returns:
+    type: object
+    description: Выбирает случайный элемент непустой последовательности.
+  examples:
+  - code: "import random\nrandom.choice(['да', 'нет'])"
+    output: да
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.choice
+  module: random
+- name: choices
+  category: C
+  description: Выбирает k элементов с возвращением; можно задать веса.
+  class_name: ''
+  parameters:
+  - name: population
+    type_hint: Sequence
+    required: true
+    description: Популяция
+  - name: weights
+    type_hint: Sequence | None
+    required: false
+    description: Относительные веса
+  - name: cum_weights
+    type_hint: Sequence | None
+    required: false
+    keyword_only: true
+    description: Накопленные веса
+  - name: k
+    type_hint: int
+    required: false
+    default_value: '1'
+    keyword_only: true
+    description: Количество элементов
+  returns:
+    type: list
+    description: Выбирает k элементов с возвращением; можно задать веса.
+  examples:
+  - code: "import random\nrandom.choices([1, 2, 3], k=3)"
+    output: '[2, 1, 3]'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.choices
+  module: random
+- name: shuffle
+  category: S
+  description: Перемешивает последовательность на месте.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: MutableSequence
+    required: true
+    description: Изменяемая последовательность
+  returns:
+    type: None
+    description: Перемешивает последовательность на месте.
+  examples:
+  - code: "import random\nitems = [1, 2, 3]\nrandom.shuffle(items)"
+    output: None
+  sideeffects: Изменяет состояние генератора случайных чисел
+  url: https://docs.python.org/3/library/random.html#random.shuffle
+  module: random
+- name: sample
+  category: S
+  description: Выбирает k уникальных элементов без возвращения.
+  class_name: ''
+  parameters:
+  - name: population
+    type_hint: Sequence
+    required: true
+    description: Популяция
+  - name: k
+    type_hint: int
+    required: true
+    description: Размер выборки
+  returns:
+    type: list
+    description: Выбирает k уникальных элементов без возвращения.
+  examples:
+  - code: "import random\nrandom.sample([1, 2, 3, 4], k=2)"
+    output: '[3, 1]'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.sample
+  module: random
+- name: random
+  category: R
+  description: Возвращает случайное вещественное число в диапазоне [0.0, 1.0).
+  class_name: ''
+  parameters: []
+  returns:
+    type: float
+    description: Возвращает случайное вещественное число в диапазоне [0.0, 1.0).
+  examples:
+  - code: "import random\nrandom.random()"
+    output: 0.374...
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.random
+  module: random
+- name: uniform
+  category: U
+  description: Возвращает случайное вещественное число между a и b.
+  class_name: ''
+  parameters:
+  - name: a
+    type_hint: float
+    required: true
+    description: Нижняя граница
+  - name: b
+    type_hint: float
+    required: true
+    description: Верхняя граница
+  returns:
+    type: float
+    description: Возвращает случайное вещественное число между a и b.
+  examples:
+  - code: "import random\nrandom.uniform(1, 5)"
+    output: '3.2'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.uniform
+  module: random
+- name: triangular
+  category: T
+  description: Возвращает случайное число из треугольного распределения.
+  class_name: ''
+  parameters:
+  - name: low
+    type_hint: float
+    required: false
+    default_value: '0'
+    description: Нижняя граница
+  - name: high
+    type_hint: float
+    required: false
+    default_value: '1'
+    description: Верхняя граница
+  - name: mode
+    type_hint: float | None
+    required: false
+    description: Мода
+  returns:
+    type: float
+    description: Возвращает случайное число из треугольного распределения.
+  examples:
+  - code: "import random\nrandom.triangular(0, 10, 5)"
+    output: '4.1'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.triangular
+  module: random
+- name: betavariate
+  category: B
+  description: Возвращает случайное число из бета-распределения.
+  class_name: ''
+  parameters:
+  - name: alpha
+    type_hint: float
+    required: true
+    description: Параметр формы альфа бета-распределения
+  - name: beta
+    type_hint: float
+    required: true
+    description: Параметр формы бета бета-распределения
+  returns:
+    type: float
+    description: Возвращает случайное число из бета-распределения.
+  examples:
+  - code: "import random\nrandom.betavariate(2, 5)"
+    output: '0.3'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.betavariate
+  module: random
+- name: expovariate
+  category: E
+  description: Возвращает случайное число из экспоненциального распределения.
+  class_name: ''
+  parameters:
+  - name: lambd
+    type_hint: float
+    required: true
+    description: Параметр интенсивности
+  returns:
+    type: float
+    description: Возвращает случайное число из экспоненциального распределения.
+  examples:
+  - code: "import random\nrandom.expovariate(1.5)"
+    output: '0.4'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.expovariate
+  module: random
+- name: gammavariate
+  category: G
+  description: Возвращает случайное число из гамма-распределения.
+  class_name: ''
+  parameters:
+  - name: alpha
+    type_hint: float
+    required: true
+    description: Параметр формы гамма-распределения
+  - name: beta
+    type_hint: float
+    required: true
+    description: Параметр масштаба гамма-распределения
+  returns:
+    type: float
+    description: Возвращает случайное число из гамма-распределения.
+  examples:
+  - code: "import random\nrandom.gammavariate(2, 3)"
+    output: '5.2'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.gammavariate
+  module: random
+- name: gauss
+  category: G
+  description: Возвращает случайное число из нормального распределения.
+  class_name: ''
+  parameters:
+  - name: mu
+    type_hint: float
+    required: true
+    description: Математическое ожидание нормального распределения
+  - name: sigma
+    type_hint: float
+    required: true
+    description: Стандартное отклонение нормального распределения
+  returns:
+    type: float
+    description: Возвращает случайное число из нормального распределения.
+  examples:
+  - code: "import random\nrandom.gauss(0, 1)"
+    output: '0.25'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.gauss
+  module: random
+- name: lognormvariate
+  category: L
+  description: Возвращает случайное число из логнормального распределения.
+  class_name: ''
+  parameters:
+  - name: mu
+    type_hint: float
+    required: true
+    description: Математическое ожидание логарифма случайной величины
+  - name: sigma
+    type_hint: float
+    required: true
+    description: Стандартное отклонение логарифма случайной величины
+  returns:
+    type: float
+    description: Возвращает случайное число из логнормального распределения.
+  examples:
+  - code: "import random\nrandom.lognormvariate(0, 1)"
+    output: '1.4'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.lognormvariate
+  module: random
+- name: normalvariate
+  category: N
+  description: Возвращает случайное число из нормального распределения.
+  class_name: ''
+  parameters:
+  - name: mu
+    type_hint: float
+    required: true
+    description: Математическое ожидание нормального распределения
+  - name: sigma
+    type_hint: float
+    required: true
+    description: Стандартное отклонение нормального распределения
+  returns:
+    type: float
+    description: Возвращает случайное число из нормального распределения.
+  examples:
+  - code: "import random\nrandom.normalvariate(0, 1)"
+    output: '-0.3'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.normalvariate
+  module: random
+- name: vonmisesvariate
+  category: V
+  description: Возвращает случайный угол из распределения фон Мизеса.
+  class_name: ''
+  parameters:
+  - name: mu
+    type_hint: float
+    required: true
+    description: Среднее направление распределения в радианах
+  - name: kappa
+    type_hint: float
+    required: true
+    description: Параметр концентрации распределения
+  returns:
+    type: float
+    description: Возвращает случайный угол из распределения фон Мизеса.
+  examples:
+  - code: "import random\nrandom.vonmisesvariate(0, 1)"
+    output: '1.2'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.vonmisesvariate
+  module: random
+- name: paretovariate
+  category: P
+  description: Возвращает случайное число из распределения Парето.
+  class_name: ''
+  parameters:
+  - name: alpha
+    type_hint: float
+    required: true
+    description: Параметр формы распределения Парето
+  returns:
+    type: float
+    description: Возвращает случайное число из распределения Парето.
+  examples:
+  - code: "import random\nrandom.paretovariate(2)"
+    output: '1.3'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.paretovariate
+  module: random
+- name: weibullvariate
+  category: W
+  description: Возвращает случайное число из распределения Вейбулла.
+  class_name: ''
+  parameters:
+  - name: alpha
+    type_hint: float
+    required: true
+    description: Параметр масштаба распределения Вейбулла
+  - name: beta
+    type_hint: float
+    required: true
+    description: Параметр формы распределения Вейбулла
+  returns:
+    type: float
+    description: Возвращает случайное число из распределения Вейбулла.
+  examples:
+  - code: "import random\nrandom.weibullvariate(1, 2)"
+    output: '0.8'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/random.html#random.weibullvariate
+  module: random
+- name: ceil
+  category: C
+  description: Округляет число вверх до ближайшего целого.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число, для которого вычисляется округление вверх
+  returns:
+    type: int
+    description: Округляет число вверх до ближайшего целого.
+  examples:
+  - code: "import math\nmath.ceil(2.3)"
+    output: '3'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.ceil
+  module: math
+- name: comb
+  category: C
+  description: Возвращает число сочетаний из n элементов по k.
+  class_name: ''
+  parameters:
+  - name: n
+    type_hint: int
+    required: true
+    description: Общее количество элементов
+  - name: k
+    type_hint: int
+    required: true
+    description: Количество выбираемых элементов
+  returns:
+    type: int
+    description: Возвращает число сочетаний из n элементов по k.
+  examples:
+  - code: "import math\nmath.comb(5, 2)"
+    output: '10'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.comb
+  module: math
+- name: copysign
+  category: C
+  description: Возвращает модуль x со знаком числа y.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число, модуль которого используется
+  - name: y
+    type_hint: float
+    required: true
+    description: Число, знак которого используется
+  returns:
+    type: float
+    description: Возвращает модуль x со знаком числа y.
+  examples:
+  - code: "import math\nmath.copysign(3, -1)"
+    output: '-3.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.copysign
+  module: math
+- name: fabs
+  category: F
+  description: Возвращает абсолютное значение числа в виде float.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число для вычисления абсолютного значения
+  returns:
+    type: float
+    description: Возвращает абсолютное значение числа в виде float.
+  examples:
+  - code: "import math\nmath.fabs(-3)"
+    output: '3.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.fabs
+  module: math
+- name: factorial
+  category: F
+  description: Возвращает факториал неотрицательного целого числа.
+  class_name: ''
+  parameters:
+  - name: n
+    type_hint: int
+    required: true
+    description: Неотрицательное целое число
+  returns:
+    type: int
+    description: Возвращает факториал неотрицательного целого числа.
+  examples:
+  - code: "import math\nmath.factorial(5)"
+    output: '120'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.factorial
+  module: math
+- name: floor
+  category: F
+  description: Округляет число вниз до ближайшего целого.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число, для которого вычисляется округление вниз
+  returns:
+    type: int
+    description: Округляет число вниз до ближайшего целого.
+  examples:
+  - code: "import math\nmath.floor(2.8)"
+    output: '2'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.floor
+  module: math
+- name: fmod
+  category: F
+  description: Возвращает остаток от деления x на y.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Делимое
+  - name: y
+    type_hint: float
+    required: true
+    description: Делитель
+  returns:
+    type: float
+    description: Возвращает остаток от деления x на y.
+  examples:
+  - code: "import math\nmath.fmod(7, 3)"
+    output: '1.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.fmod
+  module: math
+- name: frexp
+  category: F
+  description: Возвращает мантиссу и показатель степени числа.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число для разложения на мантиссу и показатель степени
+  returns:
+    type: tuple
+    description: Возвращает мантиссу и показатель степени числа.
+  examples:
+  - code: "import math\nmath.frexp(8)"
+    output: (0.5, 4)
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.frexp
+  module: math
+- name: fsum
+  category: F
+  description: Точно суммирует значения вещественных чисел.
+  class_name: ''
+  parameters:
+  - name: iterable
+    type_hint: Iterable[float]
+    required: true
+    description: Итерируемый объект с числами для точного суммирования
+  returns:
+    type: float
+    description: Точно суммирует значения вещественных чисел.
+  examples:
+  - code: "import math\nmath.fsum([0.1, 0.2, 0.3])"
+    output: '0.6'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.fsum
+  module: math
+- name: gcd
+  category: G
+  description: Возвращает наибольший общий делитель целых чисел.
+  class_name: ''
+  parameters:
+  - name: integers
+    type_hint: int
+    required: true
+    description: Целые числа
+  returns:
+    type: int
+    description: Возвращает наибольший общий делитель целых чисел.
+  examples:
+  - code: "import math\nmath.gcd(12, 18)"
     output: '6'
   sideeffects: ''
-  is_class: false
-  url: https://docs.python.org/3/library/re.html#re.Match.start
-- name: end
-  category: E
-  description: Возвращает конечный индекс совпадения группы.
-  class_name: re.Match
+  url: https://docs.python.org/3/library/math.html#math.gcd
+  module: math
+- name: isclose
+  category: I
+  description: Проверяет, близки ли два числа с заданной точностью.
+  class_name: ''
   parameters:
-  - name: group
-    type_hint: int | str
+  - name: a
+    type_hint: float
+    required: true
+    description: Первое число для сравнения
+  - name: b
+    type_hint: float
+    required: true
+    description: Второе число для сравнения
+  - name: rel_tol
+    type_hint: float
     required: false
-    description: Номер или имя группы
+    default_value: 1e-09
+    keyword_only: true
+    description: Относительный допуск
+  - name: abs_tol
+    type_hint: float
+    required: false
+    default_value: '0.0'
+    keyword_only: true
+    description: Абсолютный допуск
+  returns:
+    type: bool
+    description: Проверяет, близки ли два числа с заданной точностью.
+  examples:
+  - code: "import math\nmath.isclose(0.1 + 0.2, 0.3)"
+    output: 'True'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.isclose
+  module: math
+- name: isfinite
+  category: I
+  description: Проверяет, является ли число конечным.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число для проверки конечности
+  returns:
+    type: bool
+    description: Проверяет, является ли число конечным.
+  examples:
+  - code: "import math\nmath.isfinite(10.0)"
+    output: 'True'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.isfinite
+  module: math
+- name: isinf
+  category: I
+  description: Проверяет, является ли число бесконечностью.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число для проверки на бесконечность
+  returns:
+    type: bool
+    description: Проверяет, является ли число бесконечностью.
+  examples:
+  - code: "import math\nmath.isinf(math.inf)"
+    output: 'True'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.isinf
+  module: math
+- name: isnan
+  category: I
+  description: Проверяет, является ли значение NaN.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число для проверки на NaN
+  returns:
+    type: bool
+    description: Проверяет, является ли значение NaN.
+  examples:
+  - code: "import math\nmath.isnan(math.nan)"
+    output: 'True'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.isnan
+  module: math
+- name: isqrt
+  category: I
+  description: Возвращает целочисленный квадратный корень.
+  class_name: ''
+  parameters:
+  - name: n
+    type_hint: int
+    required: true
+    description: Неотрицательное целое число, для которого вычисляется целый квадратный корень
   returns:
     type: int
-    description: Конечный индекс
+    description: Возвращает целочисленный квадратный корень.
   examples:
-  - code: "# Конечный индекс совпадения\nimport re\nm = re.search('world', 'hello world')\nm.end()"
+  - code: "import math\nmath.isqrt(10)"
+    output: '3'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.isqrt
+  module: math
+- name: lcm
+  category: L
+  description: Возвращает наименьшее общее кратное целых чисел.
+  class_name: ''
+  parameters:
+  - name: integers
+    type_hint: int
+    required: true
+    description: Целые числа
+  returns:
+    type: int
+    description: Возвращает наименьшее общее кратное целых чисел.
+  examples:
+  - code: "import math\nmath.lcm(4, 6)"
+    output: '12'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.lcm
+  module: math
+- name: ldexp
+  category: L
+  description: Возвращает x умноженное на 2 в степени i.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число, умножаемое на степень двойки
+  - name: i
+    type_hint: int
+    required: true
+    description: Целый показатель степени двойки
+  returns:
+    type: float
+    description: Возвращает x умноженное на 2 в степени i.
+  examples:
+  - code: "import math\nmath.ldexp(0.5, 4)"
+    output: '8.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.ldexp
+  module: math
+- name: modf
+  category: M
+  description: Возвращает дробную и целую части числа.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число для разделения на дробную и целую части
+  returns:
+    type: tuple
+    description: Возвращает дробную и целую части числа.
+  examples:
+  - code: "import math\nmath.modf(3.25)"
+    output: (0.25, 3.0)
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.modf
+  module: math
+- name: perm
+  category: P
+  description: Возвращает число размещений из n элементов по k.
+  class_name: ''
+  parameters:
+  - name: n
+    type_hint: int
+    required: true
+    description: Общее количество элементов
+  - name: k
+    type_hint: int
+    required: false
+    description: Размер размещения
+  returns:
+    type: int
+    description: Возвращает число размещений из n элементов по k.
+  examples:
+  - code: "import math\nmath.perm(5, 2)"
+    output: '20'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.perm
+  module: math
+- name: prod
+  category: P
+  description: Возвращает произведение элементов последовательности.
+  class_name: ''
+  parameters:
+  - name: iterable
+    type_hint: Iterable
+    required: true
+    description: Итерируемый объект с числами для перемножения
+  - name: start
+    type_hint: int
+    required: false
+    default_value: '1'
+    description: Начальное значение
+  returns:
+    type: int
+    description: Возвращает произведение элементов последовательности.
+  examples:
+  - code: "import math\nmath.prod([2, 3, 4])"
+    output: '24'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.prod
+  module: math
+- name: remainder
+  category: R
+  description: Возвращает остаток от деления согласно IEEE 754.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Делимое
+  - name: y
+    type_hint: float
+    required: true
+    description: Делитель
+  returns:
+    type: float
+    description: Возвращает остаток от деления согласно IEEE 754.
+  examples:
+  - code: "import math\nmath.remainder(7, 4)"
+    output: '-1.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.remainder
+  module: math
+- name: sqrt
+  category: S
+  description: Возвращает квадратный корень числа.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Неотрицательное число для извлечения квадратного корня
+  returns:
+    type: float
+    description: Возвращает квадратный корень числа.
+  examples:
+  - code: "import math\nmath.sqrt(9)"
+    output: '3.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.sqrt
+  module: math
+- name: trunc
+  category: T
+  description: Отбрасывает дробную часть числа.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число, которое требуется усечь до целого
+  returns:
+    type: int
+    description: Отбрасывает дробную часть числа.
+  examples:
+  - code: "import math\nmath.trunc(3.8)"
+    output: '3'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.trunc
+  module: math
+- name: exp
+  category: E
+  description: Возвращает e в степени x.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Показатель экспоненты
+  returns:
+    type: float
+    description: Возвращает e в степени x.
+  examples:
+  - code: "import math\nmath.exp(1)"
+    output: 2.718281828...
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.exp
+  module: math
+- name: exp2
+  category: E
+  description: Возвращает 2 в степени x.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Показатель степени двойки
+  returns:
+    type: float
+    description: Возвращает 2 в степени x.
+  examples:
+  - code: "import math\nmath.exp2(3)"
+    output: '8.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.exp2
+  module: math
+- name: expm1
+  category: E
+  description: Возвращает e в степени x минус 1.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Показатель экспоненты минус единица
+  returns:
+    type: float
+    description: Возвращает e в степени x минус 1.
+  examples:
+  - code: "import math\nmath.expm1(1)"
+    output: 1.718281828...
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.expm1
+  module: math
+- name: log
+  category: L
+  description: Возвращает логарифм числа по заданному основанию или натуральный логарифм.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число, логарифм которого вычисляется
+  - name: base
+    type_hint: float
+    required: false
+    description: Основание
+  returns:
+    type: float
+    description: Возвращает логарифм числа по заданному основанию или натуральный логарифм.
+  examples:
+  - code: "import math\nmath.log(8, 2)"
+    output: '3.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.log
+  module: math
+- name: log1p
+  category: L
+  description: Возвращает натуральный логарифм 1 + x.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число, к которому прибавляется единица перед вычислением логарифма
+  returns:
+    type: float
+    description: Возвращает натуральный логарифм 1 + x.
+  examples:
+  - code: "import math\nmath.log1p(1)"
+    output: 0.693147...
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.log1p
+  module: math
+- name: log2
+  category: L
+  description: Возвращает логарифм числа по основанию 2.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число для вычисления двоичного логарифма
+  returns:
+    type: float
+    description: Возвращает логарифм числа по основанию 2.
+  examples:
+  - code: "import math\nmath.log2(8)"
+    output: '3.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.log2
+  module: math
+- name: log10
+  category: L
+  description: Возвращает логарифм числа по основанию 10.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число для вычисления десятичного логарифма
+  returns:
+    type: float
+    description: Возвращает логарифм числа по основанию 10.
+  examples:
+  - code: "import math\nmath.log10(100)"
+    output: '2.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.log10
+  module: math
+- name: pow
+  category: P
+  description: Возводит число x в степень y.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Основание степени
+  - name: y
+    type_hint: float
+    required: true
+    description: Показатель степени
+  returns:
+    type: float
+    description: Возводит число x в степень y.
+  examples:
+  - code: "import math\nmath.pow(2, 3)"
+    output: '8.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.pow
+  module: Встроенная функция
+- name: acos
+  category: A
+  description: Возвращает арккосинус числа в радианах.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Значение косинуса для вычисления арккосинуса
+  returns:
+    type: float
+    description: Возвращает арккосинус числа в радианах.
+  examples:
+  - code: "import math\nmath.acos(1)"
+    output: '0.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.acos
+  module: math
+- name: asin
+  category: A
+  description: Возвращает арксинус числа в радианах.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Значение синуса для вычисления арксинуса
+  returns:
+    type: float
+    description: Возвращает арксинус числа в радианах.
+  examples:
+  - code: "import math\nmath.asin(0)"
+    output: '0.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.asin
+  module: math
+- name: atan
+  category: A
+  description: Возвращает арктангенс числа в радианах.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Значение тангенса для вычисления арктангенса
+  returns:
+    type: float
+    description: Возвращает арктангенс числа в радианах.
+  examples:
+  - code: "import math\nmath.atan(1)"
+    output: 0.785398...
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.atan
+  module: math
+- name: atan2
+  category: A
+  description: Возвращает угол между положительной осью x и точкой (x, y).
+  class_name: ''
+  parameters:
+  - name: y
+    type_hint: float
+    required: true
+    description: Координата y точки
+  - name: x
+    type_hint: float
+    required: true
+    description: Координата x точки
+  returns:
+    type: float
+    description: Возвращает угол между положительной осью x и точкой (x, y).
+  examples:
+  - code: "import math\nmath.atan2(1, 1)"
+    output: 0.785398...
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.atan2
+  module: math
+- name: cbrt
+  category: C
+  description: Возвращает кубический корень числа.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число для извлечения кубического корня
+  returns:
+    type: float
+    description: Возвращает кубический корень числа.
+  examples:
+  - code: "import math\nmath.cbrt(27)"
+    output: '3.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.cbrt
+  module: math
+- name: cos
+  category: C
+  description: Возвращает косинус угла в радианах.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Угол в радианах
+  returns:
+    type: float
+    description: Возвращает косинус угла в радианах.
+  examples:
+  - code: "import math\nmath.cos(0)"
+    output: '1.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.cos
+  module: math
+- name: dist
+  category: D
+  description: Возвращает евклидово расстояние между двумя точками.
+  class_name: ''
+  parameters:
+  - name: p
+    type_hint: Iterable[float]
+    required: true
+    description: Первая точка, заданная последовательностью координат
+  - name: q
+    type_hint: Iterable[float]
+    required: true
+    description: Вторая точка, заданная последовательностью координат
+  returns:
+    type: float
+    description: Возвращает евклидово расстояние между двумя точками.
+  examples:
+  - code: "import math\nmath.dist((0, 0), (3, 4))"
+    output: '5.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.dist
+  module: math
+- name: degrees
+  category: D
+  description: Преобразует угол из радиан в градусы.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Угол в радианах для преобразования в градусы
+  returns:
+    type: float
+    description: Преобразует угол из радиан в градусы.
+  examples:
+  - code: "import math\nmath.degrees(math.pi)"
+    output: '180.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.degrees
+  module: math
+- name: erf
+  category: E
+  description: Возвращает функцию ошибок.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Аргумент функции ошибок
+  returns:
+    type: float
+    description: Возвращает функцию ошибок.
+  examples:
+  - code: "import math\nmath.erf(0)"
+    output: '0.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.erf
+  module: math
+- name: erfc
+  category: E
+  description: Возвращает дополнительную функцию ошибок.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Аргумент дополнительной функции ошибок
+  returns:
+    type: float
+    description: Возвращает дополнительную функцию ошибок.
+  examples:
+  - code: "import math\nmath.erfc(0)"
+    output: '1.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.erfc
+  module: math
+- name: gamma
+  category: G
+  description: Возвращает гамма-функцию.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Аргумент гамма-функции
+  returns:
+    type: float
+    description: Возвращает гамма-функцию.
+  examples:
+  - code: "import math\nmath.gamma(5)"
+    output: '24.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.gamma
+  module: math
+- name: hypot
+  category: H
+  description: Возвращает евклидову норму аргументов.
+  class_name: ''
+  parameters:
+  - name: coordinates
+    type_hint: float
+    required: true
+    description: Координаты
+  returns:
+    type: float
+    description: Возвращает евклидову норму аргументов.
+  examples:
+  - code: "import math\nmath.hypot(3, 4)"
+    output: '5.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.hypot
+  module: math
+- name: lgamma
+  category: L
+  description: Возвращает натуральный логарифм абсолютного значения гамма-функции.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Аргумент для вычисления натурального логарифма абсолютного значения гамма-функции
+  returns:
+    type: float
+    description: Возвращает натуральный логарифм абсолютного значения гамма-функции.
+  examples:
+  - code: "import math\nmath.lgamma(5)"
+    output: 3.17805...
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.lgamma
+  module: math
+- name: radians
+  category: R
+  description: Преобразует угол из градусов в радианы.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Угол в градусах для преобразования в радианы
+  returns:
+    type: float
+    description: Преобразует угол из градусов в радианы.
+  examples:
+  - code: "import math\nmath.radians(180)"
+    output: 3.141592...
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.radians
+  module: math
+- name: sin
+  category: S
+  description: Возвращает синус угла в радианах.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Угол в радианах
+  returns:
+    type: float
+    description: Возвращает синус угла в радианах.
+  examples:
+  - code: "import math\nmath.sin(0)"
+    output: '0.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.sin
+  module: math
+- name: cosh
+  category: C
+  description: Возвращает гиперболический косинус.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Аргумент гиперболического косинуса
+  returns:
+    type: float
+    description: Возвращает гиперболический косинус.
+  examples:
+  - code: "import math\nmath.cosh(0)"
+    output: '1.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.cosh
+  module: math
+- name: sinh
+  category: S
+  description: Возвращает гиперболический синус.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Аргумент гиперболического синуса
+  returns:
+    type: float
+    description: Возвращает гиперболический синус.
+  examples:
+  - code: "import math\nmath.sinh(0)"
+    output: '0.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.sinh
+  module: math
+- name: tanh
+  category: T
+  description: Возвращает гиперболический тангенс.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Аргумент гиперболического тангенса
+  returns:
+    type: float
+    description: Возвращает гиперболический тангенс.
+  examples:
+  - code: "import math\nmath.tanh(0)"
+    output: '0.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.tanh
+  module: math
+- name: acosh
+  category: A
+  description: Возвращает обратный гиперболический косинус.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число для вычисления обратного гиперболического косинуса
+  returns:
+    type: float
+    description: Возвращает обратный гиперболический косинус.
+  examples:
+  - code: "import math\nmath.acosh(1)"
+    output: '0.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.acosh
+  module: math
+- name: asinh
+  category: A
+  description: Возвращает обратный гиперболический синус.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число для вычисления обратного гиперболического синуса
+  returns:
+    type: float
+    description: Возвращает обратный гиперболический синус.
+  examples:
+  - code: "import math\nmath.asinh(0)"
+    output: '0.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.asinh
+  module: math
+- name: atanh
+  category: A
+  description: Возвращает обратный гиперболический тангенс.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число для вычисления обратного гиперболического тангенса
+  returns:
+    type: float
+    description: Возвращает обратный гиперболический тангенс.
+  examples:
+  - code: "import math\nmath.atanh(0)"
+    output: '0.0'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.atanh
+  module: math
+- name: nextafter
+  category: N
+  description: Возвращает следующее представимое число с плавающей точкой в направлении y.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Исходное число
+  - name: y
+    type_hint: float
+    required: true
+    description: Направление, в котором ищется ближайшее представимое число
+  - name: steps
+    type_hint: int
+    required: false
+    default_value: '1'
+    description: Количество шагов
+  returns:
+    type: float
+    description: Возвращает следующее представимое число с плавающей точкой в направлении y.
+  examples:
+  - code: "import math\nmath.nextafter(1.0, 2.0)"
+    output: '1.0000000000000002'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.nextafter
+  module: math
+- name: ulp
+  category: U
+  description: Возвращает значение младшего разряда числа с плавающей точкой.
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: float
+    required: true
+    description: Число, для которого вычисляется значение ULP
+  returns:
+    type: float
+    description: Возвращает значение младшего разряда числа с плавающей точкой.
+  examples:
+  - code: "import math\nmath.ulp(1.0)"
+    output: '2.220446049250313e-16'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/math.html#math.ulp
+  module: math
+- name: sumprod
+  category: S
+  description: Возвращает сумму произведений соответствующих элементов двух итерируемых объектов.
+  class_name: ''
+  parameters:
+  - name: p
+    type_hint: Iterable[float]
+    required: true
+    description: Первая последовательность чисел
+  - name: q
+    type_hint: Iterable[float]
+    required: true
+    description: Вторая последовательность чисел
+  returns:
+    type: int
+    description: Возвращает сумму произведений соответствующих элементов двух итерируемых объектов.
+  examples:
+  - code: "import math\nmath.sumprod([1, 2], [3, 4])"
     output: '11'
   sideeffects: ''
-  is_class: false
-  url: https://docs.python.org/3/library/re.html#re.Match.end
+  url: https://docs.python.org/3/library/math.html#math.sumprod
+  module: math
