@@ -92,7 +92,7 @@
   url: https://docs.python.org/3/library/functions.html#len
 - name: print
   category: P
-  description: Печатает объекты в текстовый поток.
+  description: Выводит объекты на экран.
   class_name: ''
   parameters:
   - name: objects
