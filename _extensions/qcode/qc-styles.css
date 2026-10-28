@@ -468,6 +468,7 @@ code[class*="language-"] {
 
 .blackbox__body {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     min-height: 2.5em;
     border: 3px solid var(--color-border-accent);
@@ -481,6 +482,14 @@ code[class*="language-"] {
 .blackbox .blackbox__output {
     display: flex;
     align-items: center;
+}
+
+.sideeffect__tag {
+    display: inline-block;
+    background: #744253;
+    color: white;
+    border-radius: 1em;
+    padding: 0 0.5em;
 }
 
 .blackbox .blackbox__output div {

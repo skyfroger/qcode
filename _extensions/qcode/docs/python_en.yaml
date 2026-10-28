@@ -3,601 +3,653 @@
   description: Returns the absolute value of a number.
   class_name: ''
   parameters:
-    - name: number
-      type_hint: int | float | complex
-      required: true
-      positional_only: true
-      description: Number to calculate the absolute value for
+  - name: number
+    type_hint: int | float
+    required: true
+    positional_only: true
+    description: The number to compute the absolute value of
   returns:
-    type: int | float | complex
-    description: Absolute value
+    type: int | float
+    description: The absolute value
   examples:
-    - code: abs(-5)
-      output: '5'
-    - code: abs(3+4j)
-      output: '5.0'
+  - code: "# Absolute value of an integer\nabs(-5)"
+    output: '5'
+  - code: "# Absolute value (modulus) of a complex number\nabs(3+4j)"
+    output: '5.0'
+  - code: "# Absolute value of a float\nabs(-2.5)"
+    output: '2.5'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#abs
-
 - name: all
   category: A
-  description: Returns True if all elements of the iterable are true.
+  description: Returns True if all elements of the iterable are truthy.
   class_name: ''
   parameters:
-    - name: iterable
-      type_hint: Iterable
-      required: true
-      positional_only: true
-      description: Iterable object to check
+  - name: iterable
+    type_hint: Sequence of objects (Iterable)
+    required: true
+    positional_only: true
+    description: The iterable to check
   returns:
     type: bool
-    description: Result of the logical check
+    description: The result of the truthiness test
   examples:
-    - code: all([True, 1, 'hello'])
-      output: 'True'
-    - code: all([0, 1, 2])
-      output: 'False'
+  - code: "# All elements are truthy\nall([True, 1, 'hello'])"
+    output: 'True'
+  - code: "# Zero is falsy\nall([0, 1, 2])"
+    output: 'False'
+  - code: "# An empty iterable returns True\nall([])"
+    output: 'True'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#all
-
 - name: any
   category: A
-  description: Returns True if at least one element of the iterable is true.
+  description: Returns True if at least one element of the iterable is truthy.
   class_name: ''
   parameters:
-    - name: iterable
-      type_hint: Iterable
-      required: true
-      positional_only: true
-      description: Iterable object to check
+  - name: iterable
+    type_hint: Sequence of objects (Iterable)
+    required: true
+    positional_only: true
+    description: The iterable to check
   returns:
     type: bool
-    description: Result of the logical check
+    description: The result of the truthiness test
   examples:
-    - code: any([0, False, None])
-      output: 'False'
-    - code: any([0, 1, None])
-      output: 'True'
+  - code: "# No truthy elements\nany([0, False, None])"
+    output: 'False'
+  - code: "# One is truthy\nany([0, 1, None])"
+    output: 'True'
+  - code: "# An empty iterable returns False\nany([])"
+    output: 'False'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#any
-
 - name: len
   category: L
   description: Returns the number of items in an object.
   class_name: ''
   parameters:
-    - name: obj
-      type_hint: Sized
-      required: true
-      positional_only: true
-      description: Object supporting the length protocol
+  - name: obj
+    type_hint: Sized
+    required: true
+    positional_only: true
+    description: An object implementing the length protocol
   returns:
     type: int
-    description: Number of elements
+    description: The number of items
   examples:
-    - code: len([1, 2, 3])
-      output: '3'
-    - code: len('Python')
-      output: '6'
+  - code: "# Length of a list\nlen([1, 2, 3])"
+    output: '3'
+  - code: "# Length of a string in characters\nlen(\"Python\")"
+    output: '6'
+  - code: "# Length of a dict is the number of keys\nlen({\"a\": 1, \"b\": 2})"
+    output: '2'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#len
-
 - name: print
   category: P
   description: Prints objects to a text stream.
   class_name: ''
   parameters:
-    - name: objects
-      required: true
-      variadic: true
-      description: Value to print to the screen
-    - name: sep
-      type_hint: str
-      required: false
-      default_value: ''' '''
-      keyword_only: true
-      description: Separator
-    - name: end
-      type_hint: str
-      required: false
-      default_value: '''\n'''
-      keyword_only: true
-      description: Ending string
-    - name: file
-      type_hint: object
-      required: false
-      default_value: None
-      keyword_only: true
-      description: Файловый объект
-    - name: flush
-      type_hint: bool
-      required: false
-      default_value: 'False'
-      keyword_only: true
-      description: Force buffer flush
+  - name: objects
+    required: true
+    variadic: true
+    description: The value to print
+  - name: sep
+    type_hint: str
+    required: false
+    default_value: ''' '''
+    keyword_only: true
+    description: Separator
+  - name: end
+    type_hint: str
+    required: false
+    default_value: '''\n'''
+    keyword_only: true
+    description: String appended after the last value
+  - name: file
+    type_hint: object
+    required: false
+    default_value: None
+    keyword_only: true
+    description: A file-like object
+  - name: flush
+    type_hint: bool
+    required: false
+    default_value: 'False'
+    keyword_only: true
+    description: Force the buffer to flush
   returns:
     type: None
-    description: Returns None
+    description: Returns nothing
   examples:
-    - code: print('Hello', 'World', sep='-')
-      output: Hello-World
+  - code: "# Values joined by a separator\nprint('Hello', 'World', sep='-')"
+    output: Hello-World
+  - code: "# Replacing the trailing newline\nprint(\"a\", end=\" \")\nprint(\"b\")"
+    output: a b
+  - code: "# Printing several values in a row\nprint(1, 2, 3)"
+    output: 1 2 3
+  sideeffects: Writes text to the standard output stream (stdout)
   is_class: false
   url: https://docs.python.org/3/library/functions.html#print
-
 - name: input
   category: I
-  description: Reads a string from input.
+  description: Reads a line from input.
   class_name: ''
   parameters:
-    - name: prompt
-      type_hint: str | None
-      required: false
-      positional_only: true
-      description: Prompt string
+  - name: prompt
+    type_hint: str | None
+    required: false
+    positional_only: true
+    description: The prompt string
   returns:
     type: str
-    description: Entered string
+    description: The entered string
   examples:
-    - code: "name = input('Имя: ')"
-      output: 'Имя: Анна ⏎'
+  - code: "# Reading a string with a prompt\nname = input('Name: ')"
+    output: 'Name: Anna ⏎'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#input
-
 - name: int
   category: I
   description: Returns an integer object.
   class_name: ''
   parameters:
-    - name: x
-      type_hint: int | float | str
-      required: false
-      positional_only: true
-      description: Value to convert
-    - name: base
-      type_hint: int
-      required: false
-      positional_only: true
-      description: Number base
+  - name: x
+    type_hint: int | float | str
+    required: false
+    positional_only: true
+    description: The value to convert
+  - name: base
+    type_hint: int
+    required: false
+    positional_only: true
+    description: The base of the number system
   returns:
     type: int
-    description: Integer
+    description: An integer
   examples:
-    - code: int('42')
-      output: '42'
-    - code: int('1010', 2)
-      output: '10'
+  - code: "# Converting a string to an integer\nint('42')"
+    output: '42'
+  - code: "# A binary literal\nint(\"1010\", 2)"
+    output: '10'
+  - code: "# Truncating the fractional part\nint(3.99)"
+    output: '3'
+  sideeffects: ''
   is_class: true
   url: https://docs.python.org/3/library/functions.html#int
-
 - name: float
   category: F
   description: Returns a floating point number.
   class_name: ''
   parameters:
-    - name: x
-      type_hint: int | float | str
-      required: false
-      positional_only: true
-      description: Value to convert
+  - name: x
+    type_hint: int | float | str
+    required: false
+    positional_only: true
+    description: The value to convert
   returns:
     type: float
-    description: Floating point number
+    description: A floating point number
   examples:
-    - code: float('3.14')
-      output: '3.14'
+  - code: "# Converting a string to a float\nfloat('3.14')"
+    output: '3.14'
+  - code: "# Converting an int to a float\nfloat(5)"
+    output: '5.0'
+  sideeffects: ''
   is_class: true
   url: https://docs.python.org/3/library/functions.html#float
-
 - name: str
   category: S
-  description: Returns a string version of an object.
+  description: Returns the string version of an object.
   class_name: ''
   parameters:
-    - name: object
-      type_hint: object
-      required: false
-      positional_only: true
-      description: Object to convert
+  - name: object
+    type_hint: object
+    required: false
+    positional_only: true
+    description: The object to convert
   returns:
     type: str
-    description: String representation
+    description: The string representation
   examples:
-    - code: str(2024)
-      output: '''2024'''
+  - code: "# Converting a number to a string\nstr(2024)"
+    output: '''2024'''
+  - code: "# Converting a boolean to a string\nstr(True)"
+    output: '''True'''
+  sideeffects: ''
   is_class: true
   url: https://docs.python.org/3/library/functions.html#str
-
 - name: range
   category: R
   description: Returns an immutable sequence of numbers.
   class_name: ''
   parameters:
-    - name: start
-      type_hint: int
-      required: false
-      positional_only: true
-      description: Start
-    - name: stop
-      type_hint: int
-      required: true
-      positional_only: true
-      description: End (exclusive)
-    - name: step
-      type_hint: int
-      required: false
-      positional_only: true
-      description: Step
+  - name: start
+    type_hint: int
+    required: false
+    positional_only: true
+    description: Start
+  - name: stop
+    type_hint: int
+    required: true
+    positional_only: true
+    description: Stop (exclusive)
+  - name: step
+    type_hint: int
+    required: false
+    positional_only: true
+    description: Step
   returns:
     type: range
-    description: Range object
+    description: A range object
   examples:
-    - code: list(range(3))
-      output: '[0, 1, 2]'
+  - code: "# Numbers from 0 to 2\nlist(range(3))"
+    output: '[0, 1, 2]'
+  - code: "# Start and stop\nlist(range(1, 5))"
+    output: '[1, 2, 3, 4]'
+  - code: "# With a step\nlist(range(0, 10, 3))"
+    output: '[0, 3, 6, 9]'
+  sideeffects: ''
   is_class: true
   url: https://docs.python.org/3/library/functions.html#range
-
 - name: list
   category: L
-  description: Creates a list from an iterable object.
+  description: Creates a list from an iterable.
   class_name: ''
   parameters:
-    - name: iterable
-      type_hint: Iterable
-      required: false
-      positional_only: true
-      description: Iterable object
+  - name: iterable
+    type_hint: Sequence of objects (Iterable)
+    required: false
+    positional_only: true
+    description: The iterable
   returns:
     type: list
-    description: New list
+    description: A new list
   examples:
-    - code: list('abc')
-      output: "['a', 'b', 'c']"
+  - code: "# Converting a string to a list of characters\nlist(\"abc\")"
+    output: '[''a'', ''b'', ''c'']'
+  - code: "# Converting a range to a list\nlist(range(3))"
+    output: '[0, 1, 2]'
+  sideeffects: ''
   is_class: true
   url: https://docs.python.org/3/library/functions.html#list
-
 - name: dict
   category: D
   description: Creates a new dictionary.
   class_name: ''
   parameters:
-    - name: mapping
-      type_hint: Mapping
-      required: false
-      description: Dictionary or iterable of key-value pairs
+  - name: mapping
+    type_hint: Mapping
+    required: false
+    description: A mapping or an iterable of key-value pairs
   returns:
     type: dict
-    description: New dictionary
+    description: A new dictionary
   examples:
-    - code: dict(a=1, b=2)
-      output: "{'a': 1, 'b': 2}"
+  - code: "# From keyword arguments\ndict(a=1, b=2)"
+    output: '{''a'': 1, ''b'': 2}'
+  - code: "# From a list of key-value pairs\ndict([(\"x\", 10), (\"y\", 20)])"
+    output: '{''x'': 10, ''y'': 20}'
+  sideeffects: ''
   is_class: true
   url: https://docs.python.org/3/library/functions.html#dict
-
 - name: set
   category: S
   description: Creates a new set.
   class_name: ''
   parameters:
-    - name: iterable
-      type_hint: Iterable
-      required: false
-      positional_only: true
-      description: Iterable object
+  - name: iterable
+    type_hint: Sequence of objects (Iterable)
+    required: false
+    positional_only: true
+    description: The iterable
   returns:
     type: set
-    description: New set
+    description: A new set
   examples:
-    - code: set([1, 2, 2, 3])
-      output: '{1, 2, 3}'
+  - code: "# Duplicates are removed\nset([1, 2, 2, 3])"
+    output: '{1, 2, 3}'
+  sideeffects: ''
   is_class: true
   url: https://docs.python.org/3/library/functions.html#set
-
 - name: open
   category: O
   description: Opens a file and returns a file object.
   class_name: ''
   parameters:
-    - name: file
-      type_hint: str | PathLike
-      required: true
-      description: Path to the file
-    - name: mode
-      type_hint: str
-      required: false
-      default_value: "'r'"
-      description: Access mode
-    - name: encoding
-      type_hint: str
-      required: false
-      default_value: None
-      description: Encoding
+  - name: file
+    type_hint: str | PathLike
+    required: true
+    description: The path to the file
+  - name: mode
+    type_hint: str
+    required: false
+    default_value: '''r'''
+    description: The access mode
+  - name: encoding
+    type_hint: str
+    required: false
+    default_value: None
+    description: The encoding
   returns:
     type: TextIOWrapper | BufferedReader
-    description: Файловый объект
+    description: A file object
   examples:
-    - code: with open('data.txt', 'r', encoding='utf-8') as f: content = f.read()
-      output: ''
+  - code: "# Reading a file entirely\nwith open(\"data.txt\", \"r\", encoding=\"utf-8\") as f:\n    content = f.read()"
+    output: ''
+  - code: "# Writing to a file\nwith open(\"out.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Hello\")"
+    output: ''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#open
-
 - name: type
   category: T
   description: Returns the type of an object.
   class_name: ''
   parameters:
-    - name: object
-      type_hint: object
-      required: true
-      positional_only: true
-      description: Object to determine the type of
+  - name: object
+    type_hint: object
+    required: true
+    positional_only: true
+    description: The object whose type to determine
   returns:
     type: type
-    description: Type of the object
+    description: The type of the object
   examples:
-    - code: type(42)
-      output: "<class 'int'>"
+  - code: "# The type of an integer\ntype(42)"
+    output: <class 'int'>
+  - code: "# The type of a string\ntype(\"hello\")"
+    output: <class 'str'>
+  sideeffects: ''
   is_class: true
   url: https://docs.python.org/3/library/functions.html#type
-
 - name: isinstance
   category: I
   description: Checks whether an object is an instance of a class or a tuple of classes.
   class_name: ''
   parameters:
-    - name: object
-      type_hint: object
-      required: true
-      positional_only: true
-      description: Object to check
-    - name: classinfo
-      type_hint: type | tuple
-      required: true
-      positional_only: true
-      description: Class or tuple of classes
+  - name: object
+    type_hint: object
+    required: true
+    positional_only: true
+    description: The object to check
+  - name: classinfo
+    type_hint: type | tuple
+    required: true
+    positional_only: true
+    description: A class or tuple of classes
   returns:
     type: bool
-    description: Result of the check
+    description: The check result
   examples:
-    - code: isinstance(42, int)
-      output: 'True'
+  - code: "# Checking against a single type\nisinstance(42, int)"
+    output: 'True'
+  - code: "# Checking against one of several types\nisinstance(\"a\", (int, str))"
+    output: 'True'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#isinstance
-
 - name: chr
   category: C
-  description: Returns a string of one character with a Unicode code point.
+  description: Returns a one-character string for a Unicode code point.
   class_name: ''
   parameters:
-    - name: i
-      type_hint: int
-      required: true
-      positional_only: true
-      description: Unicode code point (0–0x10FFFF)
+  - name: i
+    type_hint: int
+    required: true
+    positional_only: true
+    description: A Unicode code point (0–0x10FFFF)
   returns:
     type: str
-    description: Character
+    description: The character
   examples:
-    - code: chr(97)
-      output: "'a'"
+  - code: "# From code point to character\nchr(97)"
+    output: '''a'''
+  - code: "# Code point of the euro sign\nchr(8364)"
+    output: '''€'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#chr
-
 - name: ord
   category: O
   description: Returns the Unicode code point of a character.
   class_name: ''
   parameters:
-    - name: c
-      type_hint: str
-      required: true
-      positional_only: true
-      description: Character (string of length 1)
+  - name: c
+    type_hint: str
+    required: true
+    positional_only: true
+    description: A character (a string of length 1)
   returns:
     type: int
-    description: Unicode code point
+    description: The Unicode code point
   examples:
-    - code: ord('a')
-      output: '97'
+  - code: "# From character to code point\nord(\"a\")"
+    output: '97'
+  - code: "# Code point of the euro sign\nord(\"€\")"
+    output: '8364'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#ord
-
 - name: sum
   category: S
-  description: Returns the sum of elements of an iterable.
+  description: Returns the sum of the elements of an iterable.
   class_name: ''
   parameters:
-    - name: iterable
-      type_hint: Iterable
-      required: true
-      positional_only: true
-      description: Iterable object with numbers
-    - name: start
-      type_hint: int | float
-      required: false
-      default_value: '0'
-      positional_only: true
-      description: Starting value for the sum
+  - name: iterable
+    type_hint: Sequence of objects (Iterable)
+    required: true
+    positional_only: true
+    description: An iterable of numbers
+  - name: start
+    type_hint: int | float
+    required: false
+    default_value: '0'
+    positional_only: true
+    description: The initial value of the sum
   returns:
     type: int | float
-    description: Sum of elements
+    description: The sum of the elements
   examples:
-    - code: sum([1, 2, 3])
-      output: '6'
+  - code: "# Sum of a list\nsum([1, 2, 3])"
+    output: '6'
+  - code: "# With a start value\nsum([1, 2, 3], 10)"
+    output: '16'
+  - code: "# Sum of a range\nsum(range(5))"
+    output: '10'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#sum
-
 - name: min
   category: M
   description: Returns the smallest element.
   class_name: ''
   parameters:
-    - name: iterable
-      type_hint: Iterable
-      required: true
-      description: Iterable object or arguments
-    - name: key
-      type_hint: function
-      required: false
-      keyword_only: true
-      description: Function to extract comparison key
-    - name: default
-      type_hint: object
-      required: false
-      keyword_only: true
-      description: Default value for empty iterable
+  - name: iterable
+    type_hint: Sequence of objects (Iterable)
+    required: true
+    description: An iterable or several arguments
+  - name: key
+    type_hint: function
+    required: false
+    keyword_only: true
+    description: Function extracting the comparison key
+  - name: default
+    type_hint: object
+    required: false
+    keyword_only: true
+    description: Default value for an empty iterable
   returns:
     type: object
-    description: Smallest element
+    description: The smallest element
   examples:
-    - code: min([3, 1, 4])
-      output: '1'
+  - code: "# The minimum of a list\nmin([3, 1, 4])"
+    output: '1'
+  - code: "# The shortest word\nmin([\"a\", \"abc\", \"ab\"], key=len)"
+    output: '''a'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#min
-
 - name: max
   category: M
   description: Returns the largest element.
   class_name: ''
   parameters:
-    - name: iterable
-      type_hint: Iterable
-      required: true
-      description: Iterable object or arguments
-    - name: key
-      type_hint: function
-      required: false
-      keyword_only: true
-      description: Function to extract comparison key
-    - name: default
-      type_hint: object
-      required: false
-      keyword_only: true
-      description: Default value for empty iterable
+  - name: iterable
+    type_hint: Sequence of objects (Iterable)
+    required: true
+    description: An iterable or several arguments
+  - name: key
+    type_hint: function
+    required: false
+    keyword_only: true
+    description: Function extracting the comparison key
+  - name: default
+    type_hint: object
+    required: false
+    keyword_only: true
+    description: Default value for an empty iterable
   returns:
     type: object
-    description: Largest element
+    description: The largest element
   examples:
-    - code: max([3, 1, 4])
-      output: '4'
+  - code: "# The maximum of a list\nmax([3, 1, 4])"
+    output: '4'
+  - code: "# The longest word\nmax([\"a\", \"abc\", \"ab\"], key=len)"
+    output: '''abc'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#max
-
 - name: round
   category: R
   description: Rounds a number to a given number of decimal places.
   class_name: ''
   parameters:
-    - name: number
-      type_hint: float | int
-      required: true
-      positional_only: true
-      description: Number to round
-    - name: ndigits
-      type_hint: int
-      required: false
-      positional_only: true
-      description: Number of decimal places
+  - name: number
+    type_hint: float | int
+    required: true
+    positional_only: true
+    description: The number to round
+  - name: ndigits
+    type_hint: int
+    required: false
+    positional_only: true
+    description: The number of decimal places
   returns:
     type: int | float
-    description: Rounded number
+    description: The rounded number
   examples:
-    - code: round(3.14159, 2)
-      output: '3.14'
+  - code: "# Two decimal places\nround(3.14159, 2)"
+    output: '3.14'
+  - code: "# Rounding to an integer\nround(2.7)"
+    output: '3'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#round
-
 - name: pow
   category: P
-  description: Raises base to the power exp, modulo mod (if given).
+  description: Raises base to the power exp, optionally modulo mod.
   class_name: ''
   parameters:
-    - name: base
-      type_hint: int | float
-      required: true
-      positional_only: true
-      description: Base
-    - name: exp
-      type_hint: int | float
-      required: true
-      positional_only: true
-      description: Exponent
-    - name: mod
-      type_hint: int
-      required: false
-      positional_only: true
-      description: Modulus for calculation
+  - name: base
+    type_hint: int | float
+    required: true
+    positional_only: true
+    description: The base
+  - name: exp
+    type_hint: int | float
+    required: true
+    positional_only: true
+    description: The exponent
+  - name: mod
+    type_hint: int
+    required: false
+    positional_only: true
+    description: The modulus
   returns:
     type: int | float
-    description: Result of exponentiation
+    description: The result of exponentiation
   examples:
-    - code: pow(2, 3)
-      output: '8'
-    - code: pow(2, 3, 5)
-      output: '3'
+  - code: "# Exponentiation\npow(2, 3)"
+    output: '8'
+  - code: "# Power modulo\npow(2, 3, 5)"
+    output: '3'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#pow
-
 - name: strip
   category: S
   description: Returns a copy of the string with leading and trailing characters removed.
   class_name: str
   parameters:
-    - name: chars
-      type_hint: str | None
-      required: false
-      description: Set of characters to remove (default is whitespace)
+  - name: chars
+    type_hint: str | None
+    required: false
+    description: Set of characters to remove (whitespace by default)
   returns:
     type: str
-    description: Processed string
+    description: The processed string
   examples:
-    - code: "'  hello  '.strip()"
-      output: "'hello'"
-    - code: "'www.example.com'.strip('wcm.')"
-      output: "'example'"
+  - code: "# Removing whitespace\n\"  hello  \".strip()"
+    output: '''hello'''
+  - code: "# Removing given characters from the edges\n'www.example.com'.strip('wcm.')"
+    output: '''example'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.strip
-
 - name: split
   category: S
-  description: Разбивает строку на список подстрок по разделителю.
+  description: Splits a string into a list of substrings by a separator.
   class_name: str
   parameters:
-    - name: sep
-      type_hint: str | None
-      required: false
-      description: Separator (default is any whitespace)
-    - name: maxsplit
-      type_hint: int
-      required: false
-      default_value: '-1'
-      description: Maximum number of splits
+  - name: sep
+    type_hint: str | None
+    required: false
+    description: The separator (any whitespace by default)
+  - name: maxsplit
+    type_hint: int
+    required: false
+    default_value: '-1'
+    description: The maximum number of splits
   returns:
     type: list[str]
-    description: List of substrings
+    description: The list of substrings
   examples:
-    - code: "'a,b,c'.split(',')"
-      output: "['a', 'b', 'c']"
+  - code: "# Splitting by a separator\n'a,b,c'.split(',')"
+    output: '[''a'', ''b'', ''c'']'
+  - code: "# Splitting on any whitespace\n\"a b  c\".split()"
+    output: '[''a'', ''b'', ''c'']'
+  - code: "# Limiting the number of parts\n'a,b,c'.split(',', 1)"
+    output: '[''a'', ''b,c'']'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.split
-
 - name: join
   category: S
-  description: Объединяет строки из итерируемого объекта, используя строку как разделитель.
+  description: Concatenates strings from an iterable, using the string as a separator.
   class_name: str
   parameters:
-    - name: iterable
-      type_hint: Iterable[str]
-      required: true
-      description: Iterable object with strings
+  - name: iterable
+    type_hint: Sequence of objects (Iterable[str])
+    required: true
+    description: An iterable of strings
   returns:
     type: str
-    description: Joined string
+    description: The concatenated string
   examples:
-    - code: "'-'.join(['a', 'b', 'c'])"
-      output: "'a-b-c'"
+  - code: "# Joining a list of strings\n'-'.join(['a', 'b', 'c'])"
+    output: '''a-b-c'''
+  - code: "# Joining without a separator\n''.join(['P', 'a', 't', 'h'])"
+    output: '''Path'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.join
-
 - name: lower
   category: S
   description: Returns a copy of the string in lowercase.
@@ -605,13 +657,13 @@
   parameters: []
   returns:
     type: str
-    description: String in lowercase
+    description: The lowercase string
   examples:
-    - code: "'HELLO'.lower()"
-      output: "'hello'"
+  - code: "# Converting a string to lowercase\n\"HELLO\".lower()"
+    output: '''hello'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.lower
-
 - name: upper
   category: S
   description: Returns a copy of the string in uppercase.
@@ -619,202 +671,210 @@
   parameters: []
   returns:
     type: str
-    description: String in uppercase
+    description: The uppercase string
   examples:
-    - code: "'hello'.upper()"
-      output: "'HELLO'"
+  - code: "# Converting a string to uppercase\n\"hello\".upper()"
+    output: '''HELLO'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.upper
-
 - name: replace
   category: S
-  description: Returns a copy of the string with substring replacement.
+  description: Returns a copy of the string with replaced substrings.
   class_name: str
   parameters:
-    - name: old
-      type_hint: str
-      required: true
-      description: Substring to replace
-    - name: new
-      type_hint: str
-      required: true
-      description: New substring
-    - name: count
-      type_hint: int
-      required: false
-      default_value: '-1'
-      description: Maximum number of replacements
+  - name: old
+    type_hint: str
+    required: true
+    description: The substring to replace
+  - name: new
+    type_hint: str
+    required: true
+    description: The new substring
+  - name: count
+    type_hint: int
+    required: false
+    default_value: '-1'
+    description: The maximum number of replacements
   returns:
     type: str
-    description: String with replacements
+    description: The string with replacements
   examples:
-    - code: "'hello world'.replace('world', 'Python')"
-      output: "'hello Python'"
+  - code: "# Replacing a substring\n'hello world'.replace('world', 'Python')"
+    output: '''hello Python'''
+  - code: "# Only the first two replacements\n\"aaa\".replace(\"a\", \"b\", 2)"
+    output: '''bba'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.replace
-
 - name: find
   category: S
-  description: Returns the index of the first occurrence of a substring or -1.
+  description: Returns the index of the first occurrence of a substring, or -1.
   class_name: str
   parameters:
-    - name: sub
-      type_hint: str
-      required: true
-      description: Substring to search for
-    - name: start
-      type_hint: int
-      required: false
-      description: Start of search
-    - name: end
-      type_hint: int
-      required: false
-      description: End of search
+  - name: sub
+    type_hint: str
+    required: true
+    description: The substring to find
+  - name: start
+    type_hint: int
+    required: false
+    description: Start of the search
+  - name: end
+    type_hint: int
+    required: false
+    description: End of the search
   returns:
     type: int
-    description: Index of occurrence or -1
+    description: The index of the occurrence, or -1
   examples:
-    - code: "'hello'.find('ll')"
-      output: '2'
+  - code: "# Index of the first occurrence\n'hello'.find('ll')"
+    output: '2'
+  - code: "# The substring is not found\n\"hello\".find(\"x\")"
+    output: '-1'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.find
-
 - name: startswith
   category: S
-  description: Checks whether the string starts with the specified substring.
+  description: Checks whether the string starts with the given prefix.
   class_name: str
   parameters:
-    - name: prefix
-      type_hint: str | tuple[str]
-      required: true
-      description: Prefix or tuple of prefixes
-    - name: start
-      type_hint: int
-      required: false
-      description: Start of check
-    - name: end
-      type_hint: int
-      required: false
-      description: End of check
+  - name: prefix
+    type_hint: str | tuple[str]
+    required: true
+    description: A prefix or tuple of prefixes
+  - name: start
+    type_hint: int
+    required: false
+    description: Start of the check
+  - name: end
+    type_hint: int
+    required: false
+    description: End of the check
   returns:
     type: bool
-    description: Result of the check
+    description: The check result
   examples:
-    - code: "'hello'.startswith('he')"
-      output: 'True'
+  - code: "# Checking the start of a string\n'hello'.startswith('he')"
+    output: 'True'
+  - code: "# One of the prefixes\n'photo.png'.startswith(('photo', 'image'))"
+    output: 'True'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.startswith
-
 - name: count
   category: C
-  description: Returns the number of occurrences of a substring/value.
+  description: Returns the number of occurrences of a substring or value.
   class_name: str
   parameters:
-    - name: sub
-      type_hint: str
-      required: true
-      description: Substring or value to search for
-    - name: start
-      type_hint: int
-      required: false
-      description: Start of search
-    - name: end
-      type_hint: int
-      required: false
-      description: End of search
+  - name: sub
+    type_hint: str
+    required: true
+    description: The substring or value to count
+  - name: start
+    type_hint: int
+    required: false
+    description: Start of the search
+  - name: end
+    type_hint: int
+    required: false
+    description: End of the search
   returns:
     type: int
-    description: Number of occurrences
+    description: The number of occurrences
   examples:
-    - code: "'hello'.count('l')"
-      output: '2'
-    - code: "[1,2,2,3].count(2)"
-      output: '2'
+  - code: "# Occurrences in a string\n'hello'.count('l')"
+    output: '2'
+  - code: "# Occurrences in a list\n[1, 2, 2, 3].count(2)"
+    output: '2'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.count
-
 - name: append
   category: A
   description: Adds an object to the end of the list.
   class_name: list
   parameters:
-    - name: object
-      type_hint: object
-      required: true
-      positional_only: true
-      description: Element to add
+  - name: object
+    type_hint: object
+    required: true
+    positional_only: true
+    description: The element to add
   returns:
     type: None
     description: Modifies the list in place
   examples:
-    - code: "lst = [1, 2]\nlst.append(3)\nlst"
-      output: "[1, 2, 3]"
+  - code: "# Adding to the end of a list\nlst = [1, 2]\nlst.append(3)\nlst"
+    output: '[1, 2, 3]'
+  sideeffects: 'Modifies the original list: appends an element'
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.append
-
 - name: pop
   category: P
   description: Removes and returns an element by index (list) or key (dict).
   class_name: list
   parameters:
-    - name: index
-      type_hint: int
-      required: false
-      default_value: '-1'
-      positional_only: true
-      description: Element index (default is last)
+  - name: index
+    type_hint: int
+    required: false
+    default_value: '-1'
+    positional_only: true
+    description: The index of the element (last by default)
   returns:
     type: object
-    description: Removed element
+    description: The removed element
   examples:
-    - code: "lst = [1, 2, 3]\nlst.pop()"
-      output: '3'
+  - code: "# Removing and returning the last element\nlst = [1, 2, 3]\nlst.pop()"
+    output: '3'
+  - code: "# Removing by index\nlst = [1, 2, 3]\nlst.pop(0)\nlst"
+    output: '[2, 3]'
+  sideeffects: 'Modifies the original list: removes an element from it'
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.pop
-
 - name: insert
   category: I
-  description: Inserts an object before the specified index.
+  description: Inserts an object before the given index.
   class_name: list
   parameters:
-    - name: index
-      type_hint: int
-      required: true
-      positional_only: true
-      description: Index to insert at
-    - name: object
-      type_hint: object
-      required: true
-      positional_only: true
-      description: Element to insert
+  - name: index
+    type_hint: int
+    required: true
+    positional_only: true
+    description: The index at which to insert
+  - name: object
+    type_hint: object
+    required: true
+    positional_only: true
+    description: The element to insert
   returns:
     type: None
     description: Modifies the list in place
   examples:
-    - code: "lst = [1, 3]\nlst.insert(1, 2)\nlst"
-      output: "[1, 2, 3]"
+  - code: "# Inserting before an index\nlst = [1, 3]\nlst.insert(1, 2)\nlst"
+    output: '[1, 2, 3]'
+  sideeffects: 'Modifies the original list: inserts an element'
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.insert
-
 - name: remove
   category: R
-  description: Removes the first occurrence of a value (list) or element (set).
+  description: Removes the first occurrence of a value (list) or an element (set).
   class_name: list
   parameters:
-    - name: value
-      type_hint: object
-      required: true
-      positional_only: true
-      description: Value to remove
+  - name: value
+    type_hint: object
+    required: true
+    positional_only: true
+    description: The value to remove
   returns:
     type: None
     description: Modifies the collection in place
   examples:
-    - code: "lst = [1, 2, 2, 3]\nlst.remove(2)\nlst"
-      output: "[1, 2, 3]"
+  - code: "# The first occurrence is removed\nlst = [1, 2, 2, 3]\nlst.remove(2)\nlst"
+    output: '[1, 2, 3]'
+  sideeffects: 'Modifies the original list: removes the first occurrence of a value'
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.remove
-
 - name: clear
   category: C
   description: Removes all elements from the collection.
@@ -824,78 +884,84 @@
     type: None
     description: Modifies the collection in place
   examples:
-    - code: "lst = [1, 2, 3]\nlst.clear()\nlst"
-      output: "[]"
+  - code: "# Removing all elements\nlst = [1, 2, 3]\nlst.clear()\nlst"
+    output: '[]'
+  sideeffects: 'Modifies the original collection: removes all its elements'
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.clear
-
 - name: index
   category: I
   description: Returns the index of the first occurrence of a value.
   class_name: list
   parameters:
-    - name: value
-      type_hint: object
-      required: true
-      description: Value to search for
-    - name: start
-      type_hint: int
-      required: false
-      description: Start of search
-    - name: end
-      type_hint: int
-      required: false
-      description: End of search
+  - name: value
+    type_hint: object
+    required: true
+    description: The value to find
+  - name: start
+    type_hint: int
+    required: false
+    description: Start of the search
+  - name: end
+    type_hint: int
+    required: false
+    description: End of the search
   returns:
     type: int
-    description: Index of occurrence
+    description: The index of the occurrence
   examples:
-    - code: "[1, 2, 3].index(2)"
-      output: '1'
+  - code: "# Index of the first occurrence\n[1, 2, 3].index(2)"
+    output: '1'
+  - code: "# Searching from a given position\n[1, 2, 2].index(2, 2)"
+    output: '2'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.index
-
 - name: get
   category: G
-  description: Returns the value for a key or default if the key is not found.
+  description: Returns the value for a key, or default if the key is not found.
   class_name: dict
   parameters:
-    - name: key
-      type_hint: Hashable
-      required: true
-      description: Key to search for
-    - name: default
-      type_hint: object
-      required: false
-      default_value: None
-      description: Default value
+  - name: key
+    type_hint: Hashable
+    required: true
+    description: The key to look up
+  - name: default
+    type_hint: object
+    required: false
+    default_value: None
+    description: The default value
   returns:
     type: object
-    description: Value or default
+    description: The value or default
   examples:
-    - code: "d = {'a': 1}\nd.get('b', 0)"
-      output: '0'
+  - code: "# The value for a key\nd = {\"a\": 1}\nd.get(\"a\")"
+    output: '1'
+  - code: "# A default value when the key is missing\nd = {\"a\": 1}\nd.get(\"b\", 0)"
+    output: '0'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#dict.get
-
 - name: update
   category: U
-  description: Updates the dictionary with elements from another dictionary or iterable of pairs.
+  description: Updates the dictionary with items from another dictionary or iterable of pairs.
   class_name: dict
   parameters:
-    - name: other
-      type_hint: Mapping | Iterable[tuple]
-      required: false
-      description: Dictionary or iterable to update from
+  - name: other
+    type_hint: Mapping | Sequence of objects (Iterable[tuple])
+    required: false
+    description: A dictionary or iterable to update from
   returns:
     type: None
-    description: Модифицирует словарь на месте
+    description: Modifies the dictionary in place
   examples:
-    - code: "d = {'a': 1}\nd.update({'b': 2})\nd"
-      output: "{'a': 1, 'b': 2}"
+  - code: "# Adding items from a dictionary\nd = {\"a\": 1}\nd.update({\"b\": 2})\nd"
+    output: '{''a'': 1, ''b'': 2}'
+  - code: "# Updating with a list of pairs\nd = {\"a\": 1}\nd.update([(\"b\", 2)])\nd"
+    output: '{''a'': 1, ''b'': 2}'
+  sideeffects: 'Modifies the original dictionary: adds or overwrites key-value pairs'
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#dict.update
-
 - name: keys
   category: K
   description: Returns a view of the dictionary keys.
@@ -903,13 +969,13 @@
   parameters: []
   returns:
     type: dict_keys
-    description: View of keys
+    description: A view of the keys
   examples:
-    - code: "list({'a': 1, 'b': 2}.keys())"
-      output: "['a', 'b']"
+  - code: "# A list of keys\nlist({\"a\": 1, \"b\": 2}.keys())"
+    output: '[''a'', ''b'']'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#dict.keys
-
 - name: values
   category: V
   description: Returns a view of the dictionary values.
@@ -917,13 +983,13 @@
   parameters: []
   returns:
     type: dict_values
-    description: View of values
+    description: A view of the values
   examples:
-    - code: "list({'a': 1, 'b': 2}.values())"
-      output: "[1, 2]"
+  - code: "# A list of values\nlist({\"a\": 1, \"b\": 2}.values())"
+    output: '[1, 2]'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#dict.values
-
 - name: items
   category: I
   description: Returns a view of the dictionary key-value pairs.
@@ -931,157 +997,161 @@
   parameters: []
   returns:
     type: dict_items
-    description: View of key-value pairs
+    description: A view of the key-value pairs
   examples:
-    - code: "list({'a': 1}.items())"
-      output: "[('a', 1)]"
+  - code: "# A list of key-value pairs\nlist({\"a\": 1}.items())"
+    output: '[(''a'', 1)]'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#dict.items
-
 - name: add
   category: A
   description: Adds an element to the set.
   class_name: set
   parameters:
-    - name: elem
-      type_hint: Hashable
-      required: true
-      description: Element to add
+  - name: elem
+    type_hint: Hashable
+    required: true
+    description: The element to add
   returns:
     type: None
     description: Modifies the set in place
   examples:
-    - code: "s = {1, 2}\ns.add(3)\nprint(s)"
-      output: "{1, 2, 3}"
+  - code: "# Adding an element to a set\ns = {1, 2}\ns.add(3)\nprint(s)"
+    output: '{1, 2, 3}'
+  sideeffects: 'Modifies the original set: adds an element'
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#set.add
-
 - name: discard
   category: D
-  description: Removes an element from the set if present (does not raise an error if absent).
+  description: Removes an element from the set if present (no error if absent).
   class_name: set
   parameters:
-    - name: elem
-      type_hint: Hashable
-      required: true
-      description: Element to remove
+  - name: elem
+    type_hint: Hashable
+    required: true
+    description: The element to remove
   returns:
     type: None
     description: Modifies the set in place
   examples:
-    - code: "s = {1, 2, 3}\ns.discard(2)\ns"
-      output: "{1, 3}"
+  - code: "# Removing an element\ns = {1, 2, 3}\ns.discard(2)\ns"
+    output: '{1, 3}'
+  - code: "# A missing element causes no error\ns = {1, 2}\ns.discard(99)\ns"
+    output: '{1, 2}'
+  sideeffects: 'Modifies the original set: removes the element if it is present'
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#set.discard
-
 - name: union
   category: U
   description: Returns a new set with elements from this and other sets.
   class_name: set
   parameters:
-    - name: others
-      variadic: true
-      description: Other iterable objects
+  - name: others
+    variadic: true
+    description: Other iterables
   returns:
     type: set
-    description: New set
+    description: A new set
   examples:
-    - code: "{1, 2}.union({2, 3})"
-      output: "{1, 2, 3}"
+  - code: "# Union of sets\n{1, 2}.union({2, 3})"
+    output: '{1, 2, 3}'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#set.union
-
 - name: intersection
   category: I
-  description: Returns a new set with common elements.
+  description: Returns a new set with the common elements.
   class_name: set
   parameters:
-    - name: others
-      variadic: true
-      description: Other iterable objects
+  - name: others
+    variadic: true
+    description: Other iterables
   returns:
     type: set
-    description: New set
+    description: A new set
   examples:
-    - code: "{1, 2, 3}.intersection({2, 3, 4})"
-      output: "{2, 3}"
+  - code: "# Common elements of sets\n{1, 2, 3}.intersection({2, 3, 4})"
+    output: '{2, 3}'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#set.intersection
-
 - name: read
   category: R
   description: Reads up to size bytes/characters from the file.
   class_name: TextIOWrapper
   parameters:
-    - name: size
-      type_hint: int
-      required: false
-      default_value: '-1'
-      description: Number of bytes/characters to read
+  - name: size
+    type_hint: int
+    required: false
+    default_value: '-1'
+    description: The number of bytes/characters to read
   returns:
     type: str | bytes
-    description: Read data
+    description: The data read
   examples:
-    - code: with open('file.txt') as f: content = f.read()
-      output: ''
+  - code: "# Reading the whole file\nwith open(\"file.txt\") as f:\n    content = f.read()"
+    output: ''
+  - code: "# Reading the first 5 characters\nwith open(\"file.txt\") as f:\n    content = f.read(5)"
+    output: ''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/io.html#io.TextIOWrapper.read
-
 - name: write
   category: W
   description: Writes a string/bytes to the file.
   class_name: TextIOWrapper
   parameters:
-    - name: s
-      type_hint: str | bytes
-      required: true
-      description: Data to write
+  - name: s
+    type_hint: str | bytes
+    required: true
+    description: The data to write
   returns:
     type: int
-    description: Number of written characters/bytes
+    description: The number of characters/bytes written
   examples:
-    - code: with open('out.txt', 'w') as f: f.write('Hello')
-      output: ''
+  - code: "# Writing a string to a file\nwith open(\"out.txt\", \"w\") as f:\n    f.write(\"Hello\")"
+    output: ''
+  sideeffects: Writes data to the file
   is_class: false
   url: https://docs.python.org/3/library/io.html#io.TextIOWrapper.write
-
 - name: close
   category: C
-  description: Closes the file, freeing resources.
+  description: Closes the file, releasing resources.
   class_name: TextIOWrapper
   parameters: []
   returns:
     type: None
-    description: Returns None
+    description: Returns nothing
   examples:
-    - code: f = open('file.txt')\nf.close()
-      output: ''
+  - code: "# Explicitly closing a file\nf = open(\"file.txt\")\nf.close()"
+    output: ''
+  sideeffects: Closes the file, releasing system resources
   is_class: false
   url: https://docs.python.org/3/library/io.html#io.IOBase.close
-
 - name: seek
   category: S
   description: Moves the file pointer to a new position.
   class_name: TextIOWrapper
   parameters:
-    - name: offset
-      type_hint: int
-      required: true
-      description: Offset in bytes/characters
-    - name: whence
-      type_hint: int
-      required: false
-      default_value: '0'
-      description: '0: beginning, 1: current position, 2: end'
+  - name: offset
+    type_hint: int
+    required: true
+    description: The offset in bytes/characters
+  - name: whence
+    type_hint: int
+    required: false
+    default_value: '0'
+    description: '''0: start, 1: current position, 2: end'''
   returns:
     type: int
-    description: New pointer position
+    description: The new pointer position
   examples:
-    - code: f = open('file.txt')\nf.seek(0)\nf.close()
-      output: ''
+  - code: "# Moving the pointer back to the start of the file\nf = open(\"file.txt\")\nf.seek(0)\nf.close()"
+    output: ''
+  sideeffects: Moves the file position pointer
   is_class: false
   url: https://docs.python.org/3/library/io.html#io.IOBase.seek
-
 - name: flush
   category: F
   description: Flushes the internal output buffer to disk.
@@ -1089,64 +1159,67 @@
   parameters: []
   returns:
     type: None
-    description: Returns None
+    description: Returns nothing
   examples:
-    - code: f = open('log.txt', 'w')\nf.write('Hi')\nf.flush()
-      output: ''
+  - code: "# Forcing the buffer to be written to disk\nf = open(\"log.txt\", \"w\")\nf.write(\"Hi\")\nf.flush()"
+    output: ''
+  sideeffects: Forces the buffer contents to be written to disk
   is_class: false
   url: https://docs.python.org/3/library/io.html#io.IOBase.flush
-
 - name: group
   category: G
   description: Returns one or more subgroups of the match.
   class_name: re.Match
   parameters:
-    - name: group
-      type_hint: int | str
-      required: false
-      variadic: true
-      description: Group number or name
+  - name: group
+    type_hint: int | str
+    required: false
+    variadic: true
+    description: The number or name of the group
   returns:
     type: str | tuple[str]
-    description: Match string or tuple
+    description: The matched string or a tuple
   examples:
-    - code: import re\nm = re.match(r'(\\w+)', 'hello')\nm.group(1)
-      output: "'hello'"
+  - code: "# The first subgroup of the match\nimport re\nm = re.match(r\"(\\w+)\", \"hello\")\nm.group(1)"
+    output: '''hello'''
+  - code: "# The whole matched string\nimport re\nm = re.search(r\"\\d+\", \"abc123\")\nm.group(0)"
+    output: '''123'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/re.html#re.Match.group
-
 - name: start
   category: S
-  description: Returns the starting index of the match group.
+  description: Returns the start index of the group match.
   class_name: re.Match
   parameters:
-    - name: group
-      type_hint: int | str
-      required: false
-      description: Group number or name
+  - name: group
+    type_hint: int | str
+    required: false
+    description: The number or name of the group
   returns:
     type: int
-    description: Starting index
+    description: The start index
   examples:
-    - code: import re\nm = re.search('world', 'hello world')\nm.start()
-      output: '6'
+  - code: "# The start index of the match\nimport re\nm = re.search(\"world\", \"hello world\")\nm.start()"
+    output: '6'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/re.html#re.Match.start
-
 - name: end
   category: E
-  description: Returns the ending index of the match group.
+  description: Returns the end index of the group match.
   class_name: re.Match
   parameters:
-    - name: group
-      type_hint: int | str
-      required: false
-      description: Group number or name
+  - name: group
+    type_hint: int | str
+    required: false
+    description: The number or name of the group
   returns:
     type: int
-    description: Ending index
+    description: The end index
   examples:
-    - code: import re\nm = re.search('world', 'hello world')\nm.end()
-      output: '11'
+  - code: "# The end index of the match\nimport re\nm = re.search(\"world\", \"hello world\")\nm.end()"
+    output: '11'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/re.html#re.Match.end

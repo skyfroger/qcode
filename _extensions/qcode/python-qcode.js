@@ -101,6 +101,10 @@ function registerAlpineComponents() {
             this.$watch("$store.vis.visFilter", (value) => {
                 Prism.highlightAll();
             });
+            this.$watch("$store.vis.showModal", (value) => {
+                // scroll to the top of modal card
+                if(value) this.$nextTick(()=>this.$refs.modalTop.scrollIntoView());
+            });
         },
         closeModal() {
             this.$store.vis.showModal = false;

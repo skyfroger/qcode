@@ -97,13 +97,12 @@ local function addModal()
             <button class="btn-close" @click="closeModal">&times;</button>
           </div>
           <div class="modal-card">
-            
           <template x-if="$store.vis.selectedItem">
             <div style="overflow-y: auto;">
+              <div x-ref="modalTop"></div>
               <h4 class="signature">
                 <code class="language-python" x-text="signature($store.vis.selectedItem)"></code>
               </h4>
-
               <div x-show="$store.vis.visFilter.includes('blackBox')" class="blackbox">
                 <div class="blackbox__input">
                   <ul>
@@ -116,6 +115,9 @@ local function addModal()
                 </div>
                 <div class="blackbox__body">
                   <code x-text="$store.vis.selectedItem.name"></code>
+                  <img title="]]..l10n("sideeffects")..[[" 
+                  x-show="$store.vis.selectedItem.sideeffects !==''" 
+                  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyZW0iIGhlaWdodD0iMmVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM3NDQyNTMiIGQ9Im0xMC40MjkgMTkuOTI0bDMuNTYyLTEuNTEyYTEuOTk5IDEuOTk5IDAgMCAxLTMuNTYyIDEuNTEybTUuNDMyLTE3LjgzYzIuMDg2IDEuMTQgMy42NTIgMi42MDMgNC42ODIgNC4zODdzMS41MTUgMy44NzIgMS40NTkgNi4yNDhhLjc1Ljc1IDAgMCAxLTEuNS0uMDM1Yy4wNS0yLjExMi0uMzcyLTMuOTI4LTEuMjU4LTUuNDYzcy0yLjI0OS0yLjgwOC00LjEwMi0zLjgyYS43NS43NSAwIDEgMSAuNzItMS4zMTdtLTkuMTUgNC40MjFhNS44MjQgNS44MjQgMCAwIDEgNy42IDIuNzQ2bC4wOTguMjFsMS4yODggMi44OTFsMS42OTggMS40N2MuMDkzLjA4LjE3My4xNzQuMjY2LjMyNWwuMDU5LjExNGExLjI1IDEuMjUgMCAwIDEtLjYzNyAxLjY1TDYuNzU2IDIwLjQ5QTEuMjUgMS4yNSAwIDAgMSA1IDE5LjM0N2wtLjAwMS0yLjM0M2wtMS4yNDItMi43OTJBNS44MiA1LjgyIDAgMCAxIDYuNzEgNi41MTVtOC45MTMtLjgyYy45NjcuNTI3IDEuNzQyIDEuMjk0IDIuMzE2IDIuMjg5cy44NTEgMi4wNS44MjQgMy4xNWEuNzUuNzUgMCAxIDEtMS41LS4wMzZjLjAyLS44MjItLjE4NS0xLjYwNS0uNjIzLTIuMzY0Yy0uNDM4LS43Ni0xLjAxNC0xLjMzLTEuNzM1LTEuNzIyYS43NS43NSAwIDAgMSAuNzE4LTEuMzE3Ii8+PC9zdmc+" />
                 </div>
                 <div class="blackbox__output">
                   <div x-show="$store.vis.selectedItem.returns.type !== 'None'">
@@ -126,6 +128,11 @@ local function addModal()
               </div>
 
               <p x-text="$store.vis.selectedItem.description"></p>
+
+              <p x-show="$store.vis.selectedItem.sideeffects !==''" >
+                <span class="sideeffect__tag">side effect</span>
+                <span x-text="$store.vis.selectedItem.sideeffects"></span>
+              </p>
               
               <template x-if="parametersFilter($store.vis.selectedItem).length !== 0">
               <div>

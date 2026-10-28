@@ -3,601 +3,653 @@
   description: Возвращает абсолютное значение числа.
   class_name: ''
   parameters:
-    - name: number
-      type_hint: int | float | complex
-      required: true
-      positional_only: true
-      description: Число для вычисления модуля
+  - name: number
+    type_hint: int | float
+    required: true
+    positional_only: true
+    description: Число для вычисления модуля
   returns:
-    type: int | float | complex
+    type: int | float
     description: Абсолютное значение
   examples:
-    - code: abs(-5)
-      output: '5'
-    - code: abs(3+4j)
-      output: '5.0'
+  - code: "# Модуль целого числа\nabs(-5)"
+    output: '5'
+  - code: "# Модуль комплексного числа\nabs(3+4j)"
+    output: '5.0'
+  - code: "# Модуль дробного числа\nabs(-2.5)"
+    output: '2.5'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#abs
-
 - name: all
   category: A
-  description: Возвращает True, если все элементы итерируемого объекта истинны.
+  description: Возвращает True, если все элементы последовательности объектов истинны.
   class_name: ''
   parameters:
-    - name: iterable
-      type_hint: Iterable
-      required: true
-      positional_only: true
-      description: Итерируемый объект для проверки
+  - name: iterable
+    type_hint: Последовательность объектов (Iterable)
+    required: true
+    positional_only: true
+    description: Последовательность объектов для проверки
   returns:
     type: bool
     description: Результат логической проверки
   examples:
-    - code: all([True, 1, 'hello'])
-      output: 'True'
-    - code: all([0, 1, 2])
-      output: 'False'
+  - code: "# Все элементы истинны\nall([True, 1, 'hello'])"
+    output: 'True'
+  - code: "# Ноль — ложное значение\nall([0, 1, 2])"
+    output: 'False'
+  - code: "# Пустая последовательность возвращает True\nall([])"
+    output: 'True'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#all
-
 - name: any
   category: A
-  description: Возвращает True, если хотя бы один элемент итерируемого объекта истинен.
+  description: Возвращает True, если хотя бы один элемент последовательности объектов истинен.
   class_name: ''
   parameters:
-    - name: iterable
-      type_hint: Iterable
-      required: true
-      positional_only: true
-      description: Итерируемый объект для проверки
+  - name: iterable
+    type_hint: Последовательность объектов (Iterable)
+    required: true
+    positional_only: true
+    description: Последовательность объектов для проверки
   returns:
     type: bool
     description: Результат логической проверки
   examples:
-    - code: any([0, False, None])
-      output: 'False'
-    - code: any([0, 1, None])
-      output: 'True'
+  - code: "# Нет истинных элементов\nany([0, False, None])"
+    output: 'False'
+  - code: "# Единица — истинное значение\nany([0, 1, None])"
+    output: 'True'
+  - code: "# Пустая последовательность возвращает False\nany([])"
+    output: 'False'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#any
-
 - name: len
   category: L
   description: Возвращает количество элементов в объекте.
   class_name: ''
   parameters:
-    - name: obj
-      type_hint: Sized
-      required: true
-      positional_only: true
-      description: Объект с поддержкой протокола длины
+  - name: obj
+    type_hint: Sized
+    required: true
+    positional_only: true
+    description: Объект с поддержкой протокола длины
   returns:
     type: int
     description: Количество элементов
   examples:
-    - code: len([1, 2, 3])
-      output: '3'
-    - code: len('Python')
-      output: '6'
+  - code: "# Длина списка\nlen([1, 2, 3])"
+    output: '3'
+  - code: "# Длина строки — число символов\nlen('Python')"
+    output: '6'
+  - code: "# Длина словаря — число ключей\nlen({'a': 1, 'b': 2})"
+    output: '2'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#len
-
 - name: print
   category: P
   description: Печатает объекты в текстовый поток.
   class_name: ''
   parameters:
-    - name: objects
-      required: true
-      variadic: true
-      description: Выводимое на экран значение
-    - name: sep
-      type_hint: str
-      required: false
-      default_value: ''' '''
-      keyword_only: true
-      description: Разделитель
-    - name: end
-      type_hint: str
-      required: false
-      default_value: '''\n'''
-      keyword_only: true
-      description: Завершающая строка
-    - name: file
-      type_hint: object
-      required: false
-      default_value: None
-      keyword_only: true
-      description: Файловый объект
-    - name: flush
-      type_hint: bool
-      required: false
-      default_value: 'False'
-      keyword_only: true
-      description: Принудительный сброс буфера
+  - name: objects
+    required: true
+    variadic: true
+    description: Выводимое на экран значение
+  - name: sep
+    type_hint: str
+    required: false
+    default_value: ''' '''
+    keyword_only: true
+    description: Разделитель
+  - name: end
+    type_hint: str
+    required: false
+    default_value: '''\n'''
+    keyword_only: true
+    description: Завершающая строка
+  - name: file
+    type_hint: object
+    required: false
+    default_value: None
+    keyword_only: true
+    description: Файловый объект
+  - name: flush
+    type_hint: bool
+    required: false
+    default_value: 'False'
+    keyword_only: true
+    description: Принудительный сброс буфера
   returns:
     type: None
     description: Не возвращает значения
   examples:
-    - code: print('Hello', 'World', sep='-')
-      output: Hello-World
+  - code: "# Значения через разделитель\nprint('Hello', 'World', sep='-')"
+    output: Hello-World
+  - code: "# Замена завершающего переноса строки\nprint('a', end=' ')\nprint('b')"
+    output: a b
+  - code: "# Вывод нескольких значений подряд\nprint(1, 2, 3)"
+    output: 1 2 3
+  sideeffects: Выводит текст в стандартный поток вывода (stdout)
   is_class: false
   url: https://docs.python.org/3/library/functions.html#print
-
 - name: input
   category: I
   description: Считывает строку из ввода.
   class_name: ''
   parameters:
-    - name: prompt
-      type_hint: str | None
-      required: false
-      positional_only: true
-      description: Строка-подсказка
+  - name: prompt
+    type_hint: str | None
+    required: false
+    positional_only: true
+    description: Строка-подсказка
   returns:
     type: str
     description: Введённая строка
   examples:
-    - code: "name = input('Имя: ')"
-      output: 'Имя: Анна ⏎'
+  - code: "# Считывание строки с подсказкой\nname = input('Имя: ')"
+    output: 'Имя: Анна ⏎'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#input
-
 - name: int
   category: I
   description: Возвращает целочисленный объект.
   class_name: ''
   parameters:
-    - name: x
-      type_hint: int | float | str
-      required: false
-      positional_only: true
-      description: Значение для преобразования
-    - name: base
-      type_hint: int
-      required: false
-      positional_only: true
-      description: Система счисления
+  - name: x
+    type_hint: int | float | str
+    required: false
+    positional_only: true
+    description: Значение для преобразования
+  - name: base
+    type_hint: int
+    required: false
+    positional_only: true
+    description: Система счисления
   returns:
     type: int
     description: Целое число
   examples:
-    - code: int('42')
-      output: '42'
-    - code: int('1010', 2)
-      output: '10'
+  - code: "# Строка в целое число\nint('42')"
+    output: '42'
+  - code: "# Двоичная запись\nint('1010', 2)"
+    output: '10'
+  - code: "# Отбрасывание дробной части\nint(3.99)"
+    output: '3'
+  sideeffects: ''
   is_class: true
   url: https://docs.python.org/3/library/functions.html#int
-
 - name: float
   category: F
   description: Возвращает число с плавающей точкой.
   class_name: ''
   parameters:
-    - name: x
-      type_hint: int | float | str
-      required: false
-      positional_only: true
-      description: Значение для преобразования
+  - name: x
+    type_hint: int | float | str
+    required: false
+    positional_only: true
+    description: Значение для преобразования
   returns:
     type: float
     description: Число с плавающей точкой
   examples:
-    - code: float('3.14')
-      output: '3.14'
+  - code: "# Строка в дробное число\nfloat('3.14')"
+    output: '3.14'
+  - code: "# Целое в дробное\nfloat(5)"
+    output: '5.0'
+  sideeffects: ''
   is_class: true
   url: https://docs.python.org/3/library/functions.html#float
-
 - name: str
   category: S
   description: Возвращает строковую версию объекта.
   class_name: ''
   parameters:
-    - name: object
-      type_hint: object
-      required: false
-      positional_only: true
-      description: Объект для преобразования
+  - name: object
+    type_hint: object
+    required: false
+    positional_only: true
+    description: Объект для преобразования
   returns:
     type: str
     description: Строковое представление
   examples:
-    - code: str(2024)
-      output: '''2024'''
+  - code: "# Число в строку\nstr(2024)"
+    output: '''2024'''
+  - code: "# Логическое значение в строку\nstr(True)"
+    output: '''True'''
+  sideeffects: ''
   is_class: true
   url: https://docs.python.org/3/library/functions.html#str
-
 - name: range
   category: R
   description: Возвращает неизменяемую последовательность чисел.
   class_name: ''
   parameters:
-    - name: start
-      type_hint: int
-      required: false
-      positional_only: true
-      description: Начало
-    - name: stop
-      type_hint: int
-      required: true
-      positional_only: true
-      description: Конец (не включается)
-    - name: step
-      type_hint: int
-      required: false
-      positional_only: true
-      description: Шаг
+  - name: start
+    type_hint: int
+    required: false
+    positional_only: true
+    description: Начало
+  - name: stop
+    type_hint: int
+    required: true
+    positional_only: true
+    description: Конец (не включается)
+  - name: step
+    type_hint: int
+    required: false
+    positional_only: true
+    description: Шаг
   returns:
     type: range
     description: Объект range
   examples:
-    - code: list(range(3))
-      output: '[0, 1, 2]'
+  - code: "# Числа от 0 до 2\nlist(range(3))"
+    output: '[0, 1, 2]'
+  - code: "# Начало и конец\nlist(range(1, 5))"
+    output: '[1, 2, 3, 4]'
+  - code: "# С шагом\nlist(range(0, 10, 3))"
+    output: '[0, 3, 6, 9]'
+  sideeffects: ''
   is_class: true
   url: https://docs.python.org/3/library/functions.html#range
-
 - name: list
   category: L
-  description: Создаёт список из итерируемого объекта.
+  description: Создаёт список из последовательности объектов.
   class_name: ''
   parameters:
-    - name: iterable
-      type_hint: Iterable
-      required: false
-      positional_only: true
-      description: Итерируемый объект
+  - name: iterable
+    type_hint: Последовательность объектов (Iterable)
+    required: false
+    positional_only: true
+    description: Последовательность объектов
   returns:
     type: list
     description: Новый список
   examples:
-    - code: list('abc')
-      output: "['a', 'b', 'c']"
+  - code: "# Строка в список символов\nlist('abc')"
+    output: '[''a'', ''b'', ''c'']'
+  - code: "# Диапазон в список\nlist(range(3))"
+    output: '[0, 1, 2]'
+  sideeffects: ''
   is_class: true
   url: https://docs.python.org/3/library/functions.html#list
-
 - name: dict
   category: D
   description: Создаёт новый словарь.
   class_name: ''
   parameters:
-    - name: mapping
-      type_hint: Mapping
-      required: false
-      description: Словарь или итерируемый объект пар ключ-значение
+  - name: mapping
+    type_hint: Mapping
+    required: false
+    description: Словарь или последовательность объектов пар ключ-значение
   returns:
     type: dict
     description: Новый словарь
   examples:
-    - code: dict(a=1, b=2)
-      output: "{'a': 1, 'b': 2}"
+  - code: "# Из ключевых аргументов\ndict(a=1, b=2)"
+    output: '{''a'': 1, ''b'': 2}'
+  - code: "# Из списка пар ключ-значение\ndict([('x', 10), ('y', 20)])"
+    output: '{''x'': 10, ''y'': 20}'
+  sideeffects: ''
   is_class: true
   url: https://docs.python.org/3/library/functions.html#dict
-
 - name: set
   category: S
   description: Создаёт новое множество.
   class_name: ''
   parameters:
-    - name: iterable
-      type_hint: Iterable
-      required: false
-      positional_only: true
-      description: Итерируемый объект
+  - name: iterable
+    type_hint: Последовательность объектов (Iterable)
+    required: false
+    positional_only: true
+    description: Последовательность объектов
   returns:
     type: set
     description: Новое множество
   examples:
-    - code: set([1, 2, 2, 3])
-      output: '{1, 2, 3}'
+  - code: "# Дубликаты удаляются\nset([1, 2, 2, 3])"
+    output: '{1, 2, 3}'
+  sideeffects: ''
   is_class: true
   url: https://docs.python.org/3/library/functions.html#set
-
 - name: open
   category: O
   description: Открывает файл и возвращает файловый объект.
   class_name: ''
   parameters:
-    - name: file
-      type_hint: str | PathLike
-      required: true
-      description: Путь к файлу
-    - name: mode
-      type_hint: str
-      required: false
-      default_value: "'r'"
-      description: Режим доступа
-    - name: encoding
-      type_hint: str
-      required: false
-      default_value: None
-      description: Кодировка
+  - name: file
+    type_hint: str | PathLike
+    required: true
+    description: Путь к файлу
+  - name: mode
+    type_hint: str
+    required: false
+    default_value: '''r'''
+    description: Режим доступа
+  - name: encoding
+    type_hint: str
+    required: false
+    default_value: None
+    description: Кодировка
   returns:
     type: TextIOWrapper | BufferedReader
     description: Файловый объект
   examples:
-    - code: with open('data.txt', 'r', encoding='utf-8') as f: content = f.read()
-      output: ''
+  - code: "# Чтение файла целиком\nwith open('data.txt', 'r', encoding='utf-8') as f:\n    content = f.read()"
+    output: ''
+  - code: "# Запись в файл\nwith open('out.txt', 'w', encoding='utf-8') as f:\n    f.write('Привет')"
+    output: ''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#open
-
 - name: type
   category: T
   description: Возвращает тип объекта.
   class_name: ''
   parameters:
-    - name: object
-      type_hint: object
-      required: true
-      positional_only: true
-      description: Объект для определения типа
+  - name: object
+    type_hint: object
+    required: true
+    positional_only: true
+    description: Объект для определения типа
   returns:
     type: type
     description: Тип объекта
   examples:
-    - code: type(42)
-      output: "<class 'int'>"
+  - code: "# Тип целого числа\ntype(42)"
+    output: <class 'int'>
+  - code: "# Тип строки\ntype('hello')"
+    output: <class 'str'>
+  sideeffects: ''
   is_class: true
   url: https://docs.python.org/3/library/functions.html#type
-
 - name: isinstance
   category: I
   description: Проверяет, является ли объект экземпляром класса или кортежа классов.
   class_name: ''
   parameters:
-    - name: object
-      type_hint: object
-      required: true
-      positional_only: true
-      description: Проверяемый объект
-    - name: classinfo
-      type_hint: type | tuple
-      required: true
-      positional_only: true
-      description: Класс или кортеж классов
+  - name: object
+    type_hint: object
+    required: true
+    positional_only: true
+    description: Проверяемый объект
+  - name: classinfo
+    type_hint: type | tuple
+    required: true
+    positional_only: true
+    description: Класс или кортеж классов
   returns:
     type: bool
     description: Результат проверки
   examples:
-    - code: isinstance(42, int)
-      output: 'True'
+  - code: "# Проверка на один тип\nisinstance(42, int)"
+    output: 'True'
+  - code: "# Проверка на один из типов\nisinstance(\"a\", (int, str))"
+    output: 'True'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#isinstance
-
 - name: chr
   category: C
   description: Возвращает строку из одного символа с кодом Unicode.
   class_name: ''
   parameters:
-    - name: i
-      type_hint: int
-      required: true
-      positional_only: true
-      description: Код Unicode (0–0x10FFFF)
+  - name: i
+    type_hint: int
+    required: true
+    positional_only: true
+    description: Код Unicode (0–0x10FFFF)
   returns:
     type: str
     description: Символ
   examples:
-    - code: chr(97)
-      output: "'a'"
+  - code: "# Код в символ\nchr(97)"
+    output: '''a'''
+  - code: "# Код русской буквы\nchr(1040)"
+    output: '''А'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#chr
-
 - name: ord
   category: O
   description: Возвращает код Unicode символа.
   class_name: ''
   parameters:
-    - name: c
-      type_hint: str
-      required: true
-      positional_only: true
-      description: Символ (строка длины 1)
+  - name: c
+    type_hint: str
+    required: true
+    positional_only: true
+    description: Символ (строка длины 1)
   returns:
     type: int
     description: Код Unicode
   examples:
-    - code: ord('a')
-      output: '97'
+  - code: "# Символ в код\nord(\"a\")"
+    output: '97'
+  - code: "# Код русской буквы\nord(\"я\")"
+    output: '1103'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#ord
-
 - name: sum
   category: S
-  description: Возвращает сумму элементов итерируемого объекта.
+  description: Возвращает сумму элементов последовательности объектов.
   class_name: ''
   parameters:
-    - name: iterable
-      type_hint: Iterable
-      required: true
-      positional_only: true
-      description: Итерируемый объект с числами
-    - name: start
-      type_hint: int | float
-      required: false
-      default_value: '0'
-      positional_only: true
-      description: Начальное значение суммы
+  - name: iterable
+    type_hint: Последовательность объектов (Iterable)
+    required: true
+    positional_only: true
+    description: Последовательность объектов с числами
+  - name: start
+    type_hint: int | float
+    required: false
+    default_value: '0'
+    positional_only: true
+    description: Начальное значение суммы
   returns:
     type: int | float
     description: Сумма элементов
   examples:
-    - code: sum([1, 2, 3])
-      output: '6'
+  - code: "# Сумма списка\nsum([1, 2, 3])"
+    output: '6'
+  - code: "# С начальным значением\nsum([1, 2, 3], 10)"
+    output: '16'
+  - code: "# Сумма диапазона\nsum(range(5))"
+    output: '10'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#sum
-
 - name: min
   category: M
   description: Возвращает наименьший элемент.
   class_name: ''
   parameters:
-    - name: iterable
-      type_hint: Iterable
-      required: true
-      description: Итерируемый объект или аргументы
-    - name: key
-      type_hint: function
-      required: false
-      keyword_only: true
-      description: Функция для извлечения ключа сравнения
-    - name: default
-      type_hint: object
-      required: false
-      keyword_only: true
-      description: Значение по умолчанию для пустого итерируемого
+  - name: iterable
+    type_hint: Последовательность объектов (Iterable)
+    required: true
+    description: Последовательность объектов или аргументы
+  - name: key
+    type_hint: function
+    required: false
+    keyword_only: true
+    description: Функция для извлечения ключа сравнения
+  - name: default
+    type_hint: object
+    required: false
+    keyword_only: true
+    description: Значение по умолчанию для пустой последовательности объектов
   returns:
     type: object
     description: Наименьший элемент
   examples:
-    - code: min([3, 1, 4])
-      output: '1'
+  - code: "# Минимум списка\nmin([3, 1, 4])"
+    output: '1'
+  - code: "# Самое короткое слово\nmin(['a', 'abc', 'ab'], key=len)"
+    output: '''a'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#min
-
 - name: max
   category: M
   description: Возвращает наибольший элемент.
   class_name: ''
   parameters:
-    - name: iterable
-      type_hint: Iterable
-      required: true
-      description: Итерируемый объект или аргументы
-    - name: key
-      type_hint: function
-      required: false
-      keyword_only: true
-      description: Функция для извлечения ключа сравнения
-    - name: default
-      type_hint: object
-      required: false
-      keyword_only: true
-      description: Значение по умолчанию для пустого итерируемого
+  - name: iterable
+    type_hint: Последовательность объектов (Iterable)
+    required: true
+    description: Последовательность объектов или аргументы
+  - name: key
+    type_hint: function
+    required: false
+    keyword_only: true
+    description: Функция для извлечения ключа сравнения
+  - name: default
+    type_hint: object
+    required: false
+    keyword_only: true
+    description: Значение по умолчанию для пустой последовательности объектов
   returns:
     type: object
     description: Наибольший элемент
   examples:
-    - code: max([3, 1, 4])
-      output: '4'
+  - code: "# Максимум списка\nmax([3, 1, 4])"
+    output: '4'
+  - code: "# Самое длинное слово\nmax(['a', 'abc', 'ab'], key=len)"
+    output: '''abc'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#max
-
 - name: round
   category: R
   description: Округляет число до заданного количества знаков после запятой.
   class_name: ''
   parameters:
-    - name: number
-      type_hint: float | int
-      required: true
-      positional_only: true
-      description: Число для округления
-    - name: ndigits
-      type_hint: int
-      required: false
-      positional_only: true
-      description: Количество знаков после запятой
+  - name: number
+    type_hint: float | int
+    required: true
+    positional_only: true
+    description: Число для округления
+  - name: ndigits
+    type_hint: int
+    required: false
+    positional_only: true
+    description: Количество знаков после запятой
   returns:
     type: int | float
     description: Округлённое число
   examples:
-    - code: round(3.14159, 2)
-      output: '3.14'
+  - code: "# Два знака после запятой\nround(3.14159, 2)"
+    output: '3.14'
+  - code: "# Округление до целого\nround(2.7)"
+    output: '3'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#round
-
 - name: pow
   category: P
   description: Возводит base в степень exp, по модулю mod (если указан).
   class_name: ''
   parameters:
-    - name: base
-      type_hint: int | float
-      required: true
-      positional_only: true
-      description: Основание
-    - name: exp
-      type_hint: int | float
-      required: true
-      positional_only: true
-      description: Показатель степени
-    - name: mod
-      type_hint: int
-      required: false
-      positional_only: true
-      description: Модуль для вычисления
+  - name: base
+    type_hint: int | float
+    required: true
+    positional_only: true
+    description: Основание
+  - name: exp
+    type_hint: int | float
+    required: true
+    positional_only: true
+    description: Показатель степени
+  - name: mod
+    type_hint: int
+    required: false
+    positional_only: true
+    description: Модуль для вычисления
   returns:
     type: int | float
     description: Результат возведения в степень
   examples:
-    - code: pow(2, 3)
-      output: '8'
-    - code: pow(2, 3, 5)
-      output: '3'
+  - code: "# Возведение в степень\npow(2, 3)"
+    output: '8'
+  - code: "# Степень по модулю\npow(2, 3, 5)"
+    output: '3'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/functions.html#pow
-
 - name: strip
   category: S
   description: Возвращает копию строки с удалёнными ведущими и замыкающими символами.
   class_name: str
   parameters:
-    - name: chars
-      type_hint: str | None
-      required: false
-      description: Набор символов для удаления (по умолчанию — пробельные)
+  - name: chars
+    type_hint: str | None
+    required: false
+    description: Набор символов для удаления (по умолчанию — пробельные)
   returns:
     type: str
     description: Обработанная строка
   examples:
-    - code: "'  hello  '.strip()"
-      output: "'hello'"
-    - code: "'www.example.com'.strip('wcm.')"
-      output: "'example'"
+  - code: "# Удаление пробельных символов\n'  hello  '.strip()"
+    output: '''hello'''
+  - code: "# Удаление заданных символов с краёв\n'www.example.com'.strip('wcm.')"
+    output: '''example'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.strip
-
 - name: split
   category: S
   description: Разбивает строку на список подстрок по разделителю.
   class_name: str
   parameters:
-    - name: sep
-      type_hint: str | None
-      required: false
-      description: Разделитель (по умолчанию — любой пробел)
-    - name: maxsplit
-      type_hint: int
-      required: false
-      default_value: '-1'
-      description: Максимальное число разбиений
+  - name: sep
+    type_hint: str | None
+    required: false
+    description: Разделитель (по умолчанию — любой пробел)
+  - name: maxsplit
+    type_hint: int
+    required: false
+    default_value: '-1'
+    description: Максимальное число разбиений
   returns:
     type: list[str]
     description: Список подстрок
   examples:
-    - code: "'a,b,c'.split(',')"
-      output: "['a', 'b', 'c']"
+  - code: "# Разбиение по разделителю\n'a,b,c'.split(',')"
+    output: '[''a'', ''b'', ''c'']'
+  - code: "# Разбиение по любым пробелам\n'a b  c'.split()"
+    output: '[''a'', ''b'', ''c'']'
+  - code: "# Ограничение числа частей\n'a,b,c'.split(',', 1)"
+    output: '[''a'', ''b,c'']'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.split
-
 - name: join
   category: S
-  description: Объединяет строки из итерируемого объекта, используя строку как разделитель.
+  description: Объединяет строки из последовательности объектов, используя строку как разделитель.
   class_name: str
   parameters:
-    - name: iterable
-      type_hint: Iterable[str]
-      required: true
-      description: Итерируемый объект со строками
+  - name: iterable
+    type_hint: Последовательность объектов (Iterable[str])
+    required: true
+    description: Последовательность объектов со строками
   returns:
     type: str
     description: Объединённая строка
   examples:
-    - code: "'-'.join(['a', 'b', 'c'])"
-      output: "'a-b-c'"
+  - code: "# Соединение списка строк\n'-'.join(['a', 'b', 'c'])"
+    output: '''a-b-c'''
+  - code: "# Соединение без разделителя\n''.join(['П', 'у', 'т', 'ь'])"
+    output: '''Путь'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.join
-
 - name: lower
   category: S
   description: Возвращает копию строки в нижнем регистре.
@@ -607,11 +659,11 @@
     type: str
     description: Строка в нижнем регистре
   examples:
-    - code: "'HELLO'.lower()"
-      output: "'hello'"
+  - code: "# Строка в нижнем регистре\n'HELLO'.lower()"
+    output: '''hello'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.lower
-
 - name: upper
   category: S
   description: Возвращает копию строки в верхнем регистре.
@@ -621,200 +673,208 @@
     type: str
     description: Строка в верхнем регистре
   examples:
-    - code: "'hello'.upper()"
-      output: "'HELLO'"
+  - code: "# Строка в верхнем регистре\n'hello'.upper()"
+    output: '''HELLO'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.upper
-
 - name: replace
   category: S
   description: Возвращает копию строки с заменой подстрок.
   class_name: str
   parameters:
-    - name: old
-      type_hint: str
-      required: true
-      description: Подстрока для замены
-    - name: new
-      type_hint: str
-      required: true
-      description: Новая подстрока
-    - name: count
-      type_hint: int
-      required: false
-      default_value: '-1'
-      description: Максимальное число замен
+  - name: old
+    type_hint: str
+    required: true
+    description: Подстрока для замены
+  - name: new
+    type_hint: str
+    required: true
+    description: Новая подстрока
+  - name: count
+    type_hint: int
+    required: false
+    default_value: '-1'
+    description: Максимальное число замен
   returns:
     type: str
     description: Строка с заменами
   examples:
-    - code: "'hello world'.replace('world', 'Python')"
-      output: "'hello Python'"
+  - code: "# Замена подстроки\n'hello world'.replace('world', 'Python')"
+    output: '''hello Python'''
+  - code: "# Только первые две замены\n'aaa'.replace('a', 'b', 2)"
+    output: '''bba'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.replace
-
 - name: find
   category: S
   description: Возвращает индекс первого вхождения подстроки или -1.
   class_name: str
   parameters:
-    - name: sub
-      type_hint: str
-      required: true
-      description: Искомая подстрока
-    - name: start
-      type_hint: int
-      required: false
-      description: Начало поиска
-    - name: end
-      type_hint: int
-      required: false
-      description: Конец поиска
+  - name: sub
+    type_hint: str
+    required: true
+    description: Искомая подстрока
+  - name: start
+    type_hint: int
+    required: false
+    description: Начало поиска
+  - name: end
+    type_hint: int
+    required: false
+    description: Конец поиска
   returns:
     type: int
     description: Индекс вхождения или -1
   examples:
-    - code: "'hello'.find('ll')"
-      output: '2'
+  - code: "# Индекс первого вхождения\n'hello'.find('ll')"
+    output: '2'
+  - code: "# Подстрока не найдена\n\"hello\".find(\"x\")"
+    output: '-1'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.find
-
 - name: startswith
   category: S
   description: Проверяет, начинается ли строка с указанной подстроки.
   class_name: str
   parameters:
-    - name: prefix
-      type_hint: str | tuple[str]
-      required: true
-      description: Префикс или кортеж префиксов
-    - name: start
-      type_hint: int
-      required: false
-      description: Начало проверки
-    - name: end
-      type_hint: int
-      required: false
-      description: Конец проверки
+  - name: prefix
+    type_hint: str | tuple[str]
+    required: true
+    description: Префикс или кортеж префиксов
+  - name: start
+    type_hint: int
+    required: false
+    description: Начало проверки
+  - name: end
+    type_hint: int
+    required: false
+    description: Конец проверки
   returns:
     type: bool
     description: Результат проверки
   examples:
-    - code: "'hello'.startswith('he')"
-      output: 'True'
+  - code: "# Проверка начала строки\n'hello'.startswith('he')"
+    output: 'True'
+  - code: "# Один из префиксов\n'photo.png'.startswith(('photo', 'image'))"
+    output: 'True'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.startswith
-
 - name: count
   category: C
   description: Возвращает количество вхождений подстроки/значения.
   class_name: str
   parameters:
-    - name: sub
-      type_hint: str
-      required: true
-      description: Искомая подстрока или значение
-    - name: start
-      type_hint: int
-      required: false
-      description: Начало поиска
-    - name: end
-      type_hint: int
-      required: false
-      description: Конец поиска
+  - name: sub
+    type_hint: str
+    required: true
+    description: Искомая подстрока или значение
+  - name: start
+    type_hint: int
+    required: false
+    description: Начало поиска
+  - name: end
+    type_hint: int
+    required: false
+    description: Конец поиска
   returns:
     type: int
     description: Количество вхождений
   examples:
-    - code: "'hello'.count('l')"
-      output: '2'
-    - code: "[1,2,2,3].count(2)"
-      output: '2'
+  - code: "# Число вхождений в строке\n'hello'.count('l')"
+    output: '2'
+  - code: "# Число вхождений в списке\n[1, 2, 2, 3].count(2)"
+    output: '2'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#str.count
-
 - name: append
   category: A
   description: Добавляет объект в конец списка.
   class_name: list
   parameters:
-    - name: object
-      type_hint: object
-      required: true
-      positional_only: true
-      description: Элемент для добавления
+  - name: object
+    type_hint: object
+    required: true
+    positional_only: true
+    description: Элемент для добавления
   returns:
     type: None
     description: Модифицирует список на месте
   examples:
-    - code: "lst = [1, 2]\nlst.append(3)\nlst"
-      output: "[1, 2, 3]"
+  - code: "# Добавление в конец списка\nlst = [1, 2]\nlst.append(3)\nlst"
+    output: '[1, 2, 3]'
+  sideeffects: 'Изменяет исходный список: добавляет элемент в его конец'
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.append
-
 - name: pop
   category: P
   description: Удаляет и возвращает элемент по индексу (список) или ключу (словарь).
   class_name: list
   parameters:
-    - name: index
-      type_hint: int
-      required: false
-      default_value: '-1'
-      positional_only: true
-      description: Индекс элемента (по умолчанию последний)
+  - name: index
+    type_hint: int
+    required: false
+    default_value: '-1'
+    positional_only: true
+    description: Индекс элемента (по умолчанию последний)
   returns:
     type: object
     description: Удалённый элемент
   examples:
-    - code: "lst = [1, 2, 3]\nlst.pop()"
-      output: '3'
+  - code: "# Удаление и возврат последнего элемента\nlst = [1, 2, 3]\nlst.pop()"
+    output: '3'
+  - code: "# Удаление по индексу\nlst = [1, 2, 3]\nlst.pop(0)\nlst"
+    output: '[2, 3]'
+  sideeffects: 'Изменяет исходный список: удаляет из него элемент'
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.pop
-
 - name: insert
   category: I
   description: Вставляет объект перед указанным индексом.
   class_name: list
   parameters:
-    - name: index
-      type_hint: int
-      required: true
-      positional_only: true
-      description: Индекс для вставки
-    - name: object
-      type_hint: object
-      required: true
-      positional_only: true
-      description: Элемент для вставки
+  - name: index
+    type_hint: int
+    required: true
+    positional_only: true
+    description: Индекс для вставки
+  - name: object
+    type_hint: object
+    required: true
+    positional_only: true
+    description: Элемент для вставки
   returns:
     type: None
     description: Модифицирует список на месте
   examples:
-    - code: "lst = [1, 3]\nlst.insert(1, 2)\nlst"
-      output: "[1, 2, 3]"
+  - code: "# Вставка перед индексом\nlst = [1, 3]\nlst.insert(1, 2)\nlst"
+    output: '[1, 2, 3]'
+  sideeffects: 'Изменяет исходный список: вставляет элемент'
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.insert
-
 - name: remove
   category: R
   description: Удаляет первое вхождение значения (список) или элемент (множество).
   class_name: list
   parameters:
-    - name: value
-      type_hint: object
-      required: true
-      positional_only: true
-      description: Значение для удаления
+  - name: value
+    type_hint: object
+    required: true
+    positional_only: true
+    description: Значение для удаления
   returns:
     type: None
     description: Модифицирует коллекцию на месте
   examples:
-    - code: "lst = [1, 2, 2, 3]\nlst.remove(2)\nlst"
-      output: "[1, 2, 3]"
+  - code: "# Удаляется первое вхождение\nlst = [1, 2, 2, 3]\nlst.remove(2)\nlst"
+    output: '[1, 2, 3]'
+  sideeffects: 'Изменяет исходный список: удаляет первое вхождение значения'
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.remove
-
 - name: clear
   category: C
   description: Удаляет все элементы из коллекции.
@@ -824,78 +884,84 @@
     type: None
     description: Модифицирует коллекцию на месте
   examples:
-    - code: "lst = [1, 2, 3]\nlst.clear()\nlst"
-      output: "[]"
+  - code: "# Удаление всех элементов\nlst = [1, 2, 3]\nlst.clear()\nlst"
+    output: '[]'
+  sideeffects: 'Изменяет исходную коллекцию: удаляет все её элементы'
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.clear
-
 - name: index
   category: I
   description: Возвращает индекс первого вхождения значения.
   class_name: list
   parameters:
-    - name: value
-      type_hint: object
-      required: true
-      description: Искомое значение
-    - name: start
-      type_hint: int
-      required: false
-      description: Начало поиска
-    - name: end
-      type_hint: int
-      required: false
-      description: Конец поиска
+  - name: value
+    type_hint: object
+    required: true
+    description: Искомое значение
+  - name: start
+    type_hint: int
+    required: false
+    description: Начало поиска
+  - name: end
+    type_hint: int
+    required: false
+    description: Конец поиска
   returns:
     type: int
     description: Индекс вхождения
   examples:
-    - code: "[1, 2, 3].index(2)"
-      output: '1'
+  - code: "# Индекс первого вхождения\n[1, 2, 3].index(2)"
+    output: '1'
+  - code: "# Поиск с заданной позиции\n[1, 2, 2].index(2, 2)"
+    output: '2'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#list.index
-
 - name: get
   category: G
   description: Возвращает значение по ключу или default, если ключ не найден.
   class_name: dict
   parameters:
-    - name: key
-      type_hint: Hashable
-      required: true
-      description: Ключ для поиска
-    - name: default
-      type_hint: object
-      required: false
-      default_value: None
-      description: Значение по умолчанию
+  - name: key
+    type_hint: Hashable
+    required: true
+    description: Ключ для поиска
+  - name: default
+    type_hint: object
+    required: false
+    default_value: None
+    description: Значение по умолчанию
   returns:
     type: object
     description: Значение или default
   examples:
-    - code: "d = {'a': 1}\nd.get('b', 0)"
-      output: '0'
+  - code: "# Значение по ключу\nd = {'a': 1}\nd.get('a')"
+    output: '1'
+  - code: "# Значение по умолчанию при отсутствии ключа\nd = {'a': 1}\nd.get('b', 0)"
+    output: '0'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#dict.get
-
 - name: update
   category: U
-  description: Обновляет словарь элементами из другого словаря или итерируемого объекта пар.
+  description: Обновляет словарь элементами из другого словаря или последовательности объектов пар.
   class_name: dict
   parameters:
-    - name: other
-      type_hint: Mapping | Iterable[tuple]
-      required: false
-      description: Словарь или итерируемый объект для обновления
+  - name: other
+    type_hint: Mapping | Последовательность объектов (Iterable[tuple])
+    required: false
+    description: Словарь или последовательность объектов для обновления
   returns:
     type: None
     description: Модифицирует словарь на месте
   examples:
-    - code: "d = {'a': 1}\nd.update({'b': 2})\nd"
-      output: "{'a': 1, 'b': 2}"
+  - code: "# Добавление пары из словаря\nd = {'a': 1}\nd.update({'b': 2})\nd"
+    output: '{''a'': 1, ''b'': 2}'
+  - code: "# Обновление списком пар\nd = {'a': 1}\nd.update([('b', 2)])\nd"
+    output: '{''a'': 1, ''b'': 2}'
+  sideeffects: 'Изменяет исходный словарь: добавляет или перезаписывает пары ключ-значение'
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#dict.update
-
 - name: keys
   category: K
   description: Возвращает представление ключей словаря.
@@ -905,11 +971,11 @@
     type: dict_keys
     description: Представление ключей
   examples:
-    - code: "list({'a': 1, 'b': 2}.keys())"
-      output: "['a', 'b']"
+  - code: "# Список ключей\nlist({'a': 1, 'b': 2}.keys())"
+    output: '[''a'', ''b'']'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#dict.keys
-
 - name: values
   category: V
   description: Возвращает представление значений словаря.
@@ -919,11 +985,11 @@
     type: dict_values
     description: Представление значений
   examples:
-    - code: "list({'a': 1, 'b': 2}.values())"
-      output: "[1, 2]"
+  - code: "# Список значений\nlist({'a': 1, 'b': 2}.values())"
+    output: '[1, 2]'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#dict.values
-
 - name: items
   category: I
   description: Возвращает представление пар ключ-значение словаря.
@@ -933,118 +999,122 @@
     type: dict_items
     description: Представление пар ключ-значение
   examples:
-    - code: "list({'a': 1}.items())"
-      output: "[('a', 1)]"
+  - code: "# Список пар ключ-значение\nlist({'a': 1}.items())"
+    output: '[(''a'', 1)]'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#dict.items
-
 - name: add
   category: A
   description: Добавляет элемент во множество.
   class_name: set
   parameters:
-    - name: elem
-      type_hint: Hashable
-      required: true
-      description: Элемент для добавления
+  - name: elem
+    type_hint: Hashable
+    required: true
+    description: Элемент для добавления
   returns:
     type: None
     description: Модифицирует множество на месте
   examples:
-    - code: "s = {1, 2}\ns.add(3)\nprint(s)"
-      output: "{1, 2, 3}"
+  - code: "# Добавление элемента во множество\ns = {1, 2}\ns.add(3)\nprint(s)"
+    output: '{1, 2, 3}'
+  sideeffects: 'Изменяет исходное множество: добавляет элемент'
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#set.add
-
 - name: discard
   category: D
   description: Удаляет элемент из множества, если он присутствует (не вызывает ошибку, если отсутствует).
   class_name: set
   parameters:
-    - name: elem
-      type_hint: Hashable
-      required: true
-      description: Элемент для удаления
+  - name: elem
+    type_hint: Hashable
+    required: true
+    description: Элемент для удаления
   returns:
     type: None
     description: Модифицирует множество на месте
   examples:
-    - code: "s = {1, 2, 3}\ns.discard(2)\ns"
-      output: "{1, 3}"
+  - code: "# Удаление элемента\ns = {1, 2, 3}\ns.discard(2)\ns"
+    output: '{1, 3}'
+  - code: "# Отсутствующий элемент не вызывает ошибку\ns = {1, 2}\ns.discard(99)\ns"
+    output: '{1, 2}'
+  sideeffects: 'Изменяет исходное множество: удаляет элемент, если он присутствует'
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#set.discard
-
 - name: union
   category: U
   description: Возвращает новое множество с элементами из данного и других множеств.
   class_name: set
   parameters:
-    - name: others
-      variadic: true
-      description: Другие итерируемые объекты
+  - name: others
+    variadic: true
+    description: Другие последовательности объектов
   returns:
     type: set
     description: Новое множество
   examples:
-    - code: "{1, 2}.union({2, 3})"
-      output: "{1, 2, 3}"
+  - code: "# Объединение множеств\n{1, 2}.union({2, 3})"
+    output: '{1, 2, 3}'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#set.union
-
 - name: intersection
   category: I
   description: Возвращает новое множество с общими элементами.
   class_name: set
   parameters:
-    - name: others
-      variadic: true
-      description: Другие итерируемые объекты
+  - name: others
+    variadic: true
+    description: Другие последовательности объектов
   returns:
     type: set
     description: Новое множество
   examples:
-    - code: "{1, 2, 3}.intersection({2, 3, 4})"
-      output: "{2, 3}"
+  - code: "# Общие элементы множеств\n{1, 2, 3}.intersection({2, 3, 4})"
+    output: '{2, 3}'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/stdtypes.html#set.intersection
-
 - name: read
   category: R
   description: Читает до size байт/символов из файла.
   class_name: TextIOWrapper
   parameters:
-    - name: size
-      type_hint: int
-      required: false
-      default_value: '-1'
-      description: Количество байт/символов для чтения
+  - name: size
+    type_hint: int
+    required: false
+    default_value: '-1'
+    description: Количество байт/символов для чтения
   returns:
     type: str | bytes
     description: Прочитанные данные
   examples:
-    - code: with open('file.txt') as f: content = f.read()
-      output: ''
+  - code: "# Чтение всего файла\nwith open('file.txt') as f:\n    content = f.read()"
+    output: ''
+  - code: "# Чтение первых 5 символов\nwith open('file.txt') as f:\n    content = f.read(5)"
+    output: ''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/io.html#io.TextIOWrapper.read
-
 - name: write
   category: W
   description: Записывает строку/байты в файл.
   class_name: TextIOWrapper
   parameters:
-    - name: s
-      type_hint: str | bytes
-      required: true
-      description: Данные для записи
+  - name: s
+    type_hint: str | bytes
+    required: true
+    description: Данные для записи
   returns:
     type: int
     description: Количество записанных символов/байт
   examples:
-    - code: with open('out.txt', 'w') as f: f.write('Hello')
-      output: ''
+  - code: "# Запись строки в файл\nwith open('out.txt', 'w') as f:\n    f.write('Hello')"
+    output: ''
+  sideeffects: Записывает данные в файл
   is_class: false
   url: https://docs.python.org/3/library/io.html#io.TextIOWrapper.write
-
 - name: close
   category: C
   description: Закрывает файл, освобождая ресурсы.
@@ -1054,34 +1124,34 @@
     type: None
     description: Не возвращает значения
   examples:
-    - code: f = open('file.txt')\nf.close()
-      output: ''
+  - code: "# Явное закрытие файла\nf = open('file.txt')\nf.close()"
+    output: ''
+  sideeffects: Закрывает файл, освобождая системные ресурсы
   is_class: false
   url: https://docs.python.org/3/library/io.html#io.IOBase.close
-
 - name: seek
   category: S
   description: Перемещает указатель файла в новую позицию.
   class_name: TextIOWrapper
   parameters:
-    - name: offset
-      type_hint: int
-      required: true
-      description: Смещение в байтах/символах
-    - name: whence
-      type_hint: int
-      required: false
-      default_value: '0'
-      description: '0: начало, 1: текущая позиция, 2: конец'
+  - name: offset
+    type_hint: int
+    required: true
+    description: Смещение в байтах/символах
+  - name: whence
+    type_hint: int
+    required: false
+    default_value: '0'
+    description: '0: начало, 1: текущая позиция, 2: конец'
   returns:
     type: int
     description: Новая позиция указателя
   examples:
-    - code: f = open('file.txt')\nf.seek(0)\nf.close()
-      output: ''
+  - code: "# Возврат указателя в начало файла\nf = open('file.txt')\nf.seek(0)\nf.close()"
+    output: ''
+  sideeffects: Перемещает указатель позиции в файле
   is_class: false
   url: https://docs.python.org/3/library/io.html#io.IOBase.seek
-
 - name: flush
   category: F
   description: Сбрасывает внутренний буфер вывода на диск.
@@ -1091,62 +1161,65 @@
     type: None
     description: Не возвращает значения
   examples:
-    - code: f = open('log.txt', 'w')\nf.write('Hi')\nf.flush()
-      output: ''
+  - code: "# Принудительная запись буфера на диск\nf = open('log.txt', 'w')\nf.write('Hi')\nf.flush()"
+    output: ''
+  sideeffects: Принудительно записывает содержимое буфера на диск
   is_class: false
   url: https://docs.python.org/3/library/io.html#io.IOBase.flush
-
 - name: group
   category: G
   description: Возвращает одну или несколько подгрупп совпадения.
   class_name: re.Match
   parameters:
-    - name: group
-      type_hint: int | str
-      required: false
-      variadic: true
-      description: Номер или имя группы
+  - name: group
+    type_hint: int | str
+    required: false
+    variadic: true
+    description: Номер или имя группы
   returns:
     type: str | tuple[str]
     description: Строка совпадения или кортеж
   examples:
-    - code: import re\nm = re.match(r'(\\w+)', 'hello')\nm.group(1)
-      output: "'hello'"
+  - code: "# Первая группа совпадения\nimport re\nm = re.match(r'(\\w+)', 'hello')\nm.group(1)"
+    output: '''hello'''
+  - code: "# Вся строка совпадения\nimport re\nm = re.search(r'\\d+', 'abc123')\nm.group(0)"
+    output: '''123'''
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/re.html#re.Match.group
-
 - name: start
   category: S
   description: Возвращает начальный индекс совпадения группы.
   class_name: re.Match
   parameters:
-    - name: group
-      type_hint: int | str
-      required: false
-      description: Номер или имя группы
+  - name: group
+    type_hint: int | str
+    required: false
+    description: Номер или имя группы
   returns:
     type: int
     description: Начальный индекс
   examples:
-    - code: import re\nm = re.search('world', 'hello world')\nm.start()
-      output: '6'
+  - code: "# Начальный индекс совпадения\nimport re\nm = re.search('world', 'hello world')\nm.start()"
+    output: '6'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/re.html#re.Match.start
-
 - name: end
   category: E
   description: Возвращает конечный индекс совпадения группы.
   class_name: re.Match
   parameters:
-    - name: group
-      type_hint: int | str
-      required: false
-      description: Номер или имя группы
+  - name: group
+    type_hint: int | str
+    required: false
+    description: Номер или имя группы
   returns:
     type: int
     description: Конечный индекс
   examples:
-    - code: import re\nm = re.search('world', 'hello world')\nm.end()
-      output: '11'
+  - code: "# Конечный индекс совпадения\nimport re\nm = re.search('world', 'hello world')\nm.end()"
+    output: '11'
+  sideeffects: ''
   is_class: false
   url: https://docs.python.org/3/library/re.html#re.Match.end

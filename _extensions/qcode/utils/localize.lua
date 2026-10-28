@@ -19,6 +19,7 @@ local loc_data = {
     saveCode = "Save to file...",
     listOfFunctions = "List of used functions",
     searchInputPlaceholder = "Type function or method name",
+    sideeffects = "Function call can have sideeffects"
   },
   ru = {
     showOptionalParams = "Показать необязательные параметры",
@@ -38,6 +39,7 @@ local loc_data = {
     saveCode = "Сохранить скрипт в файл...",
     listOfFunctions = "Список используемых функций",
     searchInputPlaceholder = "Введите название функции или метода",
+    sideeffects = "При вызове функции возможны побочные эффекты (пример: вывод на экран)"
   }
 }
 -- // END OF LOCALIZATION STRINGS //
