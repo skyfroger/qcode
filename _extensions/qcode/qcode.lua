@@ -258,10 +258,49 @@ function createSkulptIDE(block)
 end
 
 
-function createSkAPISearch(div)
+function createSkAPISearch(div, options)
   local content = {}       -- содержимое блока
 
   table.insert(content, div) -- сохраняем исходную разметку
+
+  local apiIndexMarkup = [[
+        <div class="api__index"
+        x-data="{
+          groups: Object.groupBy(window.__DOCS__, ({module})=>module),
+          comp(a, b){
+            const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+            const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
+
+            // names must be equal
+            return 0;
+          }
+        }">
+        <ul class="modules__list">
+          <template x-for="(values, key) in groups" :key="key">
+            <li>
+              <p class="modules__title">
+                <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: -0.2em" width="1em" height="1em" viewBox="0 0 256 256">
+                  <path d="M0 0h256v256H0z" fill="none" />
+                  <path fill="#00a6ed" d="M208 24H72a32 32 0 0 0-32 32v168a8 8 0 0 0 8 8h144a8 8 0 0 0 0-16H56a16 16 0 0 1 16-16h136a8 8 0 0 0 8-8V32a8 8 0 0 0-8-8m-88 16h48v72l-19.21-14.4a8 8 0 0 0-9.6 0L120 112Zm80 144H72a31.8 31.8 0 0 0-16 4.29V56a16 16 0 0 1 16-16h32v88a8 8 0 0 0 12.8 6.4L144 114l27.21 20.4A8 8 0 0 0 176 136a8 8 0 0 0 8-8V40h16Z" />
+                </svg> <span x-text="key"></span>
+              </p>
+              <ul class="functions__list">
+                <template x-for="(value, keyword) in values.sort(comp)" :key="keyword">
+                  <li x-text="value.name" :title="value.description" @click="openModal(value);"></li>
+                </template>
+              </ul>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </div>
+  ]]
 
   -- добавляем поле для поиска
   table.insert(content,
@@ -285,38 +324,12 @@ function createSkAPISearch(div)
         </template>
       </div>
     </div>
-      <div class="api__index"
-        x-data="{
-          groups: Object.groupBy(window.__DOCS__, ({module})=>module),
-          comp(a, b){
-            const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-            const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-            if (nameA < nameB) {
-              return -1;
-            }
-            if (nameA > nameB) {
-              return 1;
-            }
-
-            // names must be equal
-            return 0;
-          }
-        }">
-        <ul>
-          <template x-for="(values, key) in groups" :key="key">
-            <li>
-              <span x-text="key"></span>
-              <ul>
-                <template x-for="(value, keyword) in values.sort(comp)" :key="keyword">
-                  <li x-text="value.name" :title="value.description" @click="openModal(value);"></li>
-                </template>
-              </ul>
-            </li>
-          </template>
-        </ul>
-      </div>
-    </div>
   ]]))
+
+
+  if options["show-index"] == "true" then
+    table.insert(content, pandoc.RawBlock("html", apiIndexMarkup))
+  end
 
   return pandoc.Div(content, { class = "sk-api-search__formated" })
 end
@@ -402,7 +415,7 @@ local function render_elements(options)
           addAceLibsOnce()
           writeEnvironments()
           addModal()
-          return createSkAPISearch(div)
+          return createSkAPISearch(div, options)
       end
       return nil
     end
@@ -413,6 +426,7 @@ function Pandoc(doc)
   -- default options
   local options = {
     ["inline-doc"] = true,
+    ["show-index"] = false,
     lang = pandoc.utils.stringify(doc.meta.lang)
   }
 

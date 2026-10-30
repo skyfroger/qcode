@@ -411,6 +411,41 @@ code[class*="language-"] {
     column-gap: 0.5em;
 }
 
+.api__index .modules__list,
+.api__index .functions__list {
+    list-style: none;
+    padding:0;
+}
+
+.api__index .functions__list{
+    padding-left: 1ch;
+}
+
+.api__index .modules__list > li{
+    margin-bottom: 1em;
+}
+
+.api__index .modules__list .modules__title {
+    margin: 0;
+    font-weight: bold;
+    color: var(--color-toolbar-idle);
+    border-bottom: 1px dotted lightgrey;
+}
+
+.api__index .functions__list > li{
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    cursor: pointer;
+    display: block;
+    background-color: transparent;
+    padding: 0.1em 0.5em;
+    border-radius: 0.5em;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.api__index .functions__list > li:hover{
+    background-color: var( --color-bg-soft);
+}
+
 .modal-toolbar {
     justify-content: space-between;
 }
