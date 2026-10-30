@@ -20,7 +20,7 @@
     output: '2.5'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#abs
-  module: Встроенная функция
+  module: Встроенные функции
 - name: all
   category: A
   description: Возвращает True, если все элементы последовательности объектов истинны.
@@ -43,7 +43,7 @@
     output: 'True'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#all
-  module: Встроенная функция
+  module: Встроенные функции
 - name: any
   category: A
   description: Возвращает True, если хотя бы один элемент последовательности объектов истинен.
@@ -66,7 +66,7 @@
     output: 'False'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#any
-  module: Встроенная функция
+  module: Встроенные функции
 - name: len
   category: L
   description: Возвращает количество элементов в объекте.
@@ -89,7 +89,7 @@
     output: '2'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#len
-  module: Встроенная функция
+  module: Встроенные функции
 - name: print
   category: P
   description: Выводит объекты на экран.
@@ -135,7 +135,7 @@
     output: 1 2 3
   sideeffects: Выводит текст в стандартный поток вывода (stdout)
   url: https://docs.python.org/3/library/functions.html#print
-  module: Встроенная функция
+  module: Встроенные функции
 - name: input
   category: I
   description: Считывает строку из ввода.
@@ -154,7 +154,7 @@
     output: 'Имя: Анна ⏎'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#input
-  module: Встроенная функция
+  module: Встроенные функции
 - name: int
   category: I
   description: Возвращает целочисленный объект.
@@ -182,7 +182,7 @@
     output: '3'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#int
-  module: Встроенная функция
+  module: Встроенные функции
 - name: float
   category: F
   description: Возвращает число с плавающей точкой.
@@ -203,7 +203,7 @@
     output: '5.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#float
-  module: Встроенная функция
+  module: Встроенные функции
 - name: str
   category: S
   description: Возвращает строковую версию объекта.
@@ -257,7 +257,7 @@
     output: '[0, 3, 6, 9]'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#range
-  module: Встроенная функция
+  module: Встроенные функции
 - name: list
   category: L
   description: Создаёт список из последовательности объектов.
@@ -347,7 +347,7 @@
     output: ''
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#open
-  module: Встроенная функция
+  module: Встроенные функции
 - name: type
   category: T
   description: Возвращает тип объекта.
@@ -368,7 +368,7 @@
     output: <class 'str'>
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#type
-  module: Встроенная функция
+  module: Встроенные функции
 - name: isinstance
   category: I
   description: Проверяет, является ли объект экземпляром класса или кортежа классов.
@@ -394,7 +394,7 @@
     output: 'True'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#isinstance
-  module: Встроенная функция
+  module: Встроенные функции
 - name: chr
   category: C
   description: Возвращает строку из одного символа с кодом Unicode.
@@ -415,7 +415,7 @@
     output: '''А'''
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#chr
-  module: Встроенная функция
+  module: Встроенные функции
 - name: ord
   category: O
   description: Возвращает код Unicode символа.
@@ -436,7 +436,7 @@
     output: '1103'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#ord
-  module: Встроенная функция
+  module: Встроенные функции
 - name: sum
   category: S
   description: Возвращает сумму элементов последовательности объектов.
@@ -465,7 +465,7 @@
     output: '10'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#sum
-  module: Встроенная функция
+  module: Встроенные функции
 - name: min
   category: M
   description: Возвращает наименьший элемент.
@@ -495,7 +495,7 @@
     output: '''a'''
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#min
-  module: Встроенная функция
+  module: Встроенные функции
 - name: max
   category: M
   description: Возвращает наибольший элемент.
@@ -525,7 +525,7 @@
     output: '''abc'''
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#max
-  module: Встроенная функция
+  module: Встроенные функции
 - name: round
   category: R
   description: Округляет число до заданного количества знаков после запятой.
@@ -551,7 +551,7 @@
     output: '3'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#round
-  module: Встроенная функция
+  module: Встроенные функции
 - name: pow
   category: P
   description: Возводит base в степень exp, по модулю mod (если указан).
@@ -582,7 +582,7 @@
     output: '3'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#pow
-  module: Встроенная функция
+  module: Встроенные функции
 - name: strip
   category: S
   description: Возвращает копию строки с удалёнными ведущими и замыкающими символами.
@@ -1128,43 +1128,6 @@
     output: ''
   sideeffects: Закрывает файл, освобождая системные ресурсы
   url: https://docs.python.org/3/library/io.html#io.IOBase.close
-  module: io
-- name: seek
-  category: S
-  description: Перемещает указатель файла в новую позицию.
-  class_name: TextIOWrapper
-  parameters:
-  - name: offset
-    type_hint: int
-    required: true
-    description: Смещение в байтах/символах
-  - name: whence
-    type_hint: int
-    required: false
-    default_value: '0'
-    description: '0: начало, 1: текущая позиция, 2: конец'
-  returns:
-    type: int
-    description: Новая позиция указателя
-  examples:
-  - code: "# Возврат указателя в начало файла\nf = open('file.txt')\nf.seek(0)\nf.close()"
-    output: ''
-  sideeffects: Перемещает указатель позиции в файле
-  url: https://docs.python.org/3/library/io.html#io.IOBase.seek
-  module: io
-- name: flush
-  category: F
-  description: Сбрасывает внутренний буфер вывода на диск.
-  class_name: TextIOWrapper
-  parameters: []
-  returns:
-    type: None
-    description: Не возвращает значения
-  examples:
-  - code: "# Принудительная запись буфера на диск\nf = open('log.txt', 'w')\nf.write('Hi')\nf.flush()"
-    output: ''
-  sideeffects: Принудительно записывает содержимое буфера на диск
-  url: https://docs.python.org/3/library/io.html#io.IOBase.flush
   module: io
 - name: seed
   category: S
@@ -2261,7 +2224,7 @@
     output: '8.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.pow
-  module: Встроенная функция
+  module: Встроенные функции
 - name: acos
   category: A
   description: Возвращает арккосинус числа в радианах.
