@@ -267,6 +267,7 @@ function createSkAPISearch(div)
   table.insert(content,
         pandoc.RawBlock("html",[[
     <div x-data="apiSearch">
+    <div style="position: relative;">
       <div class="search__form">
         <input
           type="text"
@@ -283,7 +284,39 @@ function createSkAPISearch(div)
           </div>
         </template>
       </div>
-    </div>]]))
+    </div>
+      <div class="api__index"
+        x-data="{
+          groups: Object.groupBy(window.__DOCS__, ({module})=>module),
+          comp(a, b){
+            const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+            const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
+
+            // names must be equal
+            return 0;
+          }
+        }">
+        <ul>
+          <template x-for="(values, key) in groups" :key="key">
+            <li>
+              <span x-text="key"></span>
+              <ul>
+                <template x-for="(value, keyword) in values.sort(comp)" :key="keyword">
+                  <li x-text="value.name" :title="value.description" @click="openModal(value);"></li>
+                </template>
+              </ul>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </div>
+  ]]))
 
   return pandoc.Div(content, { class = "sk-api-search__formated" })
 end

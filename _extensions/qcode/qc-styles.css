@@ -406,6 +406,11 @@ code[class*="language-"] {
     justify-content: center;
 }
 
+.api__index{
+    columns: 3;
+    column-gap: 0.5em;
+}
+
 .modal-toolbar {
     justify-content: space-between;
 }
