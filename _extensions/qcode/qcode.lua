@@ -272,7 +272,7 @@ function createSkAPISearch(div, options)
         </div>
         <div class="api__index"
         x-data="{
-          groups: Object.groupBy(window.__DOCS__, ({module})=>module),
+          groups: { ...Object.groupBy(window.__DOCS__, ({module})=>module) },
           comp(a, b){
             const nameA = a.name.toUpperCase(); // ignore upper and lowercase
             const nameB = b.name.toUpperCase(); // ignore upper and lowercase

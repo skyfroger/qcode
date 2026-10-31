@@ -1,5 +1,4 @@
 - name: abs
-  category: A
   description: Returns the absolute value of a number.
   class_name: ''
   parameters:
@@ -7,98 +6,98 @@
     type_hint: int | float
     required: true
     positional_only: true
-    description: Number whose absolute value is computed
+    description: Number to find the absolute value of
   returns:
     type: int | float
     description: Absolute value
   examples:
   - code: "# Absolute value of an integer\nabs(-5)"
     output: '5'
-  - code: "# Absolute value of a complex number\nabs(3+4j)"
-    output: '5.0'
-  - code: "# Absolute value of a floating-point number\nabs(-2.5)"
+  - code: "# Absolute value of a float\nabs(-2.5)"
     output: '2.5'
+  - code: "# A positive number does not change\nabs(7)"
+    output: '7'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#abs
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: all
-  category: A
-  description: Returns True if all items in the iterable are true.
+  description: Returns True if all elements of a sequence of objects are true.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Iterable (Iterable)
+    type_hint: list | str | range
     required: true
     positional_only: true
-    description: Iterable to test
+    description: 'Sequence of objects to check: a list, string, or range'
   returns:
     type: bool
-    description: Result of the logical test
+    description: Result of a logical check
   examples:
-  - code: "# All items are true\nall([True, 1, 'hello'])"
+  - code: "# All elements are true\nall([True, 1, 'hello'])"
     output: 'True'
-  - code: "# Zero is falsy\nall([0, 1, 2])"
+  - code: "# Zero is a false value\nall([0, 1, 2])"
     output: 'False'
-  - code: "# An empty iterable returns True\nall([])"
+  - code: "# An empty sequence returns True\nall([])"
     output: 'True'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#all
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: any
-  category: A
-  description: Returns True if at least one item in the iterable is true.
+  description: Returns True if at least one element of a sequence of objects is true.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Iterable (Iterable)
+    type_hint: list | str | range
     required: true
     positional_only: true
-    description: Iterable to test
+    description: 'Sequence of objects to check: a list, string, or range'
   returns:
     type: bool
-    description: Result of the logical test
+    description: Result of a logical check
   examples:
-  - code: "# No true items\nany([0, False, None])"
+  - code: "# No true elements\nany([0, False, None])"
     output: 'False'
-  - code: "# One is truthy\nany([0, 1, None])"
+  - code: "# One is a true value\nany([0, 1, None])"
     output: 'True'
-  - code: "# An empty iterable returns False\nany([])"
+  - code: "# An empty sequence returns False\nany([])"
     output: 'False'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#any
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: len
-  category: L
-  description: Returns the number of items in an object.
+  description: Returns the number of elements (for a string, the number of characters).
   class_name: ''
   parameters:
   - name: obj
-    type_hint: Sized
+    type_hint: str | list | dict | set | range
     required: true
     positional_only: true
-    description: Object supporting the length protocol
+    description: A string, list, dictionary, set, or range
   returns:
     type: int
-    description: Number of items
+    description: Number of elements
   examples:
-  - code: "# List length\nlen([1, 2, 3])"
+  - code: "# Length of a list\nlen([1, 2, 3])"
     output: '3'
-  - code: "# String length (number of characters)\nlen('Python')"
+  - code: "# Length of a string is the number of characters\nlen('Python')"
     output: '6'
-  - code: "# Dictionary length (number of keys)\nlen({'a': 1, 'b': 2})"
+  - code: "# Length of a dictionary is the number of keys\nlen({'a': 1, 'b': 2})"
     output: '2'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#len
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: print
-  category: P
   description: Prints objects to the screen.
   class_name: ''
   parameters:
   - name: objects
     required: true
     variadic: true
-    description: Value to print
+    description: Value to print on the screen
   - name: sep
     type_hint: str
     required: false
@@ -108,36 +107,36 @@
   - name: end
     type_hint: str
     required: false
-    default_value: "'\\n'"
+    default_value: '''\n'''
     keyword_only: true
     description: Ending string
   - name: file
-    type_hint: object
+    type_hint: file
     required: false
     default_value: None
     keyword_only: true
-    description: File object
+    description: File to print the text to (by default, the program's output window)
   - name: flush
     type_hint: bool
     required: false
     default_value: 'False'
     keyword_only: true
-    description: Force buffer flush
+    description: If True, the text is printed immediately, without waiting
   returns:
     type: None
-    description: Does not return a value
+    description: Returns no value
   examples:
-  - code: "# Values separated by a delimiter\nprint('Hello', 'World', sep='-')"
+  - code: "# Values with a separator\nprint('Hello', 'World', sep='-')"
     output: Hello-World
-  - code: "# Change the trailing newline\nprint('a', end=' ')\nprint('b')"
+  - code: "# Replacing the trailing newline\nprint('a', end=' ')\nprint('b')"
     output: a b
-  - code: "# Print multiple values in sequence\nprint(1, 2, 3)"
+  - code: "# Printing several values in a row\nprint(1, 2, 3)"
     output: 1 2 3
-  sideeffects: Writes text to the standard output stream (stdout)
+  sideeffects: Prints text to the program's output window
   url: https://docs.python.org/3/library/functions.html#print
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: input
-  category: I
   description: Reads a line from input.
   class_name: ''
   parameters:
@@ -148,15 +147,15 @@
     description: Prompt string
   returns:
     type: str
-    description: Input string
+    description: The entered string
   examples:
-  - code: "# Read a line with a prompt\nname = input('Имя: ')"
-    output: 'Имя: Анна ⏎'
+  - code: "# Reading a line with a prompt\nname = input('Name: ')"
+    output: 'Name: Anna ⏎'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#input
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: int
-  category: I
   description: Returns an integer object.
   class_name: ''
   parameters:
@@ -172,19 +171,19 @@
     description: Number base
   returns:
     type: int
-    description: Integer
+    description: An integer
   examples:
-  - code: "# Convert a string to an integer\nint('42')"
+  - code: "# String to integer\nint('42')"
     output: '42'
-  - code: "# Binary representation\nint('1010', 2)"
+  - code: "# Binary notation\nint('1010', 2)"
     output: '10'
-  - code: "# Truncate the fractional part\nint(3.99)"
+  - code: "# Discarding the fractional part\nint(3.99)"
     output: '3'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#int
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: float
-  category: F
   description: Returns a floating-point number.
   class_name: ''
   parameters:
@@ -195,39 +194,39 @@
     description: Value to convert
   returns:
     type: float
-    description: Floating-point number
+    description: A floating-point number
   examples:
-  - code: "# Convert a string to a float\nfloat('3.14')"
+  - code: "# String to float\nfloat('3.14')"
     output: '3.14'
-  - code: "# Convert an integer to a float\nfloat(5)"
+  - code: "# Integer to float\nfloat(5)"
     output: '5.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#float
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: str
-  category: S
-  description: Returns the string representation of an object.
+  description: Returns a string version of an object.
   class_name: ''
   parameters:
   - name: object
-    type_hint: object
+    type_hint: any type
     required: false
     positional_only: true
-    description: Object to convert
+    description: Value to convert
   returns:
     type: str
-    description: String representation
+    description: Text
   examples:
-  - code: "# Convert a number to a string\nstr(2024)"
+  - code: "# Number to string\nstr(2024)"
     output: '''2024'''
-  - code: "# Convert a Boolean to a string\nstr(True)"
+  - code: "# Boolean to string\nstr(True)"
     output: '''True'''
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#str
   module: Built-in data types
+  level: 0
 - name: range
-  category: R
-  description: Returns an immutable sequence of numbers.
+  description: Returns a sequence of integers with the given start, stop, and step.
   class_name: ''
   parameters:
   - name: start
@@ -239,7 +238,7 @@
     type_hint: int
     required: true
     positional_only: true
-    description: End (exclusive)
+    description: Stop (not included)
   - name: step
     type_hint: int
     required: false
@@ -247,50 +246,50 @@
     description: Step
   returns:
     type: range
-    description: range object
+    description: 'A sequence of numbers: it can be looped over with for or turned into a list with list()'
   examples:
   - code: "# Numbers from 0 to 2\nlist(range(3))"
     output: '[0, 1, 2]'
-  - code: "# Start and end\nlist(range(1, 5))"
+  - code: "# Start and stop\nlist(range(1, 5))"
     output: '[1, 2, 3, 4]'
   - code: "# With a step\nlist(range(0, 10, 3))"
     output: '[0, 3, 6, 9]'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#range
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: list
-  category: L
-  description: Creates a list from an iterable.
+  description: Creates a list from a sequence of objects.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Iterable (Iterable)
+    type_hint: str | range | set | dict
     required: false
     positional_only: true
-    description: Iterable
+    description: 'Sequence of objects: a string, range, set, or dictionary'
   returns:
     type: list
-    description: New list
+    description: A new list
   examples:
-  - code: "# Convert a string to a list of characters\nlist('abc')"
+  - code: "# String to a list of characters\nlist('abc')"
     output: '[''a'', ''b'', ''c'']'
-  - code: "# Convert a range to a list\nlist(range(3))"
+  - code: "# Range to a list\nlist(range(3))"
     output: '[0, 1, 2]'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#list
   module: Built-in data types
+  level: 0
 - name: dict
-  category: D
   description: Creates a new dictionary.
   class_name: ''
   parameters:
   - name: mapping
-    type_hint: Mapping
+    type_hint: dict | list
     required: false
-    description: Dictionary or iterable of key-value pairs
+    description: A dictionary or a list of key-value pairs
   returns:
     type: dict
-    description: New dictionary
+    description: A new dictionary
   examples:
   - code: "# From keyword arguments\ndict(a=1, b=2)"
     output: '{''a'': 1, ''b'': 2}'
@@ -299,236 +298,275 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#dict
   module: Built-in data types
+  level: 0
 - name: set
-  category: S
   description: Creates a new set.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Iterable (Iterable)
+    type_hint: str | list | range | dict
     required: false
     positional_only: true
-    description: Iterable
+    description: 'Sequence of objects: a string, list, range, or dictionary'
   returns:
     type: set
-    description: New set
+    description: A new set
   examples:
   - code: "# Duplicates are removed\nset([1, 2, 2, 3])"
     output: '{1, 2, 3}'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#set
   module: Built-in data types
+  level: 0
 - name: open
-  category: O
-  description: Opens a file and returns a file object.
+  description: Opens a file and returns it for reading or writing.
   class_name: ''
   parameters:
   - name: file
-    type_hint: str | PathLike
+    type_hint: str
     required: true
-    description: File path
+    description: File name or path to it
   - name: mode
     type_hint: str
     required: false
     default_value: '''r'''
-    description: Access mode
+    description: 'Open mode: ''r'' — read, ''w'' — write, ''a'' — append to the end'
   - name: encoding
     type_hint: str
     required: false
     default_value: None
-    description: Encoding
+    description: Text encoding, for example 'utf-8'
   returns:
-    type: TextIOWrapper | BufferedReader
-    description: File object
+    type: file
+    description: A file you can work with using the read(), write() and close() methods
   examples:
-  - code: "# Read the entire file\nwith open('data.txt', 'r', encoding='utf-8') as f:\n    content = f.read()"
+  - code: "# Reading the whole file\nwith open('data.txt', 'r', encoding='utf-8') as f:\n    content = f.read()"
     output: ''
-  - code: "# Write to a file\nwith open('out.txt', 'w', encoding='utf-8') as f:\n    f.write('Привет')"
+  - code: "# Writing to a file\nwith open('out.txt', 'w', encoding='utf-8') as f:\n    f.write('Hello')"
     output: ''
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#open
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: type
-  category: T
-  description: Returns the type of an object.
+  description: Returns the data type of a value.
   class_name: ''
   parameters:
   - name: object
-    type_hint: object
+    type_hint: any type
     required: true
     positional_only: true
-    description: Object whose type is queried
+    description: Value whose type you want to find out
   returns:
     type: type
-    description: Object type
+    description: Data type
   examples:
-  - code: "# Integer type\ntype(42)"
+  - code: "# Type of an integer\ntype(42)"
     output: <class 'int'>
-  - code: "# String type\ntype('hello')"
+  - code: "# Type of a string\ntype('hello')"
     output: <class 'str'>
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#type
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: isinstance
-  category: I
-  description: Checks whether an object is an instance of a class or a tuple of classes.
+  description: Checks whether a value has the given data type (or one of several types).
   class_name: ''
   parameters:
   - name: object
-    type_hint: object
+    type_hint: any type
     required: true
     positional_only: true
-    description: Object to check
+    description: Value to check
   - name: classinfo
     type_hint: type | tuple
     required: true
     positional_only: true
-    description: Class or tuple of classes
+    description: A data type (for example, int) or several types in parentheses
   returns:
     type: bool
-    description: Test result
+    description: Result of the check
   examples:
-  - code: "# Check for one type\nisinstance(42, int)"
+  - code: "# Checking for one type\nisinstance(42, int)"
     output: 'True'
-  - code: "# Check for one of the types\nisinstance(\"a\", (int, str))"
+  - code: "# Checking for one of several types\nisinstance(\"a\", (int, str))"
     output: 'True'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#isinstance
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: chr
-  category: C
-  description: Returns a one-character string with the specified Unicode code point.
+  description: Returns the character for a given numeric code.
   class_name: ''
   parameters:
   - name: i
     type_hint: int
     required: true
     positional_only: true
-    description: Unicode code point (0–0x10FFFF)
+    description: Numeric code of a character
   returns:
     type: str
-    description: Character
+    description: A character
   examples:
-  - code: "# Convert a code point to a character\nchr(97)"
+  - code: "# Code to character\nchr(97)"
     output: '''a'''
-  - code: "# Code point of a Cyrillic letter\nchr(1040)"
-    output: '''А'''
+  - code: "# Code of a Greek letter\nchr(960)"
+    output: '''π'''
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#chr
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: ord
-  category: O
-  description: Returns the Unicode code point of a character.
+  description: Returns the numeric code of a character.
   class_name: ''
   parameters:
   - name: c
     type_hint: str
     required: true
     positional_only: true
-    description: Character (a string of length 1)
+    description: A character (a string of length 1)
   returns:
     type: int
-    description: Unicode code point
+    description: Numeric code of a character
   examples:
-  - code: "# Convert a character to a code point\nord(\"a\")"
+  - code: "# Character to code\nord(\"a\")"
     output: '97'
-  - code: "# Code point of a Cyrillic letter\nord(\"я\")"
-    output: '1103'
+  - code: "# Code of a Greek letter\nord(\"π\")"
+    output: '960'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#ord
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: sum
-  category: S
-  description: Returns the sum of the items in an iterable.
+  description: Returns the sum of the elements of a sequence of objects.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Iterable (Iterable)
+    type_hint: list | range
     required: true
     positional_only: true
-    description: Iterable of numbers
+    description: 'Sequence of numbers: a list or range'
   - name: start
     type_hint: int | float
     required: false
     default_value: '0'
     positional_only: true
-    description: Initial sum value
+    description: Starting value of the sum
   returns:
     type: int | float
-    description: Sum of items
+    description: Sum of the elements
   examples:
   - code: "# Sum of a list\nsum([1, 2, 3])"
     output: '6'
-  - code: "# With an initial value\nsum([1, 2, 3], 10)"
+  - code: "# With a starting value\nsum([1, 2, 3], 10)"
     output: '16'
   - code: "# Sum of a range\nsum(range(5))"
     output: '10'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#sum
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: min
-  category: M
-  description: Returns the smallest item.
+  description: Returns the smallest element.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Iterable (Iterable)
+    type_hint: list | str | range
     required: true
-    description: Iterable of items
+    description: A sequence of objects (list, string, range) or the first of several values to compare
   - name: key
     type_hint: function
     required: false
     keyword_only: true
-    description: Function used to extract a comparison key
+    description: Function whose result is used to compare elements, for example len
   - name: default
-    type_hint: object
+    type_hint: any type
     required: false
     keyword_only: true
-    description: Default value for an empty iterable
+    description: Result for an empty sequence
   returns:
-    type: object
-    description: Smallest item
+    type: any type
+    description: The smallest element
   examples:
-  - code: "# Minimum with a key function\nmin([3, 1, 4])"
+  - code: "# Minimum of a list\nmin([3, 1, 4])"
     output: '1'
-  - code: "# Shortest word\nmin(['a', 'abc', 'ab'], key=len)"
+  - code: "# The shortest word\nmin(['a', 'abc', 'ab'], key=len)"
     output: '''a'''
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#min
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: max
-  category: M
-  description: Returns the largest item.
+  description: Returns the largest element.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Iterable (Iterable)
+    type_hint: list | str | range
     required: true
-    description: Iterable of items
+    description: A sequence of objects (list, string, range) or the first of several values to compare
   - name: key
     type_hint: function
     required: false
     keyword_only: true
-    description: Function used to extract a comparison key
+    description: Function whose result is used to compare elements, for example len
   - name: default
-    type_hint: object
+    type_hint: any type
     required: false
     keyword_only: true
-    description: Default value for an empty iterable
+    description: Result for an empty sequence
   returns:
-    type: object
-    description: Largest item
+    type: any type
+    description: The largest element
   examples:
-  - code: "# Maximum with a key function\nmax([3, 1, 4])"
+  - code: "# Maximum of a list\nmax([3, 1, 4])"
     output: '4'
-  - code: "# Longest word\nmax(['a', 'abc', 'ab'], key=len)"
+  - code: "# The longest word\nmax(['a', 'abc', 'ab'], key=len)"
     output: '''abc'''
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#max
-  module: Built-in function
+  module: Built-in functions
+  level: 0
+- name: sorted
+  description: Returns a new list made from the elements of a sequence of objects, sorted in ascending order (by default).
+  class_name: ''
+  parameters:
+  - name: iterable
+    type_hint: list | str | range | set | dict
+    required: true
+    positional_only: true
+    description: 'Sequence of objects: a list, string, range, set, or dictionary'
+  - name: key
+    type_hint: function
+    required: false
+    default_value: None
+    keyword_only: true
+    description: Function whose result is used to compare elements, for example len
+  - name: reverse
+    type_hint: bool
+    required: false
+    default_value: 'False'
+    keyword_only: true
+    description: If True, sorting is in descending order
+  returns:
+    type: list
+    description: A new sorted list; the original sequence is not changed
+  examples:
+  - code: "# Sorting a list in ascending order\nsorted([3, 1, 2])"
+    output: '[1, 2, 3]'
+  - code: "# Sorting in descending order\nsorted([3, 1, 2], reverse=True)"
+    output: '[3, 2, 1]'
+  - code: "# Sorting the characters of a string\nsorted('python')"
+    output: '[''h'', ''n'', ''o'', ''p'', ''t'', ''y'']'
+  - code: "# Sorting strings by length\nsorted(['abc', 'a', 'ab'], key=len)"
+    output: '[''a'', ''ab'', ''abc'']'
+  - code: "# The original list does not change\nnums = [3, 1, 2]\nresult = sorted(nums)\nprint(nums, result)"
+    output: '[3, 1, 2] [1, 2, 3]'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/functions.html#sorted
+  module: Built-in functions
+  level: 0
 - name: round
-  category: R
-  description: Rounds a number to the specified number of decimal places.
+  description: Rounds a number to the given number of decimal places.
   class_name: ''
   parameters:
   - name: number
@@ -543,18 +581,18 @@
     description: Number of decimal places
   returns:
     type: int | float
-    description: Rounded number
+    description: The rounded number
   examples:
   - code: "# Two decimal places\nround(3.14159, 2)"
     output: '3.14'
-  - code: "# Round to an integer\nround(2.7)"
+  - code: "# Rounding to an integer\nround(2.7)"
     output: '3'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#round
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: pow
-  category: P
-  description: Raises base to the power exp, modulo mod if specified.
+  description: Raises base to the power exp, modulo mod (if given).
   class_name: ''
   parameters:
   - name: base
@@ -571,41 +609,41 @@
     type_hint: int
     required: false
     positional_only: true
-    description: Modulus to use
+    description: Modulus
   returns:
     type: int | float
-    description: Result of exponentiation
+    description: Result of raising to a power
   examples:
-  - code: "# Raise to a power\npow(2, 3)"
+  - code: "# Raising to a power\npow(2, 3)"
     output: '8'
-  - code: "# Modular exponentiation\npow(2, 3, 5)"
+  - code: "# Power modulo\npow(2, 3, 5)"
     output: '3'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#pow
-  module: Built-in function
+  module: Built-in functions
+  level: 0
 - name: strip
-  category: S
   description: Returns a copy of the string with leading and trailing characters removed.
   class_name: str
   parameters:
   - name: chars
     type_hint: str | None
     required: false
-    description: Characters to remove (whitespace by default)
+    description: Set of characters to remove (whitespace by default)
   returns:
     type: str
-    description: Processed string
+    description: The processed string
   examples:
-  - code: "# Remove whitespace\n'  hello  '.strip()"
+  - code: "# Removing whitespace characters\n'  hello  '.strip()"
     output: '''hello'''
-  - code: "# Remove specified characters from both ends\n'www.example.com'.strip('wcm.')"
-    output: '''example'''
+  - code: "# Characters are removed only at the edges of the string\n'www.example.com'.strip('w.')"
+    output: '''example.com'''
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.strip
   module: Built-in data types
+  level: 0
 - name: split
-  category: S
-  description: Splits a string into a list of substrings using a separator.
+  description: Splits a string into a list of substrings by a separator.
   class_name: str
   parameters:
   - name: sep
@@ -618,68 +656,68 @@
     default_value: '-1'
     description: Maximum number of splits
   returns:
-    type: list[str]
+    type: list
     description: List of substrings
   examples:
-  - code: "# Split using a separator\n'a,b,c'.split(',')"
+  - code: "# Splitting by a separator\n'a,b,c'.split(',')"
     output: '[''a'', ''b'', ''c'']'
-  - code: "# Split on any whitespace\n'a b  c'.split()"
+  - code: "# Splitting by any whitespace\n'a b  c'.split()"
     output: '[''a'', ''b'', ''c'']'
-  - code: "# Limit the number of splits\n'a,b,c'.split(',', 1)"
+  - code: "# Limiting the number of parts\n'a,b,c'.split(',', 1)"
     output: '[''a'', ''b,c'']'
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.split
   module: Built-in data types
+  level: 0
 - name: join
-  category: S
-  description: Joins strings from an iterable, using the string as a separator.
+  description: Joins strings from a sequence of objects, using the string as a separator.
   class_name: str
   parameters:
   - name: iterable
-    type_hint: Iterable (Iterable[str])
+    type_hint: list
     required: true
-    description: Iterable of strings
+    description: List of strings
   returns:
     type: str
-    description: Joined string
+    description: The joined string
   examples:
-  - code: "# Join a list of strings\n'-'.join(['a', 'b', 'c'])"
+  - code: "# Joining a list of strings\n'-'.join(['a', 'b', 'c'])"
     output: '''a-b-c'''
-  - code: "# Join without a separator\n''.join(['П', 'у', 'т', 'ь'])"
-    output: '''Путь'''
+  - code: "# Joining without a separator\n''.join(['P', 'a', 't', 'h'])"
+    output: '''Path'''
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.join
   module: Built-in data types
+  level: 0
 - name: lower
-  category: S
-  description: Returns a copy of the string converted to lowercase.
+  description: Returns a lowercase copy of the string.
   class_name: str
   parameters: []
   returns:
     type: str
-    description: Lowercase string
+    description: String in lowercase
   examples:
-  - code: "# Convert a string to lowercase\n'HELLO'.lower()"
+  - code: "# String in lowercase\n'HELLO'.lower()"
     output: '''hello'''
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.lower
   module: Built-in data types
+  level: 0
 - name: upper
-  category: S
-  description: Returns a copy of the string converted to uppercase.
+  description: Returns an uppercase copy of the string.
   class_name: str
   parameters: []
   returns:
     type: str
-    description: Uppercase string
+    description: String in uppercase
   examples:
-  - code: "# Convert a string to uppercase\n'hello'.upper()"
+  - code: "# String in uppercase\n'hello'.upper()"
     output: '''HELLO'''
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.upper
   module: Built-in data types
+  level: 0
 - name: replace
-  category: S
   description: Returns a copy of the string with substrings replaced.
   class_name: str
   parameters:
@@ -690,7 +728,7 @@
   - name: new
     type_hint: str
     required: true
-    description: Replacement substring
+    description: New substring
   - name: count
     type_hint: int
     required: false
@@ -700,33 +738,33 @@
     type: str
     description: String with replacements
   examples:
-  - code: "# Replace a substring\n'hello world'.replace('world', 'Python')"
+  - code: "# Replacing a substring\n'hello world'.replace('world', 'Python')"
     output: '''hello Python'''
   - code: "# Only the first two replacements\n'aaa'.replace('a', 'b', 2)"
     output: '''bba'''
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.replace
   module: Built-in data types
+  level: 0
 - name: find
-  category: S
   description: Returns the index of the first occurrence of a substring, or -1.
   class_name: str
   parameters:
   - name: sub
     type_hint: str
     required: true
-    description: Substring to find
+    description: Substring to search for
   - name: start
     type_hint: int
     required: false
-    description: Search start
+    description: Start of the search
   - name: end
     type_hint: int
     required: false
-    description: Search end
+    description: End of the search
   returns:
     type: int
-    description: Occurrence index or -1
+    description: Index of the occurrence, or -1
   examples:
   - code: "# Index of the first occurrence\n'hello'.find('ll')"
     output: '2'
@@ -735,51 +773,51 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.find
   module: Built-in data types
+  level: 0
 - name: startswith
-  category: S
-  description: Checks whether a string starts with the specified substring.
+  description: Checks whether the string starts with the given substring.
   class_name: str
   parameters:
   - name: prefix
-    type_hint: str | tuple[str]
+    type_hint: str | tuple
     required: true
-    description: Prefix or tuple of prefixes
+    description: Beginning of the string, or several options in parentheses (a tuple)
   - name: start
     type_hint: int
     required: false
-    description: Check start
+    description: Start of the check
   - name: end
     type_hint: int
     required: false
-    description: Check end
+    description: End of the check
   returns:
     type: bool
-    description: Test result
+    description: Result of the check
   examples:
-  - code: "# Check the start of a string\n'hello'.startswith('he')"
+  - code: "# Checking the beginning of a string\n'hello'.startswith('he')"
     output: 'True'
-  - code: "# One of the prefixes\n'photo.png'.startswith(('photo', 'image'))"
+  - code: "# One of several prefixes\n'photo.png'.startswith(('photo', 'image'))"
     output: 'True'
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.startswith
   module: Built-in data types
+  level: 0
 - name: count
-  category: C
-  description: Returns the number of occurrences of a substring or value.
+  description: Returns the number of occurrences of a substring/value.
   class_name: str
   parameters:
   - name: sub
     type_hint: str
     required: true
-    description: Substring or value to find
+    description: Substring or value to search for
   - name: start
     type_hint: int
     required: false
-    description: Search start
+    description: Start of the search
   - name: end
     type_hint: int
     required: false
-    description: Search end
+    description: End of the search
   returns:
     type: int
     description: Number of occurrences
@@ -791,28 +829,28 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.count
   module: Built-in data types
+  level: 0
 - name: append
-  category: A
-  description: Appends an object to the end of a list.
+  description: Adds an element to the end of the list.
   class_name: list
   parameters:
   - name: object
-    type_hint: object
+    type_hint: any type
     required: true
     positional_only: true
-    description: Item to add
+    description: Element to add
   returns:
     type: None
-    description: Modifies the list in place
+    description: Returns no value; the list itself is changed
   examples:
-  - code: "# Append to the end of a list\nlst = [1, 2]\nlst.append(3)\nlst"
+  - code: "# Adding to the end of a list\nlst = [1, 2]\nlst.append(3)\nlst"
     output: '[1, 2, 3]'
-  sideeffects: Modifies the original list by appending an item to its end.
+  sideeffects: 'Modifies the original list: adds an element to its end'
   url: https://docs.python.org/3/library/stdtypes.html#list.append
   module: Built-in data types
+  level: 0
 - name: pop
-  category: P
-  description: Removes and returns an item by index (list) or key (dictionary).
+  description: Removes and returns an element by index (list) or by key (dictionary).
   class_name: list
   parameters:
   - name: index
@@ -820,409 +858,430 @@
     required: false
     default_value: '-1'
     positional_only: true
-    description: Item index (last by default)
+    description: Index of the element (the last one by default)
   returns:
-    type: object
-    description: Removed item
+    type: any type
+    description: The removed element
   examples:
-  - code: "# Remove and return the last item\nlst = [1, 2, 3]\nlst.pop()"
+  - code: "# Removing and returning the last element\nlst = [1, 2, 3]\nlst.pop()"
     output: '3'
-  - code: "# Remove by index\nlst = [1, 2, 3]\nlst.pop(0)\nlst"
+  - code: "# Removing by index\nlst = [1, 2, 3]\nlst.pop(0)\nlst"
     output: '[2, 3]'
-  sideeffects: Modifies the original list by removing an item.
+  sideeffects: 'Modifies the original list: removes an element from it'
   url: https://docs.python.org/3/library/stdtypes.html#list.pop
   module: Built-in data types
+  level: 0
 - name: insert
-  category: I
-  description: Inserts an object before the specified index.
+  description: Inserts an element before the element with the given index.
   class_name: list
   parameters:
   - name: index
     type_hint: int
     required: true
     positional_only: true
-    description: Insertion index
+    description: Index to insert at
   - name: object
-    type_hint: object
+    type_hint: any type
     required: true
     positional_only: true
-    description: Item to insert
+    description: Element to insert
   returns:
     type: None
-    description: Modifies the list in place
+    description: Returns no value; the list itself is changed
   examples:
-  - code: "# Insert before an index\nlst = [1, 3]\nlst.insert(1, 2)\nlst"
+  - code: "# Inserting before an index\nlst = [1, 3]\nlst.insert(1, 2)\nlst"
     output: '[1, 2, 3]'
-  sideeffects: Modifies the original list by inserting an item
+  sideeffects: 'Modifies the original list: inserts an element'
   url: https://docs.python.org/3/library/stdtypes.html#list.insert
   module: Built-in data types
+  level: 0
 - name: remove
-  category: R
   description: Removes the first occurrence of a value (list) or an element (set).
   class_name: list
   parameters:
   - name: value
-    type_hint: object
+    type_hint: any type
     required: true
     positional_only: true
     description: Value to remove
   returns:
     type: None
-    description: Modifies the collection in place
+    description: Returns no value; the list (or set) itself is changed
   examples:
   - code: "# The first occurrence is removed\nlst = [1, 2, 2, 3]\nlst.remove(2)\nlst"
     output: '[1, 2, 3]'
-  sideeffects: Modifies the original list by removing the first occurrence of a value
+  sideeffects: 'Modifies the original list: removes the first occurrence of a value'
   url: https://docs.python.org/3/library/stdtypes.html#list.remove
   module: Built-in data types
+  level: 0
 - name: clear
-  category: C
-  description: Removes all items from a collection.
+  description: Removes all elements from a list, dictionary, or set.
   class_name: list
   parameters: []
   returns:
     type: None
-    description: Modifies the collection in place
+    description: Returns no value; the list (dictionary, set) itself is changed
   examples:
-  - code: "# Remove all items\nlst = [1, 2, 3]\nlst.clear()\nlst"
+  - code: "# Removing all elements\nlst = [1, 2, 3]\nlst.clear()\nlst"
     output: '[]'
-  sideeffects: Modifies the original collection by removing all its items
+  sideeffects: 'Modifies the list (dictionary, set) itself: removes all elements'
   url: https://docs.python.org/3/library/stdtypes.html#list.clear
   module: Built-in data types
+  level: 0
 - name: index
-  category: I
   description: Returns the index of the first occurrence of a value.
   class_name: list
   parameters:
   - name: value
-    type_hint: object
+    type_hint: any type
     required: true
-    description: Value to find
+    description: Value to search for
   - name: start
     type_hint: int
     required: false
-    description: Search start
+    description: Start of the search
   - name: end
     type_hint: int
     required: false
-    description: Search end
+    description: End of the search
   returns:
     type: int
-    description: Occurrence index
+    description: Index of the occurrence
   examples:
   - code: "# Index of the first occurrence\n[1, 2, 3].index(2)"
     output: '1'
-  - code: "# Search from a specified position\n[1, 2, 2].index(2, 2)"
+  - code: "# Searching from a given position\n[1, 2, 2].index(2, 2)"
     output: '2'
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#list.index
   module: Built-in data types
+  level: 0
+- name: sort
+  description: Sorts the elements of the list in ascending order (by default).
+  class_name: list
+  parameters:
+  - name: key
+    type_hint: function
+    required: false
+    default_value: None
+    keyword_only: true
+    description: Function whose result is used to compare elements, for example len
+  - name: reverse
+    type_hint: bool
+    required: false
+    default_value: 'False'
+    keyword_only: true
+    description: If True, sorting is in descending order
+  returns:
+    type: None
+    description: Returns no value; the list itself is changed
+  examples:
+  - code: "# Sorting in ascending order\nnums = [3, 1, 2]\nnums.sort()\nprint(nums)"
+    output: '[1, 2, 3]'
+  - code: "# Sorting in descending order\nnums = [3, 1, 2]\nnums.sort(reverse=True)\nprint(nums)"
+    output: '[3, 2, 1]'
+  - code: "# Sorting strings by length\nwords = ['abc', 'a', 'ab']\nwords.sort(key=len)\nprint(words)"
+    output: '[''a'', ''ab'', ''abc'']'
+  - code: "# Sorting strings alphabetically\nnames = ['Zoe', 'Bob', 'Alice']\nnames.sort()\nprint(names)"
+    output: '[''Alice'', ''Bob'', ''Zoe'']'
+  - code: "# The sort() method returns nothing\nnums = [2, 1]\nprint(nums.sort())"
+    output: None
+  sideeffects: 'Modifies the list itself: elements swap places'
+  url: https://docs.python.org/3/library/stdtypes.html#list.sort
+  module: Built-in data types
+  level: 0
+- name: reverse
+  description: Arranges the elements of the list in reverse order.
+  class_name: list
+  parameters: []
+  returns:
+    type: None
+    description: Returns no value; the list itself is changed
+  examples:
+  - code: "# Reverse order of elements\nnums = [1, 2, 3]\nnums.reverse()\nprint(nums)"
+    output: '[3, 2, 1]'
+  - code: "# reverse() does not sort; it only reverses the list\nnums = [3, 1, 2]\nnums.reverse()\nprint(nums)"
+    output: '[2, 1, 3]'
+  - code: "# A copy in reverse order (the original list does not change)\nnums = [1, 2, 3]\nprint(nums[::-1], nums)"
+    output: '[3, 2, 1] [1, 2, 3]'
+  sideeffects: 'Modifies the list itself: the order of elements becomes reversed'
+  url: https://docs.python.org/3/library/stdtypes.html#list.reverse
+  module: Built-in data types
+  level: 0
 - name: get
-  category: G
   description: Returns the value for a key, or default if the key is not found.
   class_name: dict
   parameters:
   - name: key
-    type_hint: Hashable
+    type_hint: int | str
     required: true
     description: Key to look up
   - name: default
-    type_hint: object
+    type_hint: any type
     required: false
     default_value: None
     description: Default value
   returns:
-    type: object
-    description: Value or default
+    type: any type
+    description: The value, or default
   examples:
   - code: "# Value by key\nd = {'a': 1}\nd.get('a')"
     output: '1'
-  - code: "# Default value when key is missing\nd = {'a': 1}\nd.get('b', 0)"
+  - code: "# Default value when the key is missing\nd = {'a': 1}\nd.get('b', 0)"
     output: '0'
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#dict.get
   module: Built-in data types
+  level: 0
 - name: update
-  category: U
-  description: Updates a dictionary with items from another dictionary or an iterable of pairs.
+  description: Updates the dictionary with key-value pairs from another dictionary or a list of pairs.
   class_name: dict
   parameters:
   - name: other
-    type_hint: Mapping | Iterable (Iterable[tuple])
+    type_hint: dict | list
     required: false
-    description: Dictionary or iterable used for the update
+    description: Dictionary or list of pairs to update from
   returns:
     type: None
-    description: Modifies the dictionary in place
+    description: Returns no value; the dictionary itself is changed
   examples:
-  - code: "# Add a pair from a dictionary\nd = {'a': 1}\nd.update({'b': 2})\nd"
+  - code: "# Adding a pair from a dictionary\nd = {'a': 1}\nd.update({'b': 2})\nd"
     output: '{''a'': 1, ''b'': 2}'
-  - code: "# Update from a list of pairs\nd = {'a': 1}\nd.update([('b', 2)])\nd"
+  - code: "# Updating from a list of pairs\nd = {'a': 1}\nd.update([('b', 2)])\nd"
     output: '{''a'': 1, ''b'': 2}'
-  sideeffects: Modifies the original dictionary by adding or overwriting key-value pairs
+  sideeffects: 'Modifies the original dictionary: adds or overwrites key-value pairs'
   url: https://docs.python.org/3/library/stdtypes.html#dict.update
   module: Built-in data types
+  level: 0
 - name: keys
-  category: K
-  description: Returns a view of the dictionary keys.
+  description: Returns the keys of the dictionary.
   class_name: dict
   parameters: []
   returns:
     type: dict_keys
-    description: Keys view
+    description: 'A collection of keys: it can be looped over with for or turned into a list with list()'
   examples:
   - code: "# List of keys\nlist({'a': 1, 'b': 2}.keys())"
     output: '[''a'', ''b'']'
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#dict.keys
   module: Built-in data types
+  level: 0
 - name: values
-  category: V
-  description: Returns a view of the dictionary values.
+  description: Returns the values of the dictionary.
   class_name: dict
   parameters: []
   returns:
     type: dict_values
-    description: Values view
+    description: 'A collection of values: it can be looped over with for or turned into a list with list()'
   examples:
   - code: "# List of values\nlist({'a': 1, 'b': 2}.values())"
     output: '[1, 2]'
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#dict.values
   module: Built-in data types
+  level: 0
 - name: items
-  category: I
-  description: Returns a view of the dictionary key-value pairs.
+  description: Returns the key-value pairs of the dictionary.
   class_name: dict
   parameters: []
   returns:
     type: dict_items
-    description: Key-value pairs view
+    description: 'A collection of (key, value) pairs: it can be looped over with for or turned into a list with list()'
   examples:
   - code: "# List of key-value pairs\nlist({'a': 1}.items())"
     output: '[(''a'', 1)]'
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#dict.items
   module: Built-in data types
+  level: 0
 - name: add
-  category: A
-  description: Adds an element to a set.
+  description: Adds an element to the set.
   class_name: set
   parameters:
   - name: elem
-    type_hint: Hashable
+    type_hint: int | float | str
     required: true
-    description: Item to add
+    description: Element to add
   returns:
     type: None
-    description: Modifies the set in place
+    description: Returns no value; the set itself is changed
   examples:
-  - code: "# Add an element to a set\ns = {1, 2}\ns.add(3)\nprint(s)"
+  - code: "# Adding an element to a set\ns = {1, 2}\ns.add(3)\nprint(s)"
     output: '{1, 2, 3}'
-  sideeffects: Modifies the original set by adding an item
+  sideeffects: 'Modifies the original set: adds an element'
   url: https://docs.python.org/3/library/stdtypes.html#set.add
   module: Built-in data types
+  level: 0
 - name: discard
-  category: D
-  description: Removes an element from a set if present (does not raise an error if absent).
+  description: Removes an element from the set if it is present (no error if it is missing).
   class_name: set
   parameters:
   - name: elem
-    type_hint: Hashable
+    type_hint: int | float | str
     required: true
-    description: Item to remove
+    description: Element to remove
   returns:
     type: None
-    description: Modifies the set in place
+    description: Returns no value; the set itself is changed
   examples:
-  - code: "# Remove an element\ns = {1, 2, 3}\ns.discard(2)\ns"
+  - code: "# Removing an element\ns = {1, 2, 3}\ns.discard(2)\ns"
     output: '{1, 3}'
-  - code: "# A missing element does not raise an error\ns = {1, 2}\ns.discard(99)\ns"
+  - code: "# A missing element does not cause an error\ns = {1, 2}\ns.discard(99)\ns"
     output: '{1, 2}'
-  sideeffects: Modifies the original set by removing an item if present
+  sideeffects: 'Modifies the original set: removes an element if it is present'
   url: https://docs.python.org/3/library/stdtypes.html#set.discard
   module: Built-in data types
+  level: 0
 - name: union
-  category: U
-  description: Returns a new set containing elements from this and other sets.
+  description: Returns a new set with the elements of this set and other sets.
   class_name: set
   parameters:
   - name: others
+    type_hint: set | list
+    required: false
     variadic: true
-    description: Other iterables
+    description: Other sets or lists
   returns:
     type: set
-    description: New set
+    description: A new set
   examples:
-  - code: "# Set union\n{1, 2}.union({2, 3})"
+  - code: "# Union of sets\n{1, 2}.union({2, 3})"
     output: '{1, 2, 3}'
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#set.union
   module: Built-in data types
+  level: 0
 - name: intersection
-  category: I
-  description: Returns a new set containing the common elements.
+  description: Returns a new set with the common elements.
   class_name: set
   parameters:
   - name: others
+    type_hint: set | list
+    required: false
     variadic: true
-    description: Other iterables
+    description: Other sets or lists
   returns:
     type: set
-    description: New set
+    description: A new set
   examples:
   - code: "# Common elements of sets\n{1, 2, 3}.intersection({2, 3, 4})"
     output: '{2, 3}'
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#set.intersection
   module: Built-in data types
+  level: 0
 - name: read
-  category: R
-  description: Reads up to size bytes/characters from a file.
-  class_name: TextIOWrapper
+  description: Reads at most size characters from the file (the whole file if size is not given).
+  class_name: file
   parameters:
   - name: size
     type_hint: int
     required: false
     default_value: '-1'
-    description: Number of bytes/characters to read
+    description: Number of characters to read
   returns:
-    type: str | bytes
-    description: Data read
+    type: str
+    description: The text that was read
   examples:
-  - code: "# Read the entire file\nwith open('file.txt') as f:\n    content = f.read()"
+  - code: "# Reading the whole file\nwith open('file.txt') as f:\n    content = f.read()"
     output: ''
-  - code: "# Read the first 5 characters\nwith open('file.txt') as f:\n    content = f.read(5)"
+  - code: "# Reading the first 5 characters\nwith open('file.txt') as f:\n    content = f.read(5)"
     output: ''
   sideeffects: ''
   url: https://docs.python.org/3/library/io.html#io.TextIOWrapper.read
   module: io
+  level: 0
 - name: write
-  category: W
-  description: Writes a string or bytes to a file.
-  class_name: TextIOWrapper
+  description: Writes a string to the file.
+  class_name: file
   parameters:
   - name: s
-    type_hint: str | bytes
+    type_hint: str
     required: true
-    description: Data to write
+    description: String to write
   returns:
     type: int
-    description: Number of characters/bytes written
+    description: Number of characters written
   examples:
-  - code: "# Write a string to a file\nwith open('out.txt', 'w') as f:\n    f.write('Hello')"
+  - code: "# Writing a string to a file\nwith open('out.txt', 'w') as f:\n    f.write('Hello')"
     output: ''
-  sideeffects: Writes data in file
+  sideeffects: Writes data to the file
   url: https://docs.python.org/3/library/io.html#io.TextIOWrapper.write
   module: io
+  level: 0
 - name: close
-  category: C
-  description: Closes the file and releases resources.
-  class_name: TextIOWrapper
+  description: Closes the file, freeing resources.
+  class_name: file
   parameters: []
   returns:
     type: None
-    description: Does not return a value
+    description: Returns no value
   examples:
-  - code: "# Explicitly close a file\nf = open('file.txt')\nf.close()"
+  - code: "# Closing a file explicitly\nf = open('file.txt')\nf.close()"
     output: ''
-  sideeffects: Closes the file and releases system resources
+  sideeffects: Closes the file, freeing system resources
   url: https://docs.python.org/3/library/io.html#io.IOBase.close
   module: io
-- name: seek
-  category: S
-  description: Moves the file pointer to a new position.
-  class_name: TextIOWrapper
-  parameters:
-  - name: offset
-    type_hint: int
-    required: true
-    description: Offset in bytes/characters
-  - name: whence
-    type_hint: int
-    required: false
-    default_value: '0'
-    description: 'Reference position: 0 = start, 1 = current position, 2 = end'
-  returns:
-    type: int
-    description: New pointer position
-  examples:
-  - code: "# Move the pointer to the beginning of the file\nf = open('file.txt')\nf.seek(0)\nf.close()"
-    output: ''
-  sideeffects: Moves the file pointer
-  url: https://docs.python.org/3/library/io.html#io.IOBase.seek
-  module: io
-- name: flush
-  category: F
-  description: Flushes the internal output buffer to disk.
-  class_name: TextIOWrapper
-  parameters: []
-  returns:
-    type: None
-    description: Does not return a value
-  examples:
-  - code: "# Force the buffer to be written to disk\nf = open('log.txt', 'w')\nf.write('Hi')\nf.flush()"
-    output: ''
-  sideeffects: Forces the buffer contents to be written to disk
-  url: https://docs.python.org/3/library/io.html#io.IOBase.flush
-  module: io
+  level: 0
 - name: seed
-  category: S
-  description: Initializes the pseudorandom number generator.
+  description: 'Sets the starting number of the random number generator: the same number always produces the same sequence.'
   class_name: ''
   parameters:
   - name: a
-    type_hint: int | float | str | bytes | bytearray | None
+    type_hint: int | float | str | None
     required: false
-    description: Initial value
+    description: Starting number (if not given, it is chosen automatically)
   - name: version
     type_hint: int
     required: false
     default_value: '2'
-    description: Algorithm version
+    description: Algorithm version (usually left unchanged)
   returns:
     type: None
-    description: Initializes the pseudorandom number generator.
+    description: Returns no value
   examples:
-  - code: "import random\nrandom.seed(42)"
-    output: None
-  sideeffects: Changes the state of the random number generator
+  - code: "# The same starting number gives the same numbers\nimport random\nrandom.seed(42)\na = random.randint(1, 100)\nrandom.seed(42)\nb = random.randint(1, 100)\nprint(a == b)"
+    output: 'True'
+  - code: "# Repeatability of random floats\nimport random\nrandom.seed(1)\nx = random.random()\nrandom.seed(1)\nprint(x == random.random())"
+    output: 'True'
+  sideeffects: 'Remembers the starting number: the same number produces the same sequence of random numbers'
   url: https://docs.python.org/3/library/random.html#random.seed
   module: random
+  level: 0
 - name: getstate
-  category: G
-  description: Returns the generator’s current internal state.
+  description: Remembers the current position of the random number generator so you can return to it later with setstate().
   class_name: ''
   parameters: []
   returns:
-    type: float
-    description: Returns the generator’s current internal state.
+    type: tuple
+    description: Data about the generator's position (passed to setstate())
   examples:
-  - code: "import random\nrandom.getstate()"
-    output: Состояние генератора
+  - code: "# Remembering the generator's position\nimport random\nstate = random.getstate()\nprint(type(state))"
+    output: <class 'tuple'>
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.getstate
   module: random
+  level: 1
 - name: setstate
-  category: S
-  description: Restores a previously saved generator state.
+  description: Returns the random number generator to the position remembered by getstate().
   class_name: ''
   parameters:
   - name: state
-    type_hint: object
+    type_hint: tuple
     required: true
-    description: Previously saved state
+    description: Data obtained from getstate()
   returns:
     type: None
-    description: Restores a previously saved generator state.
+    description: Returns no value
   examples:
-  - code: "import random\nrandom.setstate(state)"
-    output: None
-  sideeffects: Changes the state of the random number generator
+  - code: "# Returning to the remembered position: the numbers repeat\nimport random\nstate = random.getstate()\na = random.random()\nrandom.setstate(state)\nb = random.random()\nprint(a == b)"
+    output: 'True'
+  sideeffects: 'Returns the generator to the remembered position: the same numbers follow as after getstate()'
   url: https://docs.python.org/3/library/random.html#random.setstate
   module: random
+  level: 1
 - name: randbytes
-  category: R
   description: Returns n random bytes.
   class_name: ''
   parameters:
@@ -1232,26 +1291,26 @@
     description: Number of bytes
   returns:
     type: bytes
-    description: Returns n random bytes.
+    description: Random bytes
   examples:
-  - code: "import random\nrandom.randbytes(4)"
-    output: b'...'
+  - code: "# Four random bytes\nimport random\ndata = random.randbytes(4)\nprint(len(data))"
+    output: '4'
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.randbytes
   module: random
+  level: 1
 - name: randrange
-  category: R
-  description: Returns a random element from a specified range.
+  description: Returns a random element from the given range.
   class_name: ''
   parameters:
   - name: start
     type_hint: int
     required: true
-    description: Start or end of a range
+    description: Start or end of the range
   - name: stop
     type_hint: int | None
     required: false
-    description: End range
+    description: End of the range
   - name: step
     type_hint: int
     required: false
@@ -1259,16 +1318,16 @@
     description: Step
   returns:
     type: int
-    description: Returns a random element from a specified range.
+    description: Returns a random element from the given range.
   examples:
   - code: "import random\nrandom.randrange(1, 10)"
     output: '7'
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.randrange
   module: random
+  level: 0
 - name: randint
-  category: R
-  description: Returns a random integer from a to b, inclusive.
+  description: Returns a random integer from a to b inclusive.
   class_name: ''
   parameters:
   - name: a
@@ -1281,16 +1340,16 @@
     description: Upper bound
   returns:
     type: int
-    description: Returns a random integer from a to b, inclusive.
+    description: Returns a random integer from a to b inclusive.
   examples:
   - code: "import random\nrandom.randint(1, 6)"
     output: '4'
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.randint
   module: random
+  level: 0
 - name: getrandbits
-  category: G
-  description: Returns a non-negative integer generated from k random bits.
+  description: Returns a non-negative integer made of k random bits.
   class_name: ''
   parameters:
   - name: k
@@ -1299,95 +1358,97 @@
     description: Number of bits
   returns:
     type: int
-    description: Returns a non-negative integer generated from k random bits.
+    description: Returns a non-negative integer made of k random bits.
   examples:
   - code: "import random\nrandom.getrandbits(4)"
     output: '10'
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.getrandbits
   module: random
+  level: 1
 - name: choice
-  category: C
   description: Chooses a random element from a non-empty sequence.
   class_name: ''
   parameters:
   - name: seq
-    type_hint: Sequence
+    type_hint: list | str | range
     required: true
-    description: Sequence
+    description: 'Non-empty sequence: a list, string, or range'
   returns:
-    type: object
+    type: any type
     description: Chooses a random element from a non-empty sequence.
   examples:
-  - code: "import random\nrandom.choice(['да', 'нет'])"
-    output: да
+  - code: "import random\nrandom.choice(['yes', 'no'])"
+    output: 'yes'
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.choice
   module: random
+  level: 0
 - name: choices
-  category: C
-  description: Chooses k elements with replacement; weights can be specified.
+  description: Chooses k elements with replacement; weights can be given.
   class_name: ''
   parameters:
   - name: population
-    type_hint: Sequence
+    type_hint: list | str | range
     required: true
-    description: Population
+    description: Sequence to choose elements from
   - name: weights
-    type_hint: Sequence | None
+    type_hint: list | None
     required: false
-    description: Relative weights
+    description: 'Weight of each element: the larger the weight, the more often it is chosen'
   - name: cum_weights
-    type_hint: Sequence | None
+    type_hint: list | None
     required: false
     keyword_only: true
-    description: Cumulative weights
+    description: Cumulative weights (used instead of weights)
   - name: k
     type_hint: int
     required: false
     default_value: '1'
     keyword_only: true
-    description: Number of items
+    description: Number of elements
   returns:
     type: list
-    description: Chooses k elements with replacement; weights can be specified.
+    description: Chooses k elements with replacement; weights can be given.
   examples:
   - code: "import random\nrandom.choices([1, 2, 3], k=3)"
     output: '[2, 1, 3]'
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.choices
   module: random
+  level: 0
 - name: shuffle
-  category: S
-  description: Shuffles a sequence in place.
+  description: Shuffles the elements of the list in random order.
   class_name: ''
   parameters:
   - name: x
-    type_hint: MutableSequence
+    type_hint: list
     required: true
-    description: Mutable sequence
+    description: List whose elements should be shuffled
   returns:
     type: None
-    description: Shuffles a sequence in place.
+    description: Returns no value; the list itself is changed
   examples:
-  - code: "import random\nitems = [1, 2, 3]\nrandom.shuffle(items)"
-    output: None
-  sideeffects: Changes the state of the random number generator
+  - code: "# Random order of elements (the result may differ)\nimport random\nitems = [1, 2, 3]\nrandom.shuffle(items)\nprint(items)"
+    output: '[3, 1, 2]'
+  - code: "# The list contents do not change, only the order\nimport random\nitems = [1, 2, 3, 4, 5]\nrandom.shuffle(items)\nprint(sorted(items))"
+    output: '[1, 2, 3, 4, 5]'
+  sideeffects: 'Modifies the list itself: elements swap places'
   url: https://docs.python.org/3/library/random.html#random.shuffle
   module: random
+  level: 0
 - name: sample
-  category: S
   description: Chooses k unique elements without replacement.
   class_name: ''
   parameters:
   - name: population
-    type_hint: Sequence
+    type_hint: list | str | range
     required: true
-    description: Population
+    description: Sequence to choose elements from
   - name: k
     type_hint: int
     required: true
-    description: Sample size
+    description: Number of elements to choose
   returns:
     type: list
     description: Chooses k unique elements without replacement.
@@ -1397,8 +1458,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.sample
   module: random
+  level: 0
 - name: random
-  category: R
   description: Returns a random floating-point number in the range [0.0, 1.0).
   class_name: ''
   parameters: []
@@ -1411,8 +1472,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.random
   module: random
+  level: 0
 - name: uniform
-  category: U
   description: Returns a random floating-point number between a and b.
   class_name: ''
   parameters:
@@ -1433,8 +1494,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.uniform
   module: random
+  level: 0
 - name: triangular
-  category: T
   description: Returns a random number from a triangular distribution.
   class_name: ''
   parameters:
@@ -1461,19 +1522,19 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.triangular
   module: random
+  level: 1
 - name: betavariate
-  category: B
   description: Returns a random number from a beta distribution.
   class_name: ''
   parameters:
   - name: alpha
     type_hint: float
     required: true
-    description: Alpha shape parameter of the beta distribution
+    description: Shape parameter alpha of the beta distribution
   - name: beta
     type_hint: float
     required: true
-    description: Beta shape parameter of the beta distribution
+    description: Shape parameter beta of the beta distribution
   returns:
     type: float
     description: Returns a random number from a beta distribution.
@@ -1483,8 +1544,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.betavariate
   module: random
+  level: 1
 - name: expovariate
-  category: E
   description: Returns a random number from an exponential distribution.
   class_name: ''
   parameters:
@@ -1501,8 +1562,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.expovariate
   module: random
+  level: 1
 - name: gammavariate
-  category: G
   description: Returns a random number from a gamma distribution.
   class_name: ''
   parameters:
@@ -1523,8 +1584,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.gammavariate
   module: random
+  level: 1
 - name: gauss
-  category: G
   description: Returns a random number from a normal distribution.
   class_name: ''
   parameters:
@@ -1545,8 +1606,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.gauss
   module: random
+  level: 1
 - name: lognormvariate
-  category: L
   description: Returns a random number from a log-normal distribution.
   class_name: ''
   parameters:
@@ -1567,8 +1628,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.lognormvariate
   module: random
+  level: 1
 - name: normalvariate
-  category: N
   description: Returns a random number from a normal distribution.
   class_name: ''
   parameters:
@@ -1589,9 +1650,9 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.normalvariate
   module: random
+  level: 1
 - name: vonmisesvariate
-  category: V
-  description: Returns a random angle from a von Mises distribution.
+  description: Returns a random angle from the von Mises distribution.
   class_name: ''
   parameters:
   - name: mu
@@ -1604,15 +1665,15 @@
     description: Concentration parameter of the distribution
   returns:
     type: float
-    description: Returns a random angle from a von Mises distribution.
+    description: Returns a random angle from the von Mises distribution.
   examples:
   - code: "import random\nrandom.vonmisesvariate(0, 1)"
     output: '1.2'
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.vonmisesvariate
   module: random
+  level: 1
 - name: paretovariate
-  category: P
   description: Returns a random number from a Pareto distribution.
   class_name: ''
   parameters:
@@ -1629,8 +1690,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.paretovariate
   module: random
+  level: 1
 - name: weibullvariate
-  category: W
   description: Returns a random number from a Weibull distribution.
   class_name: ''
   parameters:
@@ -1651,8 +1712,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.weibullvariate
   module: random
+  level: 1
 - name: ceil
-  category: C
   description: Rounds a number up to the nearest integer.
   class_name: ''
   parameters:
@@ -1669,9 +1730,9 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.ceil
   module: math
+  level: 0
 - name: comb
-  category: C
-  description: Returns the number of combinations of k items chosen from n.
+  description: Returns the number of combinations of n items taken k at a time.
   class_name: ''
   parameters:
   - name: n
@@ -1681,19 +1742,19 @@
   - name: k
     type_hint: int
     required: true
-    description: Number of items to choose
+    description: Number of elements to choose
   returns:
     type: int
-    description: Returns the number of combinations of k items chosen from n.
+    description: Returns the number of combinations of n items taken k at a time.
   examples:
   - code: "import math\nmath.comb(5, 2)"
     output: '10'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.comb
   module: math
+  level: 1
 - name: copysign
-  category: C
-  description: Returns the magnitude of x with the sign of y.
+  description: Returns the absolute value of x with the sign of y.
   class_name: ''
   parameters:
   - name: x
@@ -1706,22 +1767,22 @@
     description: Number whose sign is used
   returns:
     type: float
-    description: Returns the magnitude of x with the sign of y.
+    description: Returns the absolute value of x with the sign of y.
   examples:
   - code: "import math\nmath.copysign(3, -1)"
     output: '-3.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.copysign
   module: math
+  level: 1
 - name: fabs
-  category: F
   description: Returns the absolute value of a number as a float.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Number whose absolute value is computed
+    description: Number to find the absolute value of
   returns:
     type: float
     description: Returns the absolute value of a number as a float.
@@ -1731,8 +1792,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.fabs
   module: math
+  level: 0
 - name: factorial
-  category: F
   description: Returns the factorial of a non-negative integer.
   class_name: ''
   parameters:
@@ -1749,8 +1810,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.factorial
   module: math
+  level: 1
 - name: floor
-  category: F
   description: Rounds a number down to the nearest integer.
   class_name: ''
   parameters:
@@ -1767,9 +1828,9 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.floor
   module: math
+  level: 0
 - name: fmod
-  category: F
-  description: Returns the remainder of x divided by y.
+  description: Returns the remainder of dividing x by y.
   class_name: ''
   parameters:
   - name: x
@@ -1782,22 +1843,22 @@
     description: Divisor
   returns:
     type: float
-    description: Returns the remainder of x divided by y.
+    description: Returns the remainder of dividing x by y.
   examples:
   - code: "import math\nmath.fmod(7, 3)"
     output: '1.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.fmod
   module: math
+  level: 1
 - name: frexp
-  category: F
   description: Returns the mantissa and exponent of a number.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Number to decompose into mantissa and exponent
+    description: Number to split into mantissa and exponent
   returns:
     type: tuple
     description: Returns the mantissa and exponent of a number.
@@ -1807,15 +1868,15 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.frexp
   module: math
+  level: 1
 - name: fsum
-  category: F
   description: Accurately sums floating-point values.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Iterable[float]
+    type_hint: list | range
     required: true
-    description: Iterable of numbers to sum accurately
+    description: 'Sequence of numbers: a list or range'
   returns:
     type: float
     description: Accurately sums floating-point values.
@@ -1825,8 +1886,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.fsum
   module: math
+  level: 1
 - name: gcd
-  category: G
   description: Returns the greatest common divisor of integers.
   class_name: ''
   parameters:
@@ -1843,9 +1904,9 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.gcd
   module: math
+  level: 1
 - name: isclose
-  category: I
-  description: Checks whether two numbers are close within the specified tolerances.
+  description: Checks whether two numbers are close to each other within a given tolerance.
   class_name: ''
   parameters:
   - name: a
@@ -1870,15 +1931,15 @@
     description: Absolute tolerance
   returns:
     type: bool
-    description: Checks whether two numbers are close within the specified tolerances.
+    description: Checks whether two numbers are close to each other within a given tolerance.
   examples:
   - code: "import math\nmath.isclose(0.1 + 0.2, 0.3)"
     output: 'True'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.isclose
   module: math
+  level: 1
 - name: isfinite
-  category: I
   description: Checks whether a number is finite.
   class_name: ''
   parameters:
@@ -1895,9 +1956,9 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.isfinite
   module: math
+  level: 1
 - name: isinf
-  category: I
-  description: Checks whether a number is infinite.
+  description: Checks whether a number is infinity.
   class_name: ''
   parameters:
   - name: x
@@ -1906,16 +1967,16 @@
     description: Number to check for infinity
   returns:
     type: bool
-    description: Checks whether a number is infinite.
+    description: Checks whether a number is infinity.
   examples:
   - code: "import math\nmath.isinf(math.inf)"
     output: 'True'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.isinf
   module: math
+  level: 1
 - name: isnan
-  category: I
-  description: Checks whether a value is NaN.
+  description: Checks whether a value is “not a number” (NaN).
   class_name: ''
   parameters:
   - name: x
@@ -1924,22 +1985,22 @@
     description: Number to check for NaN
   returns:
     type: bool
-    description: Checks whether a value is NaN.
+    description: Checks whether a value is “not a number” (NaN).
   examples:
   - code: "import math\nmath.isnan(math.nan)"
     output: 'True'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.isnan
   module: math
+  level: 1
 - name: isqrt
-  category: I
   description: Returns the integer square root.
   class_name: ''
   parameters:
   - name: n
     type_hint: int
     required: true
-    description: Non-negative integer whose integer square root is computed
+    description: Non-negative integer to find the integer square root of
   returns:
     type: int
     description: Returns the integer square root.
@@ -1949,8 +2010,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.isqrt
   module: math
+  level: 1
 - name: lcm
-  category: L
   description: Returns the least common multiple of integers.
   class_name: ''
   parameters:
@@ -1967,30 +2028,30 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.lcm
   module: math
+  level: 1
 - name: ldexp
-  category: L
-  description: Returns x multiplied by 2 to the power of i.
+  description: Returns x multiplied by 2 to the power i.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Number multiplied by a power of two
+    description: Number to multiply by a power of two
   - name: i
     type_hint: int
     required: true
     description: Integer exponent of two
   returns:
     type: float
-    description: Returns x multiplied by 2 to the power of i.
+    description: Returns x multiplied by 2 to the power i.
   examples:
   - code: "import math\nmath.ldexp(0.5, 4)"
     output: '8.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.ldexp
   module: math
+  level: 1
 - name: modf
-  category: M
   description: Returns the fractional and integer parts of a number.
   class_name: ''
   parameters:
@@ -2007,9 +2068,9 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.modf
   module: math
+  level: 1
 - name: perm
-  category: P
-  description: Returns the number of k-permutations of n items.
+  description: Returns the number of permutations of n items taken k at a time.
   class_name: ''
   parameters:
   - name: n
@@ -2019,42 +2080,42 @@
   - name: k
     type_hint: int
     required: false
-    description: Permutation size
+    description: Number of items to arrange
   returns:
     type: int
-    description: Returns the number of k-permutations of n items.
+    description: Returns the number of permutations of n items taken k at a time.
   examples:
   - code: "import math\nmath.perm(5, 2)"
     output: '20'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.perm
   module: math
+  level: 1
 - name: prod
-  category: P
-  description: Returns the product of the items in an iterable.
+  description: Returns the product of the elements of a sequence.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Iterable
+    type_hint: list | range
     required: true
-    description: Iterable of numbers to multiply
+    description: 'Sequence of numbers: a list or range'
   - name: start
     type_hint: int
     required: false
     default_value: '1'
-    description: Initial value
+    description: Starting value
   returns:
-    type: int
-    description: Returns the product of the items in an iterable.
+    type: int | float
+    description: Returns the product of the elements of a sequence.
   examples:
   - code: "import math\nmath.prod([2, 3, 4])"
     output: '24'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.prod
   module: math
+  level: 1
 - name: remainder
-  category: R
-  description: Returns the remainder according to IEEE 754.
+  description: Returns the remainder of dividing x by y, where the quotient is rounded to the nearest integer (the remainder is at most half of y in absolute value).
   class_name: ''
   parameters:
   - name: x
@@ -2067,22 +2128,22 @@
     description: Divisor
   returns:
     type: float
-    description: Returns the remainder according to IEEE 754.
+    description: Returns the remainder of dividing x by y, where the quotient is rounded to the nearest integer (the remainder is at most half of y in absolute value).
   examples:
   - code: "import math\nmath.remainder(7, 4)"
     output: '-1.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.remainder
   module: math
+  level: 1
 - name: sqrt
-  category: S
   description: Returns the square root of a number.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Non-negative number whose square root is computed
+    description: Non-negative number to take the square root of
   returns:
     type: float
     description: Returns the square root of a number.
@@ -2092,9 +2153,9 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.sqrt
   module: math
+  level: 0
 - name: trunc
-  category: T
-  description: Truncates the fractional part of a number.
+  description: Discards the fractional part of a number.
   class_name: ''
   parameters:
   - name: x
@@ -2103,15 +2164,15 @@
     description: Number to truncate to an integer
   returns:
     type: int
-    description: Truncates the fractional part of a number.
+    description: Discards the fractional part of a number.
   examples:
   - code: "import math\nmath.trunc(3.8)"
     output: '3'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.trunc
   module: math
+  level: 0
 - name: exp
-  category: E
   description: Returns e raised to the power x.
   class_name: ''
   parameters:
@@ -2124,12 +2185,12 @@
     description: Returns e raised to the power x.
   examples:
   - code: "import math\nmath.exp(1)"
-    output: 2.718281828...
+    output: '2.718281828459045'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.exp
   module: math
+  level: 0
 - name: exp2
-  category: E
   description: Returns 2 raised to the power x.
   class_name: ''
   parameters:
@@ -2146,27 +2207,27 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.exp2
   module: math
+  level: 1
 - name: expm1
-  category: E
   description: Returns e raised to the power x, minus 1.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Exponent minus one
+    description: Exponent of e; the function returns e**x - 1
   returns:
     type: float
     description: Returns e raised to the power x, minus 1.
   examples:
   - code: "import math\nmath.expm1(1)"
-    output: 1.718281828...
+    output: '1.718281828459045'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.expm1
   module: math
+  level: 1
 - name: log
-  category: L
-  description: Returns the logarithm of a number to a specified base, or the natural logarithm.
+  description: Returns the logarithm of a number to the given base, or the natural logarithm.
   class_name: ''
   parameters:
   - name: x
@@ -2179,40 +2240,40 @@
     description: Base
   returns:
     type: float
-    description: Returns the logarithm of a number to a specified base, or the natural logarithm.
+    description: Returns the logarithm of a number to the given base, or the natural logarithm.
   examples:
   - code: "import math\nmath.log(8, 2)"
     output: '3.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.log
   module: math
+  level: 0
 - name: log1p
-  category: L
   description: Returns the natural logarithm of 1 + x.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Number to which one is added before computing the logarithm
+    description: Number to which one is added before taking the logarithm
   returns:
     type: float
     description: Returns the natural logarithm of 1 + x.
   examples:
   - code: "import math\nmath.log1p(1)"
-    output: 0.693147...
+    output: '0.6931471805599453'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.log1p
   module: math
+  level: 1
 - name: log2
-  category: L
   description: Returns the base-2 logarithm of a number.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Number whose base-2 logarithm is computed
+    description: Number to find the base-2 logarithm of
   returns:
     type: float
     description: Returns the base-2 logarithm of a number.
@@ -2222,15 +2283,15 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.log2
   module: math
+  level: 1
 - name: log10
-  category: L
   description: Returns the base-10 logarithm of a number.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Number whose base-10 logarithm is computed
+    description: Number to find the base-10 logarithm of
   returns:
     type: float
     description: Returns the base-10 logarithm of a number.
@@ -2240,8 +2301,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.log10
   module: math
+  level: 1
 - name: pow
-  category: P
   description: Raises x to the power y.
   class_name: ''
   parameters:
@@ -2261,103 +2322,103 @@
     output: '8.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.pow
-  module: Built-in function
+  module: math
+  level: 1
 - name: acos
-  category: A
-  description: Returns the arccosine of a number in radians.
+  description: Returns the arc cosine of a number in radians.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Cosine value used to compute arccosine
+    description: Cosine value to find the arc cosine of
   returns:
     type: float
-    description: Returns the arccosine of a number in radians.
+    description: Returns the arc cosine of a number in radians.
   examples:
   - code: "import math\nmath.acos(1)"
     output: '0.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.acos
   module: math
+  level: 1
 - name: asin
-  category: A
-  description: Returns the arcsine of a number in radians.
+  description: Returns the arc sine of a number in radians.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Sine value used to compute arcsine
+    description: Sine value to find the arc sine of
   returns:
     type: float
-    description: Returns the arcsine of a number in radians.
+    description: Returns the arc sine of a number in radians.
   examples:
   - code: "import math\nmath.asin(0)"
     output: '0.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.asin
   module: math
+  level: 1
 - name: atan
-  category: A
-  description: Returns the arctangent of a number in radians.
+  description: Returns the arc tangent of a number in radians.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Tangent value used to compute arctangent
+    description: Tangent value to find the arc tangent of
   returns:
     type: float
-    description: Returns the arctangent of a number in radians.
+    description: Returns the arc tangent of a number in radians.
   examples:
   - code: "import math\nmath.atan(1)"
-    output: 0.785398...
+    output: '0.7853981633974483'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.atan
   module: math
+  level: 1
 - name: atan2
-  category: A
   description: Returns the angle between the positive x-axis and the point (x, y).
   class_name: ''
   parameters:
   - name: y
     type_hint: float
     required: true
-    description: y-coordinate of the point
+    description: y coordinate of the point
   - name: x
     type_hint: float
     required: true
-    description: x-coordinate of the point
+    description: x coordinate of the point
   returns:
     type: float
     description: Returns the angle between the positive x-axis and the point (x, y).
   examples:
   - code: "import math\nmath.atan2(1, 1)"
-    output: 0.785398...
+    output: '0.7853981633974483'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.atan2
   module: math
+  level: 1
 - name: cbrt
-  category: C
   description: Returns the cube root of a number.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Number whose cube root is computed
+    description: Number to find the cube root of
   returns:
     type: float
     description: Returns the cube root of a number.
   examples:
-  - code: "import math\nmath.cbrt(27)"
-    output: '3.0'
+  - code: "import math\nmath.cbrt(8)"
+    output: '2.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.cbrt
   module: math
+  level: 1
 - name: cos
-  category: C
   description: Returns the cosine of an angle in radians.
   class_name: ''
   parameters:
@@ -2374,30 +2435,30 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.cos
   module: math
+  level: 0
 - name: dist
-  category: D
-  description: Returns the Euclidean distance between two points.
+  description: Returns the distance between two points given as lists of coordinates.
   class_name: ''
   parameters:
   - name: p
-    type_hint: Iterable[float]
+    type_hint: list
     required: true
-    description: First point specified as a sequence of coordinates
+    description: 'First point: a list of coordinates'
   - name: q
-    type_hint: Iterable[float]
+    type_hint: list
     required: true
-    description: Second point specified as a sequence of coordinates
+    description: 'Second point: a list of coordinates'
   returns:
     type: float
-    description: Returns the Euclidean distance between two points.
+    description: Returns the distance between two points given as lists of coordinates.
   examples:
   - code: "import math\nmath.dist((0, 0), (3, 4))"
     output: '5.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.dist
   module: math
+  level: 1
 - name: degrees
-  category: D
   description: Converts an angle from radians to degrees.
   class_name: ''
   parameters:
@@ -2414,15 +2475,15 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.degrees
   module: math
+  level: 0
 - name: erf
-  category: E
   description: Returns the error function.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Argument to the error function
+    description: Argument of the error function
   returns:
     type: float
     description: Returns the error function.
@@ -2432,15 +2493,15 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.erf
   module: math
+  level: 1
 - name: erfc
-  category: E
   description: Returns the complementary error function.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Argument to the complementary error function
+    description: Argument of the complementary error function
   returns:
     type: float
     description: Returns the complementary error function.
@@ -2450,15 +2511,15 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.erfc
   module: math
+  level: 1
 - name: gamma
-  category: G
   description: Returns the gamma function.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Argument to the gamma function
+    description: Argument of the gamma function
   returns:
     type: float
     description: Returns the gamma function.
@@ -2468,9 +2529,9 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.gamma
   module: math
+  level: 1
 - name: hypot
-  category: H
-  description: Returns the Euclidean norm of the arguments.
+  description: Returns the distance from the origin to the point with the given coordinates (for two coordinates, the length of the hypotenuse).
   class_name: ''
   parameters:
   - name: coordinates
@@ -2479,33 +2540,33 @@
     description: Coordinates
   returns:
     type: float
-    description: Returns the Euclidean norm of the arguments.
+    description: Returns the distance from the origin to the point with the given coordinates (for two coordinates, the length of the hypotenuse).
   examples:
   - code: "import math\nmath.hypot(3, 4)"
     output: '5.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.hypot
   module: math
+  level: 1
 - name: lgamma
-  category: L
   description: Returns the natural logarithm of the absolute value of the gamma function.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Argument used to compute the natural logarithm of the absolute value of the gamma function
+    description: Argument for the natural logarithm of the absolute value of the gamma function
   returns:
     type: float
     description: Returns the natural logarithm of the absolute value of the gamma function.
   examples:
   - code: "import math\nmath.lgamma(5)"
-    output: 3.17805...
+    output: '3.178053830347945'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.lgamma
   module: math
+  level: 1
 - name: radians
-  category: R
   description: Converts an angle from degrees to radians.
   class_name: ''
   parameters:
@@ -2518,12 +2579,12 @@
     description: Converts an angle from degrees to radians.
   examples:
   - code: "import math\nmath.radians(180)"
-    output: 3.141592...
+    output: '3.141592653589793'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.radians
   module: math
+  level: 0
 - name: sin
-  category: S
   description: Returns the sine of an angle in radians.
   class_name: ''
   parameters:
@@ -2540,15 +2601,15 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.sin
   module: math
+  level: 0
 - name: cosh
-  category: C
   description: Returns the hyperbolic cosine.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Argument to the hyperbolic cosine
+    description: Argument of the hyperbolic cosine
   returns:
     type: float
     description: Returns the hyperbolic cosine.
@@ -2558,15 +2619,15 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.cosh
   module: math
+  level: 1
 - name: sinh
-  category: S
   description: Returns the hyperbolic sine.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Argument to the hyperbolic sine
+    description: Argument of the hyperbolic sine
   returns:
     type: float
     description: Returns the hyperbolic sine.
@@ -2576,15 +2637,15 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.sinh
   module: math
+  level: 1
 - name: tanh
-  category: T
   description: Returns the hyperbolic tangent.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Argument to the hyperbolic tangent
+    description: Argument of the hyperbolic tangent
   returns:
     type: float
     description: Returns the hyperbolic tangent.
@@ -2594,15 +2655,15 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.tanh
   module: math
+  level: 1
 - name: acosh
-  category: A
   description: Returns the inverse hyperbolic cosine.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Number for which to compute the inverse hyperbolic cosine
+    description: Number to find the inverse hyperbolic cosine of
   returns:
     type: float
     description: Returns the inverse hyperbolic cosine.
@@ -2612,15 +2673,15 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.acosh
   module: math
+  level: 1
 - name: asinh
-  category: A
   description: Returns the inverse hyperbolic sine.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Number for which to compute the inverse hyperbolic sine
+    description: Number to find the inverse hyperbolic sine of
   returns:
     type: float
     description: Returns the inverse hyperbolic sine.
@@ -2630,15 +2691,15 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.asinh
   module: math
+  level: 1
 - name: atanh
-  category: A
   description: Returns the inverse hyperbolic tangent.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Number for which to compute the inverse hyperbolic tangent
+    description: Number to find the inverse hyperbolic tangent of
   returns:
     type: float
     description: Returns the inverse hyperbolic tangent.
@@ -2648,19 +2709,19 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.atanh
   module: math
+  level: 1
 - name: nextafter
-  category: N
-  description: Returns the next representable floating-point number toward y.
+  description: Returns the next representable floating-point number after x in the direction of y.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Starting value
+    description: Starting number
   - name: y
     type_hint: float
     required: true
-    description: Direction in which to find the nearest representable number
+    description: Direction in which to look for the nearest representable number
   - name: steps
     type_hint: int
     required: false
@@ -2668,50 +2729,521 @@
     description: Number of steps
   returns:
     type: float
-    description: Returns the next representable floating-point number toward y.
+    description: Returns the next representable floating-point number after x in the direction of y.
   examples:
   - code: "import math\nmath.nextafter(1.0, 2.0)"
     output: '1.0000000000000002'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.nextafter
   module: math
+  level: 1
 - name: ulp
-  category: U
-  description: Returns the value of the least significant bit of a floating-point number (ULP).
+  description: Returns the value of the least significant digit (unit in the last place) of a floating-point number.
   class_name: ''
   parameters:
   - name: x
     type_hint: float
     required: true
-    description: Number whose ULP is computed
+    description: Number to find the ULP value of
   returns:
     type: float
-    description: Returns the value of the least significant bit of a floating-point number (ULP).
+    description: Returns the value of the least significant digit (unit in the last place) of a floating-point number.
   examples:
   - code: "import math\nmath.ulp(1.0)"
     output: '2.220446049250313e-16'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.ulp
   module: math
+  level: 1
 - name: sumprod
-  category: S
-  description: Returns the sum of products of corresponding items in two iterables.
+  description: Returns the sum of products of corresponding elements of two sequences.
   class_name: ''
   parameters:
   - name: p
-    type_hint: Iterable[float]
+    type_hint: list
     required: true
-    description: First sequence of numbers
+    description: First sequence of numbers (a list)
   - name: q
-    type_hint: Iterable[float]
+    type_hint: list
     required: true
-    description: Second sequence of numbers
+    description: Second sequence of numbers (a list)
   returns:
-    type: int
-    description: Returns the sum of products of corresponding items in two iterables.
+    type: int | float
+    description: Returns the sum of products of corresponding elements of two sequences.
   examples:
   - code: "import math\nmath.sumprod([1, 2], [3, 4])"
     output: '11'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.sumprod
   module: math
+  level: 1
+- name: shape
+  description: Sets the turtle's shape by name, or returns the name of the current shape.
+  class_name: ''
+  parameters:
+  - name: name
+    type_hint: str | None
+    required: false
+    default_value: None
+    description: 'Shape name: ''arrow'', ''turtle'', ''circle'', ''square'', ''triangle'', or ''classic'''
+  returns:
+    type: str | None
+    description: The name of the current shape if no argument is given; otherwise None
+  examples:
+  - code: "# Default shape\nimport turtle\nprint(turtle.shape())"
+    output: classic
+  - code: "# Changing the shape to a turtle\nimport turtle\nturtle.shape('turtle')\nprint(turtle.shape())"
+    output: turtle
+  - code: "# A round icon\nimport turtle\nturtle.shape('circle')"
+    output: ''
+  sideeffects: Changes the appearance of the turtle's icon (if a shape name is given)
+  url: https://docs.python.org/3/library/turtle.html#turtle.shape
+  module: turtle
+  level: 0
+- name: penup
+  description: 'Lifts the pen: the turtle leaves no trail when it moves (short names — pu() and up()).'
+  class_name: ''
+  parameters: []
+  returns:
+    type: None
+    description: Returns no value
+  examples:
+  - code: "# Moving without drawing\nimport turtle\nturtle.penup()\nturtle.forward(50)"
+    output: ''
+  - code: "# Pen state after lifting\nimport turtle\nturtle.penup()\nprint(turtle.isdown())"
+    output: 'False'
+  - code: "# Moving to a new point without a line\nimport turtle\nturtle.penup()\nturtle.setpos(-100, 50)\nturtle.pendown()"
+    output: ''
+  sideeffects: 'Lifts the pen: later moves leave no trail'
+  url: https://docs.python.org/3/library/turtle.html#turtle.penup
+  module: turtle
+  level: 0
+- name: pendown
+  description: 'Lowers the pen: the turtle leaves a trail when it moves (short names — pd() and down()).'
+  class_name: ''
+  parameters: []
+  returns:
+    type: None
+    description: Returns no value
+  examples:
+  - code: "# Resuming drawing after penup()\nimport turtle\nturtle.penup()\nturtle.setpos(-50, 0)\nturtle.pendown()\nturtle.forward(100)"
+    output: ''
+  - code: "# Pen state by default\nimport turtle\nprint(turtle.isdown())"
+    output: 'True'
+  - code: "# Is the pen down after pendown()?\nimport turtle\nturtle.penup()\nturtle.pendown()\nprint(turtle.isdown())"
+    output: 'True'
+  sideeffects: 'Lowers the pen: later moves leave a trail'
+  url: https://docs.python.org/3/library/turtle.html#turtle.pendown
+  module: turtle
+  level: 0
+- name: forward
+  description: Moves the turtle forward by the given distance in the direction it is heading (short name — fd()).
+  class_name: ''
+  parameters:
+  - name: distance
+    type_hint: int | float
+    required: true
+    description: Distance to move. A negative value moves the turtle backward
+  returns:
+    type: None
+    description: Returns no value
+  examples:
+  - code: "# A line 100 steps long\nimport turtle\nturtle.forward(100)\nprint(turtle.position())"
+    output: (100.00,0.00)
+  - code: "# A negative distance moves backward\nimport turtle\nturtle.forward(-75)\nprint(turtle.position())"
+    output: (-75.00,0.00)
+  - code: "# A square with side 50\nimport turtle\nfor i in range(4):\n    turtle.forward(50)\n    turtle.right(90)"
+    output: ''
+  sideeffects: Moves the turtle and draws a line if the pen is down
+  url: https://docs.python.org/3/library/turtle.html#turtle.forward
+  module: turtle
+  level: 0
+- name: backward
+  description: Moves the turtle backward by the given distance without changing its heading (short name — bk(); the name back() is also available).
+  class_name: ''
+  parameters:
+  - name: distance
+    type_hint: int | float
+    required: true
+    description: Distance to move. A negative value moves the turtle forward
+  returns:
+    type: None
+    description: Returns no value
+  examples:
+  - code: "# Moving back 30 steps\nimport turtle\nturtle.backward(30)\nprint(turtle.position())"
+    output: (-30.00,0.00)
+  - code: "# The heading does not change\nimport turtle\nturtle.backward(30)\nprint(turtle.heading())"
+    output: '0.0'
+  - code: "# A negative distance moves forward\nimport turtle\nturtle.backward(-40)\nprint(turtle.position())"
+    output: (40.00,0.00)
+  sideeffects: Moves the turtle and draws a line if the pen is down
+  url: https://docs.python.org/3/library/turtle.html#turtle.backward
+  module: turtle
+  level: 0
+- name: left
+  description: Turns the turtle left (counterclockwise) by the given angle (short name — lt()).
+  class_name: ''
+  parameters:
+  - name: angle
+    type_hint: int | float
+    required: true
+    description: Turning angle (in degrees by default)
+  returns:
+    type: None
+    description: Returns no value
+  examples:
+  - code: "# Turning left by 90 degrees\nimport turtle\nturtle.left(90)\nprint(turtle.heading())"
+    output: '90.0'
+  - code: "# Turns add up\nimport turtle\nturtle.left(30)\nturtle.left(60)\nprint(turtle.heading())"
+    output: '90.0'
+  - code: "# An equilateral triangle\nimport turtle\nfor i in range(3):\n    turtle.forward(100)\n    turtle.left(120)"
+    output: ''
+  sideeffects: Changes the turtle's heading
+  url: https://docs.python.org/3/library/turtle.html#turtle.left
+  module: turtle
+  level: 0
+- name: right
+  description: Turns the turtle right (clockwise) by the given angle (short name — rt()).
+  class_name: ''
+  parameters:
+  - name: angle
+    type_hint: int | float
+    required: true
+    description: Turning angle (in degrees by default)
+  returns:
+    type: None
+    description: Returns no value
+  examples:
+  - code: "# Turning right by 90 degrees\nimport turtle\nturtle.right(90)\nprint(turtle.heading())"
+    output: '270.0'
+  - code: "# Turning right cancels an equal turn to the left\nimport turtle\nturtle.left(45)\nturtle.right(45)\nprint(turtle.heading())"
+    output: '0.0'
+  - code: "# A square with right turns\nimport turtle\nfor i in range(4):\n    turtle.forward(60)\n    turtle.right(90)"
+    output: ''
+  sideeffects: Changes the turtle's heading
+  url: https://docs.python.org/3/library/turtle.html#turtle.right
+  module: turtle
+  level: 0
+- name: color
+  description: Sets the pen color and fill color, or returns the current pair of colors.
+  class_name: ''
+  parameters:
+  - name: args
+    type_hint: str | tuple | int | float
+    required: false
+    variadic: true
+    description: 'Pen color (and fill color) or two colors: pen and fill. A color is a name (''red''), a ''#rrggbb'' string, a tuple (r, g, b), or three numbers r, g, b'
+  returns:
+    type: tuple | None
+    description: The pair (pen color, fill color) if no arguments are given; otherwise None
+  examples:
+  - code: "# One color for the line and the fill\nimport turtle\nturtle.color('red')\nprint(turtle.color())"
+    output: ('red', 'red')
+  - code: "# Different colors for the line and the fill\nimport turtle\nturtle.color('red', 'yellow')\nprint(turtle.color())"
+    output: ('red', 'yellow')
+  - code: "# Colors in hexadecimal notation (color mode 255)\nimport turtle\nturtle.colormode(255)\nturtle.color('#285078', '#a0c8f0')\nprint(turtle.color())"
+    output: ((40.0, 80.0, 120.0), (160.0, 200.0, 240.0))
+  sideeffects: Changes the pen color and fill color (if arguments are given)
+  url: https://docs.python.org/3/library/turtle.html#turtle.color
+  module: turtle
+  level: 0
+- name: fillcolor
+  description: Sets the fill color or returns the current fill color.
+  class_name: ''
+  parameters:
+  - name: args
+    type_hint: str | tuple | int | float
+    required: false
+    variadic: true
+    description: A color name ('yellow'), a '#rrggbb' string, a tuple (r, g, b), or three numbers r, g, b
+  returns:
+    type: str | tuple | None
+    description: The current fill color if no arguments are given; otherwise None
+  examples:
+  - code: "# Fill color by name\nimport turtle\nturtle.fillcolor('violet')\nprint(turtle.fillcolor())"
+    output: violet
+  - code: "# Fill color in hexadecimal notation (color mode 255)\nimport turtle\nturtle.colormode(255)\nturtle.fillcolor('#ffffff')\nprint(turtle.fillcolor())"
+    output: (255.0, 255.0, 255.0)
+  - code: "# The pen color does not change\nimport turtle\nturtle.pencolor('blue')\nturtle.fillcolor('yellow')\nprint(turtle.pencolor())"
+    output: blue
+  sideeffects: Changes the fill color of shapes (if arguments are given)
+  url: https://docs.python.org/3/library/turtle.html#turtle.fillcolor
+  module: turtle
+  level: 0
+- name: bgcolor
+  description: Sets the background color of the turtle window or returns the current background color.
+  class_name: ''
+  parameters:
+  - name: args
+    type_hint: str | tuple | int | float
+    required: false
+    variadic: true
+    description: A color name ('orange'), a '#rrggbb' string, a tuple (r, g, b), or three numbers r, g, b
+  returns:
+    type: str | tuple | None
+    description: The current background color if no arguments are given; otherwise None
+  examples:
+  - code: "# Default background color\nimport turtle\nprint(turtle.bgcolor())"
+    output: white
+  - code: "# Orange background\nimport turtle\nturtle.bgcolor('orange')\nprint(turtle.bgcolor())"
+    output: orange
+  - code: "# Background color in hexadecimal notation (color mode 255)\nimport turtle\nturtle.colormode(255)\nturtle.bgcolor('#800080')\nprint(turtle.bgcolor())"
+    output: (128.0, 0.0, 128.0)
+  sideeffects: Changes the background color of the turtle window (if arguments are given)
+  url: https://docs.python.org/3/library/turtle.html#turtle.bgcolor
+  module: turtle
+  level: 0
+- name: pensize
+  description: Sets the line thickness or returns the current thickness (synonym — width()).
+  class_name: ''
+  parameters:
+  - name: width
+    type_hint: int | float | None
+    required: false
+    default_value: None
+    description: Line thickness (a positive number)
+  returns:
+    type: int | float | None
+    description: The current line thickness if no argument is given; otherwise None
+  examples:
+  - code: "# Default line thickness\nimport turtle\nprint(turtle.pensize())"
+    output: '1'
+  - code: "# Setting the thickness to 10\nimport turtle\nturtle.pensize(10)\nprint(turtle.pensize())"
+    output: '10'
+  - code: "# A thick line\nimport turtle\nturtle.pensize(5)\nturtle.forward(100)"
+    output: ''
+  sideeffects: Changes the line thickness (if a value is given)
+  url: https://docs.python.org/3/library/turtle.html#turtle.pensize
+  module: turtle
+  level: 0
+- name: circle
+  description: Draws a circle or an arc. The center of the circle is to the left of the turtle at a distance of radius. The steps parameter lets you draw regular polygons.
+  class_name: ''
+  parameters:
+  - name: radius
+    type_hint: int | float
+    required: true
+    description: Radius. If negative, the circle is drawn clockwise
+  - name: extent
+    type_hint: int | float | None
+    required: false
+    default_value: None
+    description: Arc angle in degrees. If not given, a full circle is drawn
+  - name: steps
+    type_hint: int | None
+    required: false
+    default_value: None
+    description: Number of sides of the inscribed polygon that approximates the circle. If not given, it is calculated automatically
+  returns:
+    type: None
+    description: Returns no value
+  examples:
+  - code: "# A circle of radius 50\nimport turtle\nturtle.circle(50)"
+    output: ''
+  - code: "# A semicircle: the heading changes by extent\nimport turtle\nturtle.circle(50, 180)\nprint(turtle.heading())"
+    output: '180.0'
+  - code: "# A regular hexagon\nimport turtle\nturtle.circle(50, steps=6)"
+    output: ''
+  - code: "# A regular triangle\nimport turtle\nturtle.circle(40, 360, 3)"
+    output: ''
+  sideeffects: Draws a line if the pen is down, and changes the turtle's heading by the extent
+  url: https://docs.python.org/3/library/turtle.html#turtle.circle
+  module: turtle
+  level: 0
+- name: begin_fill
+  description: Marks the start of a shape to be filled. Call it before drawing the shape.
+  class_name: ''
+  parameters: []
+  returns:
+    type: None
+    description: Returns no value
+  examples:
+  - code: "# A filled square\nimport turtle\nturtle.color('black', 'red')\nturtle.begin_fill()\nfor i in range(4):\n    turtle.forward(50)\n    turtle.left(90)\nturtle.end_fill()"
+    output: ''
+  - code: "# Shows that filling has started\nimport turtle\nturtle.begin_fill()\nprint(turtle.filling())"
+    output: 'True'
+  sideeffects: Remembers the start of the shape to be filled
+  url: https://docs.python.org/3/library/turtle.html#turtle.begin_fill
+  module: turtle
+  level: 0
+- name: end_fill
+  description: Fills the shape drawn after the last call to begin_fill().
+  class_name: ''
+  parameters: []
+  returns:
+    type: None
+    description: Returns no value
+  examples:
+  - code: "# A filled circle\nimport turtle\nturtle.color('black', 'yellow')\nturtle.begin_fill()\nturtle.circle(40)\nturtle.end_fill()"
+    output: ''
+  - code: "# Shows that filling has ended\nimport turtle\nturtle.begin_fill()\nturtle.end_fill()\nprint(turtle.filling())"
+    output: 'False'
+  sideeffects: Fills the drawn shape with the fill color
+  url: https://docs.python.org/3/library/turtle.html#turtle.end_fill
+  module: turtle
+  level: 0
+- name: setpos
+  description: Moves the turtle to the point with absolute coordinates (x, y). The heading does not change (synonyms — goto() and setposition()).
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: int | float | tuple
+    required: true
+    description: The x coordinate, or a pair of coordinates (x, y) if y is not given
+  - name: y
+    type_hint: int | float | None
+    required: false
+    default_value: None
+    description: The y coordinate
+  returns:
+    type: None
+    description: Returns no value
+  examples:
+  - code: "# Moving to the point (60, 30)\nimport turtle\nturtle.setpos(60, 30)\nprint(turtle.position())"
+    output: (60.00,30.00)
+  - code: "# Coordinates as a pair\nimport turtle\nturtle.setpos((20, 80))\nprint(turtle.position())"
+    output: (20.00,80.00)
+  - code: "# A line from the origin to the point (100, 100)\nimport turtle\nturtle.setpos(100, 100)"
+    output: ''
+  sideeffects: Moves the turtle and draws a line if the pen is down
+  url: https://docs.python.org/3/library/turtle.html#turtle.setpos
+  module: turtle
+  level: 0
+- name: setheading
+  description: Sets the turtle's heading (absolute angle). In standard mode 0 is east, 90 is north, 180 is west, 270 is south (short name — seth()).
+  class_name: ''
+  parameters:
+  - name: to_angle
+    type_hint: int | float
+    required: true
+    description: Heading angle (in degrees by default)
+  returns:
+    type: None
+    description: Returns no value
+  examples:
+  - code: "# Heading north\nimport turtle\nturtle.setheading(90)\nprint(turtle.heading())"
+    output: '90.0'
+  - code: "# Moving west: the x coordinate decreases\nimport turtle\nturtle.setheading(180)\nturtle.forward(50)\nprint(turtle.xcor())"
+    output: '-50.0'
+  - code: "# Moving north\nimport turtle\nturtle.setheading(90)\nturtle.forward(100)\nprint(turtle.position())"
+    output: (0.00,100.00)
+  sideeffects: Changes the turtle's heading
+  url: https://docs.python.org/3/library/turtle.html#turtle.setheading
+  module: turtle
+  level: 0
+- name: setup
+  description: Sets the size and position of the main turtle window.
+  class_name: ''
+  parameters:
+  - name: width
+    type_hint: int | float
+    required: false
+    default_value: '0.5'
+    description: Window width. An integer is a size in pixels, a fraction is a share of the screen width
+  - name: height
+    type_hint: int | float
+    required: false
+    default_value: '0.75'
+    description: Window height. An integer is a size in pixels, a fraction is a share of the screen height
+  - name: startx
+    type_hint: int | None
+    required: false
+    default_value: None
+    description: 'Position of the window''s left edge: a positive number is measured from the left edge of the screen, a negative one from the right, None centers it'
+  - name: starty
+    type_hint: int | None
+    required: false
+    default_value: None
+    description: 'Position of the window''s top edge: a positive number is measured from the top of the screen, a negative one from the bottom, None centers it'
+  returns:
+    type: None
+    description: Returns no value
+  examples:
+  - code: "# A 450 by 250 pixel window\nimport turtle\nturtle.setup(450, 250)"
+    output: ''
+  - code: "# A 200 by 200 pixel window in the top-left corner of the screen\nimport turtle\nturtle.setup(width=200, height=200, startx=0, starty=0)"
+    output: ''
+  - code: "# A window of 75% of the screen width and 50% of its height, centered\nimport turtle\nturtle.setup(width=0.75, height=0.5, startx=None, starty=None)"
+    output: ''
+  sideeffects: Changes the size and position of the turtle window
+  url: https://docs.python.org/3/library/turtle.html#turtle.setup
+  module: turtle
+  level: 0
+- name: write
+  description: Writes a value (text, number, or the result of an expression) in the graphics window at the turtle's current position.
+  class_name: ''
+  parameters:
+  - name: arg
+    type_hint: any type
+    required: true
+    description: 'Value to write: text, a number, or an expression'
+  - name: move
+    type_hint: bool
+    required: false
+    default_value: 'False'
+    description: If True, the pen moves to the bottom-right corner of the written text
+  - name: align
+    type_hint: str
+    required: false
+    default_value: '''left'''
+    description: 'Alignment relative to the turtle''s position: ''left'', ''center'', or ''right'''
+  - name: font
+    type_hint: tuple
+    required: false
+    default_value: ('Arial', 8, 'normal')
+    description: 'Font: a triple (font name, size, style), for example (''Arial'', 8, ''normal'')'
+  returns:
+    type: None
+    description: Returns no value
+  examples:
+  - code: "# Writing text at the current position\nimport turtle\nturtle.write('Hello, world!')"
+    output: ''
+  - code: "# Text with a given font\nimport turtle\nturtle.write('Hello, world!', font=('Arial', 20, 'bold'))"
+    output: ''
+  - code: "# Value of an arithmetic expression\nimport turtle\nturtle.write(2 + 2 * 2)"
+    output: ''
+  - code: "# Center alignment\nimport turtle\nturtle.write('Center', align='center')"
+    output: ''
+  sideeffects: Writes text in the turtle's graphics window
+  url: https://docs.python.org/3/library/turtle.html#turtle.write
+  module: turtle
+  level: 0
+- name: done
+  description: Keeps the turtle window open after drawing is finished. It must be the last command of the program (synonym — mainloop()).
+  class_name: ''
+  parameters: []
+  returns:
+    type: None
+    description: Returns no value
+  examples:
+  - code: "# The window stays open after drawing\nimport turtle\nturtle.forward(100)\nturtle.done()"
+    output: ''
+  - code: "# Using it with from turtle import *\nfrom turtle import *\ncircle(50)\ndone()"
+    output: ''
+  sideeffects: The program waits until the turtle window is closed
+  url: https://docs.python.org/3/library/turtle.html#turtle.done
+  module: turtle
+  level: 0
+- name: colormode
+  description: Sets how colors are written as numbers (1.0 or 255), or returns the current mode. The r, g, b values must be between 0 and the set mode.
+  class_name: ''
+  parameters:
+  - name: cmode
+    type_hint: int | float | None
+    required: false
+    default_value: None
+    description: 'New mode: 1.0 or 255'
+  returns:
+    type: int | float | None
+    description: The current mode if no argument is given; otherwise None
+  examples:
+  - code: "# Default mode\nimport turtle\nprint(turtle.colormode())"
+    output: '1.0'
+  - code: "# Switching to values from 0 to 255\nimport turtle\nturtle.colormode(255)\nprint(turtle.colormode())"
+    output: '255'
+  - code: "# A color from three RGB components\nimport turtle\nturtle.colormode(255)\nturtle.color(240, 160, 80)\nprint(turtle.color())"
+    output: ((240.0, 160.0, 80.0), (240.0, 160.0, 80.0))
+  sideeffects: Changes the allowed range of r, g, b values for all colors
+  url: https://docs.python.org/3/library/turtle.html#turtle.colormode
+  module: turtle
+  level: 0
