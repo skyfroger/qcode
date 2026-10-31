@@ -1,5 +1,4 @@
 - name: abs
-  category: A
   description: Возвращает абсолютное значение числа.
   class_name: ''
   parameters:
@@ -14,23 +13,23 @@
   examples:
   - code: "# Модуль целого числа\nabs(-5)"
     output: '5'
-  - code: "# Модуль комплексного числа\nabs(3+4j)"
-    output: '5.0'
   - code: "# Модуль дробного числа\nabs(-2.5)"
     output: '2.5'
+  - code: "# Положительное число не меняется\nabs(7)"
+    output: '7'
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#abs
   module: Встроенные функции
+  level: 0
 - name: all
-  category: A
   description: Возвращает True, если все элементы последовательности объектов истинны.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Последовательность объектов (Iterable)
+    type_hint: list | str | range
     required: true
     positional_only: true
-    description: Последовательность объектов для проверки
+    description: 'Последовательность объектов для проверки: список, строка или диапазон'
   returns:
     type: bool
     description: Результат логической проверки
@@ -44,16 +43,16 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#all
   module: Встроенные функции
+  level: 1
 - name: any
-  category: A
   description: Возвращает True, если хотя бы один элемент последовательности объектов истинен.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Последовательность объектов (Iterable)
+    type_hint: list | str | range
     required: true
     positional_only: true
-    description: Последовательность объектов для проверки
+    description: 'Последовательность объектов для проверки: список, строка или диапазон'
   returns:
     type: bool
     description: Результат логической проверки
@@ -67,16 +66,16 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#any
   module: Встроенные функции
+  level: 1
 - name: len
-  category: L
-  description: Возвращает количество элементов в объекте.
+  description: Возвращает количество элементов (для строки — количество символов).
   class_name: ''
   parameters:
   - name: obj
-    type_hint: Sized
+    type_hint: str | list | dict | set | range
     required: true
     positional_only: true
-    description: Объект с поддержкой протокола длины
+    description: Строка, список, словарь, множество или диапазон
   returns:
     type: int
     description: Количество элементов
@@ -90,8 +89,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#len
   module: Встроенные функции
+  level: 0
 - name: print
-  category: P
   description: Выводит объекты на экран.
   class_name: ''
   parameters:
@@ -112,17 +111,17 @@
     keyword_only: true
     description: Завершающая строка
   - name: file
-    type_hint: object
+    type_hint: file
     required: false
     default_value: None
     keyword_only: true
-    description: Файловый объект
+    description: Файл, в который выводится текст (по умолчанию — окно вывода программы)
   - name: flush
     type_hint: bool
     required: false
     default_value: 'False'
     keyword_only: true
-    description: Принудительный сброс буфера
+    description: Если True, текст выводится немедленно, без ожидания
   returns:
     type: None
     description: Не возвращает значения
@@ -133,11 +132,11 @@
     output: a b
   - code: "# Вывод нескольких значений подряд\nprint(1, 2, 3)"
     output: 1 2 3
-  sideeffects: Выводит текст в стандартный поток вывода (stdout)
+  sideeffects: Выводит текст в окно вывода программы
   url: https://docs.python.org/3/library/functions.html#print
   module: Встроенные функции
+  level: 0
 - name: input
-  category: I
   description: Считывает строку из ввода.
   class_name: ''
   parameters:
@@ -155,8 +154,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#input
   module: Встроенные функции
+  level: 0
 - name: int
-  category: I
   description: Возвращает целочисленный объект.
   class_name: ''
   parameters:
@@ -183,8 +182,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#int
   module: Встроенные функции
+  level: 0
 - name: float
-  category: F
   description: Возвращает число с плавающей точкой.
   class_name: ''
   parameters:
@@ -204,19 +203,19 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#float
   module: Встроенные функции
+  level: 0
 - name: str
-  category: S
   description: Возвращает строковую версию объекта.
   class_name: ''
   parameters:
   - name: object
-    type_hint: object
+    type_hint: любой тип
     required: false
     positional_only: true
-    description: Объект для преобразования
+    description: Значение для преобразования
   returns:
     type: str
-    description: Строковое представление
+    description: Текст
   examples:
   - code: "# Число в строку\nstr(2024)"
     output: '''2024'''
@@ -225,9 +224,9 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#str
   module: Встроенные типы данных
+  level: 0
 - name: range
-  category: R
-  description: Возвращает неизменяемую последовательность чисел.
+  description: Возвращает последовательность целых чисел с заданными началом, концом и шагом.
   class_name: ''
   parameters:
   - name: start
@@ -247,7 +246,7 @@
     description: Шаг
   returns:
     type: range
-    description: Объект range
+    description: 'Последовательность чисел: её можно перебирать в цикле for или превратить в список функцией list()'
   examples:
   - code: "# Числа от 0 до 2\nlist(range(3))"
     output: '[0, 1, 2]'
@@ -258,16 +257,16 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#range
   module: Встроенные функции
+  level: 0
 - name: list
-  category: L
   description: Создаёт список из последовательности объектов.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Последовательность объектов (Iterable)
+    type_hint: str | range | set | dict
     required: false
     positional_only: true
-    description: Последовательность объектов
+    description: 'Последовательность объектов: строка, диапазон, множество или словарь'
   returns:
     type: list
     description: Новый список
@@ -279,15 +278,15 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#list
   module: Встроенные типы данных
+  level: 0
 - name: dict
-  category: D
   description: Создаёт новый словарь.
   class_name: ''
   parameters:
   - name: mapping
-    type_hint: Mapping
+    type_hint: dict | list
     required: false
-    description: Словарь или последовательность объектов пар ключ-значение
+    description: Словарь или список пар ключ-значение
   returns:
     type: dict
     description: Новый словарь
@@ -299,16 +298,16 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#dict
   module: Встроенные типы данных
+  level: 0
 - name: set
-  category: S
   description: Создаёт новое множество.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Последовательность объектов (Iterable)
+    type_hint: str | list | range | dict
     required: false
     positional_only: true
-    description: Последовательность объектов
+    description: 'Последовательность объектов: строка, список, диапазон или словарь'
   returns:
     type: set
     description: Новое множество
@@ -318,28 +317,28 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#set
   module: Встроенные типы данных
+  level: 0
 - name: open
-  category: O
-  description: Открывает файл и возвращает файловый объект.
+  description: Открывает файл и возвращает его для чтения или записи.
   class_name: ''
   parameters:
   - name: file
-    type_hint: str | PathLike
+    type_hint: str
     required: true
-    description: Путь к файлу
+    description: Имя файла или путь к нему
   - name: mode
     type_hint: str
     required: false
     default_value: '''r'''
-    description: Режим доступа
+    description: 'Режим открытия: ''r'' — чтение, ''w'' — запись, ''a'' — дозапись в конец'
   - name: encoding
     type_hint: str
     required: false
     default_value: None
-    description: Кодировка
+    description: Кодировка текста, например 'utf-8'
   returns:
-    type: TextIOWrapper | BufferedReader
-    description: Файловый объект
+    type: file
+    description: Файл, с которым можно работать методами read(), write() и close()
   examples:
   - code: "# Чтение файла целиком\nwith open('data.txt', 'r', encoding='utf-8') as f:\n    content = f.read()"
     output: ''
@@ -348,19 +347,19 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#open
   module: Встроенные функции
+  level: 0
 - name: type
-  category: T
-  description: Возвращает тип объекта.
+  description: Возвращает тип данных значения.
   class_name: ''
   parameters:
   - name: object
-    type_hint: object
+    type_hint: любой тип
     required: true
     positional_only: true
-    description: Объект для определения типа
+    description: Значение, тип которого нужно определить
   returns:
     type: type
-    description: Тип объекта
+    description: Тип данных
   examples:
   - code: "# Тип целого числа\ntype(42)"
     output: <class 'int'>
@@ -369,21 +368,21 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#type
   module: Встроенные функции
+  level: 0
 - name: isinstance
-  category: I
-  description: Проверяет, является ли объект экземпляром класса или кортежа классов.
+  description: Проверяет, имеет ли значение указанный тип данных (или один из нескольких типов).
   class_name: ''
   parameters:
   - name: object
-    type_hint: object
+    type_hint: любой тип
     required: true
     positional_only: true
-    description: Проверяемый объект
+    description: Проверяемое значение
   - name: classinfo
     type_hint: type | tuple
     required: true
     positional_only: true
-    description: Класс или кортеж классов
+    description: Тип данных (например, int) или несколько типов в круглых скобках
   returns:
     type: bool
     description: Результат проверки
@@ -395,16 +394,16 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#isinstance
   module: Встроенные функции
+  level: 0
 - name: chr
-  category: C
-  description: Возвращает строку из одного символа с кодом Unicode.
+  description: Возвращает символ по его числовому коду.
   class_name: ''
   parameters:
   - name: i
     type_hint: int
     required: true
     positional_only: true
-    description: Код Unicode (0–0x10FFFF)
+    description: Числовой код символа
   returns:
     type: str
     description: Символ
@@ -416,9 +415,9 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#chr
   module: Встроенные функции
+  level: 0
 - name: ord
-  category: O
-  description: Возвращает код Unicode символа.
+  description: Возвращает числовой код символа.
   class_name: ''
   parameters:
   - name: c
@@ -428,7 +427,7 @@
     description: Символ (строка длины 1)
   returns:
     type: int
-    description: Код Unicode
+    description: Числовой код символа
   examples:
   - code: "# Символ в код\nord(\"a\")"
     output: '97'
@@ -437,16 +436,16 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#ord
   module: Встроенные функции
+  level: 0
 - name: sum
-  category: S
   description: Возвращает сумму элементов последовательности объектов.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Последовательность объектов (Iterable)
+    type_hint: list | range
     required: true
     positional_only: true
-    description: Последовательность объектов с числами
+    description: 'Последовательность чисел: список или диапазон'
   - name: start
     type_hint: int | float
     required: false
@@ -466,27 +465,27 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#sum
   module: Встроенные функции
+  level: 0
 - name: min
-  category: M
   description: Возвращает наименьший элемент.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Последовательность объектов (Iterable)
+    type_hint: list | str | range
     required: true
-    description: Последовательность объектов или аргументы
+    description: Последовательность объектов (список, строка, диапазон) или первое из нескольких сравниваемых значений
   - name: key
     type_hint: function
     required: false
     keyword_only: true
-    description: Функция для извлечения ключа сравнения
+    description: Функция, по значению которой сравниваются элементы, например len
   - name: default
-    type_hint: object
+    type_hint: любой тип
     required: false
     keyword_only: true
-    description: Значение по умолчанию для пустой последовательности объектов
+    description: Результат для пустой последовательности
   returns:
-    type: object
+    type: любой тип
     description: Наименьший элемент
   examples:
   - code: "# Минимум списка\nmin([3, 1, 4])"
@@ -496,27 +495,27 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#min
   module: Встроенные функции
+  level: 0
 - name: max
-  category: M
   description: Возвращает наибольший элемент.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Последовательность объектов (Iterable)
+    type_hint: list | str | range
     required: true
-    description: Последовательность объектов или аргументы
+    description: Последовательность объектов (список, строка, диапазон) или первое из нескольких сравниваемых значений
   - name: key
     type_hint: function
     required: false
     keyword_only: true
-    description: Функция для извлечения ключа сравнения
+    description: Функция, по значению которой сравниваются элементы, например len
   - name: default
-    type_hint: object
+    type_hint: любой тип
     required: false
     keyword_only: true
-    description: Значение по умолчанию для пустой последовательности объектов
+    description: Результат для пустой последовательности
   returns:
-    type: object
+    type: любой тип
     description: Наибольший элемент
   examples:
   - code: "# Максимум списка\nmax([3, 1, 4])"
@@ -526,8 +525,47 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#max
   module: Встроенные функции
+  level: 0
+- name: sorted
+  description: Возвращает новый список из элементов последовательности объектов, отсортированных по возрастанию (по умолчанию).
+  class_name: ''
+  parameters:
+  - name: iterable
+    type_hint: list | str | range | set | dict
+    required: true
+    positional_only: true
+    description: 'Последовательность объектов: список, строка, диапазон, множество или словарь'
+  - name: key
+    type_hint: function
+    required: false
+    default_value: None
+    keyword_only: true
+    description: Функция, по значению которой сравниваются элементы, например len
+  - name: reverse
+    type_hint: bool
+    required: false
+    default_value: 'False'
+    keyword_only: true
+    description: Если True, сортировка идёт по убыванию
+  returns:
+    type: list
+    description: Новый отсортированный список, исходная последовательность не меняется
+  examples:
+  - code: "# Сортировка списка по возрастанию\nsorted([3, 1, 2])"
+    output: '[1, 2, 3]'
+  - code: "# Сортировка по убыванию\nsorted([3, 1, 2], reverse=True)"
+    output: '[3, 2, 1]'
+  - code: "# Сортировка символов строки\nsorted('python')"
+    output: '[''h'', ''n'', ''o'', ''p'', ''t'', ''y'']'
+  - code: "# Сортировка строк по длине\nsorted(['abc', 'a', 'ab'], key=len)"
+    output: '[''a'', ''ab'', ''abc'']'
+  - code: "# Исходный список не меняется\nnums = [3, 1, 2]\nresult = sorted(nums)\nprint(nums, result)"
+    output: '[3, 1, 2] [1, 2, 3]'
+  sideeffects: ''
+  url: https://docs.python.org/3/library/functions.html#sorted
+  module: Встроенные функции
+  level: 0
 - name: round
-  category: R
   description: Округляет число до заданного количества знаков после запятой.
   class_name: ''
   parameters:
@@ -552,8 +590,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#round
   module: Встроенные функции
+  level: 0
 - name: pow
-  category: P
   description: Возводит base в степень exp, по модулю mod (если указан).
   class_name: ''
   parameters:
@@ -583,8 +621,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/functions.html#pow
   module: Встроенные функции
+  level: 0
 - name: strip
-  category: S
   description: Возвращает копию строки с удалёнными ведущими и замыкающими символами.
   class_name: str
   parameters:
@@ -598,13 +636,13 @@
   examples:
   - code: "# Удаление пробельных символов\n'  hello  '.strip()"
     output: '''hello'''
-  - code: "# Удаление заданных символов с краёв\n'www.example.com'.strip('wcm.')"
-    output: '''example'''
+  - code: "# Символы удаляются только по краям строки\n'www.example.com'.strip('w.')"
+    output: '''example.com'''
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.strip
   module: Встроенные типы данных
+  level: 0
 - name: split
-  category: S
   description: Разбивает строку на список подстрок по разделителю.
   class_name: str
   parameters:
@@ -618,7 +656,7 @@
     default_value: '-1'
     description: Максимальное число разбиений
   returns:
-    type: list[str]
+    type: list
     description: Список подстрок
   examples:
   - code: "# Разбиение по разделителю\n'a,b,c'.split(',')"
@@ -630,15 +668,15 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.split
   module: Встроенные типы данных
+  level: 0
 - name: join
-  category: S
   description: Объединяет строки из последовательности объектов, используя строку как разделитель.
   class_name: str
   parameters:
   - name: iterable
-    type_hint: Последовательность объектов (Iterable[str])
+    type_hint: list
     required: true
-    description: Последовательность объектов со строками
+    description: Список строк
   returns:
     type: str
     description: Объединённая строка
@@ -650,8 +688,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.join
   module: Встроенные типы данных
+  level: 0
 - name: lower
-  category: S
   description: Возвращает копию строки в нижнем регистре.
   class_name: str
   parameters: []
@@ -664,8 +702,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.lower
   module: Встроенные типы данных
+  level: 0
 - name: upper
-  category: S
   description: Возвращает копию строки в верхнем регистре.
   class_name: str
   parameters: []
@@ -678,8 +716,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.upper
   module: Встроенные типы данных
+  level: 0
 - name: replace
-  category: S
   description: Возвращает копию строки с заменой подстрок.
   class_name: str
   parameters:
@@ -707,8 +745,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.replace
   module: Встроенные типы данных
+  level: 0
 - name: find
-  category: S
   description: Возвращает индекс первого вхождения подстроки или -1.
   class_name: str
   parameters:
@@ -735,15 +773,15 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.find
   module: Встроенные типы данных
+  level: 0
 - name: startswith
-  category: S
   description: Проверяет, начинается ли строка с указанной подстроки.
   class_name: str
   parameters:
   - name: prefix
-    type_hint: str | tuple[str]
+    type_hint: str | tuple
     required: true
-    description: Префикс или кортеж префиксов
+    description: Начало строки или несколько вариантов в круглых скобках (кортеж)
   - name: start
     type_hint: int
     required: false
@@ -763,8 +801,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.startswith
   module: Встроенные типы данных
+  level: 0
 - name: count
-  category: C
   description: Возвращает количество вхождений подстроки/значения.
   class_name: str
   parameters:
@@ -791,27 +829,27 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#str.count
   module: Встроенные типы данных
+  level: 0
 - name: append
-  category: A
-  description: Добавляет объект в конец списка.
+  description: Добавляет элемент в конец списка.
   class_name: list
   parameters:
   - name: object
-    type_hint: object
+    type_hint: любой тип
     required: true
     positional_only: true
     description: Элемент для добавления
   returns:
     type: None
-    description: Модифицирует список на месте
+    description: Не возвращает значения, изменяется сам список
   examples:
   - code: "# Добавление в конец списка\nlst = [1, 2]\nlst.append(3)\nlst"
     output: '[1, 2, 3]'
   sideeffects: 'Изменяет исходный список: добавляет элемент в его конец'
   url: https://docs.python.org/3/library/stdtypes.html#list.append
   module: Встроенные типы данных
+  level: 0
 - name: pop
-  category: P
   description: Удаляет и возвращает элемент по индексу (список) или ключу (словарь).
   class_name: list
   parameters:
@@ -822,7 +860,7 @@
     positional_only: true
     description: Индекс элемента (по умолчанию последний)
   returns:
-    type: object
+    type: любой тип
     description: Удалённый элемент
   examples:
   - code: "# Удаление и возврат последнего элемента\nlst = [1, 2, 3]\nlst.pop()"
@@ -832,9 +870,9 @@
   sideeffects: 'Изменяет исходный список: удаляет из него элемент'
   url: https://docs.python.org/3/library/stdtypes.html#list.pop
   module: Встроенные типы данных
+  level: 0
 - name: insert
-  category: I
-  description: Вставляет объект перед указанным индексом.
+  description: Вставляет элемент перед элементом с указанным индексом.
   class_name: list
   parameters:
   - name: index
@@ -843,59 +881,59 @@
     positional_only: true
     description: Индекс для вставки
   - name: object
-    type_hint: object
+    type_hint: любой тип
     required: true
     positional_only: true
     description: Элемент для вставки
   returns:
     type: None
-    description: Модифицирует список на месте
+    description: Не возвращает значения, изменяется сам список
   examples:
   - code: "# Вставка перед индексом\nlst = [1, 3]\nlst.insert(1, 2)\nlst"
     output: '[1, 2, 3]'
   sideeffects: 'Изменяет исходный список: вставляет элемент'
   url: https://docs.python.org/3/library/stdtypes.html#list.insert
   module: Встроенные типы данных
+  level: 0
 - name: remove
-  category: R
   description: Удаляет первое вхождение значения (список) или элемент (множество).
   class_name: list
   parameters:
   - name: value
-    type_hint: object
+    type_hint: любой тип
     required: true
     positional_only: true
     description: Значение для удаления
   returns:
     type: None
-    description: Модифицирует коллекцию на месте
+    description: Не возвращает значения, изменяется сам список (или множество)
   examples:
   - code: "# Удаляется первое вхождение\nlst = [1, 2, 2, 3]\nlst.remove(2)\nlst"
     output: '[1, 2, 3]'
   sideeffects: 'Изменяет исходный список: удаляет первое вхождение значения'
   url: https://docs.python.org/3/library/stdtypes.html#list.remove
   module: Встроенные типы данных
+  level: 0
 - name: clear
-  category: C
-  description: Удаляет все элементы из коллекции.
+  description: Удаляет все элементы из списка, словаря или множества.
   class_name: list
   parameters: []
   returns:
     type: None
-    description: Модифицирует коллекцию на месте
+    description: Не возвращает значения, изменяется сам список (словарь, множество)
   examples:
   - code: "# Удаление всех элементов\nlst = [1, 2, 3]\nlst.clear()\nlst"
     output: '[]'
-  sideeffects: 'Изменяет исходную коллекцию: удаляет все её элементы'
+  sideeffects: 'Изменяет сам список (словарь, множество): удаляет все элементы'
   url: https://docs.python.org/3/library/stdtypes.html#list.clear
   module: Встроенные типы данных
+  level: 0
 - name: index
-  category: I
   description: Возвращает индекс первого вхождения значения.
   class_name: list
   parameters:
   - name: value
-    type_hint: object
+    type_hint: любой тип
     required: true
     description: Искомое значение
   - name: start
@@ -917,22 +955,74 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#list.index
   module: Встроенные типы данных
+  level: 0
+- name: sort
+  description: Сортирует элементы списка по возрастанию (по умолчанию).
+  class_name: list
+  parameters:
+  - name: key
+    type_hint: function
+    required: false
+    default_value: None
+    keyword_only: true
+    description: Функция, по значению которой сравниваются элементы, например len
+  - name: reverse
+    type_hint: bool
+    required: false
+    default_value: 'False'
+    keyword_only: true
+    description: Если True, сортировка идёт по убыванию
+  returns:
+    type: None
+    description: Не возвращает значения, изменяется сам список
+  examples:
+  - code: "# Сортировка по возрастанию\nnums = [3, 1, 2]\nnums.sort()\nprint(nums)"
+    output: '[1, 2, 3]'
+  - code: "# Сортировка по убыванию\nnums = [3, 1, 2]\nnums.sort(reverse=True)\nprint(nums)"
+    output: '[3, 2, 1]'
+  - code: "# Сортировка строк по длине\nwords = ['abc', 'a', 'ab']\nwords.sort(key=len)\nprint(words)"
+    output: '[''a'', ''ab'', ''abc'']'
+  - code: "# Сортировка строк по алфавиту\nnames = ['Яна', 'Борис', 'Анна']\nnames.sort()\nprint(names)"
+    output: '[''Анна'', ''Борис'', ''Яна'']'
+  - code: "# Метод sort() ничего не возвращает\nnums = [2, 1]\nprint(nums.sort())"
+    output: None
+  sideeffects: 'Изменяет сам список: элементы меняются местами'
+  url: https://docs.python.org/3/library/stdtypes.html#list.sort
+  module: Встроенные типы данных
+  level: 0
+- name: reverse
+  description: Располагает элементы списка в обратном порядке.
+  class_name: list
+  parameters: []
+  returns:
+    type: None
+    description: Не возвращает значения, изменяется сам список
+  examples:
+  - code: "# Обратный порядок элементов\nnums = [1, 2, 3]\nnums.reverse()\nprint(nums)"
+    output: '[3, 2, 1]'
+  - code: "# reverse() не сортирует, а только переворачивает список\nnums = [3, 1, 2]\nnums.reverse()\nprint(nums)"
+    output: '[2, 1, 3]'
+  - code: "# Копия в обратном порядке (исходный список не меняется)\nnums = [1, 2, 3]\nprint(nums[::-1], nums)"
+    output: '[3, 2, 1] [1, 2, 3]'
+  sideeffects: 'Изменяет сам список: порядок элементов становится обратным'
+  url: https://docs.python.org/3/library/stdtypes.html#list.reverse
+  module: Встроенные типы данных
+  level: 0
 - name: get
-  category: G
   description: Возвращает значение по ключу или default, если ключ не найден.
   class_name: dict
   parameters:
   - name: key
-    type_hint: Hashable
+    type_hint: int | str
     required: true
     description: Ключ для поиска
   - name: default
-    type_hint: object
+    type_hint: любой тип
     required: false
     default_value: None
     description: Значение по умолчанию
   returns:
-    type: object
+    type: любой тип
     description: Значение или default
   examples:
   - code: "# Значение по ключу\nd = {'a': 1}\nd.get('a')"
@@ -942,18 +1032,18 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#dict.get
   module: Встроенные типы данных
+  level: 0
 - name: update
-  category: U
-  description: Обновляет словарь элементами из другого словаря или последовательности объектов пар.
+  description: Обновляет словарь парами ключ-значение из другого словаря или списка пар.
   class_name: dict
   parameters:
   - name: other
-    type_hint: Mapping | Последовательность объектов (Iterable[tuple])
+    type_hint: dict | list
     required: false
-    description: Словарь или последовательность объектов для обновления
+    description: Словарь или список пар для обновления
   returns:
     type: None
-    description: Модифицирует словарь на месте
+    description: Не возвращает значения, изменяется сам словарь
   examples:
   - code: "# Добавление пары из словаря\nd = {'a': 1}\nd.update({'b': 2})\nd"
     output: '{''a'': 1, ''b'': 2}'
@@ -962,78 +1052,78 @@
   sideeffects: 'Изменяет исходный словарь: добавляет или перезаписывает пары ключ-значение'
   url: https://docs.python.org/3/library/stdtypes.html#dict.update
   module: Встроенные типы данных
+  level: 0
 - name: keys
-  category: K
-  description: Возвращает представление ключей словаря.
+  description: Возвращает ключи словаря.
   class_name: dict
   parameters: []
   returns:
     type: dict_keys
-    description: Представление ключей
+    description: 'Набор ключей: его можно перебирать в цикле for или превратить в список функцией list()'
   examples:
   - code: "# Список ключей\nlist({'a': 1, 'b': 2}.keys())"
     output: '[''a'', ''b'']'
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#dict.keys
   module: Встроенные типы данных
+  level: 0
 - name: values
-  category: V
-  description: Возвращает представление значений словаря.
+  description: Возвращает значения словаря.
   class_name: dict
   parameters: []
   returns:
     type: dict_values
-    description: Представление значений
+    description: 'Набор значений: его можно перебирать в цикле for или превратить в список функцией list()'
   examples:
   - code: "# Список значений\nlist({'a': 1, 'b': 2}.values())"
     output: '[1, 2]'
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#dict.values
   module: Встроенные типы данных
+  level: 0
 - name: items
-  category: I
-  description: Возвращает представление пар ключ-значение словаря.
+  description: Возвращает пары ключ-значение словаря.
   class_name: dict
   parameters: []
   returns:
     type: dict_items
-    description: Представление пар ключ-значение
+    description: 'Набор пар (ключ, значение): его можно перебирать в цикле for или превратить в список функцией list()'
   examples:
   - code: "# Список пар ключ-значение\nlist({'a': 1}.items())"
     output: '[(''a'', 1)]'
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#dict.items
   module: Встроенные типы данных
+  level: 0
 - name: add
-  category: A
   description: Добавляет элемент во множество.
   class_name: set
   parameters:
   - name: elem
-    type_hint: Hashable
+    type_hint: int | float | str
     required: true
     description: Элемент для добавления
   returns:
     type: None
-    description: Модифицирует множество на месте
+    description: Не возвращает значения, изменяется само множество
   examples:
   - code: "# Добавление элемента во множество\ns = {1, 2}\ns.add(3)\nprint(s)"
     output: '{1, 2, 3}'
   sideeffects: 'Изменяет исходное множество: добавляет элемент'
   url: https://docs.python.org/3/library/stdtypes.html#set.add
   module: Встроенные типы данных
+  level: 0
 - name: discard
-  category: D
   description: Удаляет элемент из множества, если он присутствует (не вызывает ошибку, если отсутствует).
   class_name: set
   parameters:
   - name: elem
-    type_hint: Hashable
+    type_hint: int | float | str
     required: true
     description: Элемент для удаления
   returns:
     type: None
-    description: Модифицирует множество на месте
+    description: Не возвращает значения, изменяется само множество
   examples:
   - code: "# Удаление элемента\ns = {1, 2, 3}\ns.discard(2)\ns"
     output: '{1, 3}'
@@ -1042,14 +1132,16 @@
   sideeffects: 'Изменяет исходное множество: удаляет элемент, если он присутствует'
   url: https://docs.python.org/3/library/stdtypes.html#set.discard
   module: Встроенные типы данных
+  level: 0
 - name: union
-  category: U
   description: Возвращает новое множество с элементами из данного и других множеств.
   class_name: set
   parameters:
   - name: others
+    type_hint: set | list
+    required: false
     variadic: true
-    description: Другие последовательности объектов
+    description: Другие множества или списки
   returns:
     type: set
     description: Новое множество
@@ -1059,14 +1151,16 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#set.union
   module: Встроенные типы данных
+  level: 0
 - name: intersection
-  category: I
   description: Возвращает новое множество с общими элементами.
   class_name: set
   parameters:
   - name: others
+    type_hint: set | list
+    required: false
     variadic: true
-    description: Другие последовательности объектов
+    description: Другие множества или списки
   returns:
     type: set
     description: Новое множество
@@ -1076,19 +1170,19 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/stdtypes.html#set.intersection
   module: Встроенные типы данных
+  level: 0
 - name: read
-  category: R
-  description: Читает до size байт/символов из файла.
-  class_name: TextIOWrapper
+  description: Читает из файла не более size символов (весь файл, если size не указан).
+  class_name: file
   parameters:
   - name: size
     type_hint: int
     required: false
     default_value: '-1'
-    description: Количество байт/символов для чтения
+    description: Количество символов для чтения
   returns:
-    type: str | bytes
-    description: Прочитанные данные
+    type: str
+    description: Прочитанный текст
   examples:
   - code: "# Чтение всего файла\nwith open('file.txt') as f:\n    content = f.read()"
     output: ''
@@ -1097,28 +1191,28 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/io.html#io.TextIOWrapper.read
   module: io
+  level: 0
 - name: write
-  category: W
-  description: Записывает строку/байты в файл.
-  class_name: TextIOWrapper
+  description: Записывает строку в файл.
+  class_name: file
   parameters:
   - name: s
-    type_hint: str | bytes
+    type_hint: str
     required: true
-    description: Данные для записи
+    description: Строка для записи
   returns:
     type: int
-    description: Количество записанных символов/байт
+    description: Количество записанных символов
   examples:
   - code: "# Запись строки в файл\nwith open('out.txt', 'w') as f:\n    f.write('Hello')"
     output: ''
   sideeffects: Записывает данные в файл
   url: https://docs.python.org/3/library/io.html#io.TextIOWrapper.write
   module: io
+  level: 0
 - name: close
-  category: C
   description: Закрывает файл, освобождая ресурсы.
-  class_name: TextIOWrapper
+  class_name: file
   parameters: []
   returns:
     type: None
@@ -1129,63 +1223,65 @@
   sideeffects: Закрывает файл, освобождая системные ресурсы
   url: https://docs.python.org/3/library/io.html#io.IOBase.close
   module: io
+  level: 0
 - name: seed
-  category: S
-  description: Инициализирует генератор псевдослучайных чисел.
+  description: 'Задаёт начальное число генератора случайных чисел: при одном и том же числе выпадает одна и та же последовательность.'
   class_name: ''
   parameters:
   - name: a
-    type_hint: int | float | str | bytes | bytearray | None
+    type_hint: int | float | str | None
     required: false
-    description: Начальное значение
+    description: Начальное число (если не указано, выбирается автоматически)
   - name: version
     type_hint: int
     required: false
     default_value: '2'
-    description: Версия алгоритма
+    description: Версия алгоритма (обычно не меняют)
   returns:
     type: None
-    description: Инициализирует генератор псевдослучайных чисел.
+    description: Не возвращает значения
   examples:
-  - code: "import random\nrandom.seed(42)"
-    output: None
-  sideeffects: Изменяет состояние генератора случайных чисел
+  - code: "# Одно и то же начальное число — одни и те же числа\nimport random\nrandom.seed(42)\na = random.randint(1, 100)\nrandom.seed(42)\nb = random.randint(1, 100)\nprint(a == b)"
+    output: 'True'
+  - code: "# Повторяемость случайных дробных чисел\nimport random\nrandom.seed(1)\nx = random.random()\nrandom.seed(1)\nprint(x == random.random())"
+    output: 'True'
+  sideeffects: 'Запоминает начальное число: при том же числе выпадет та же последовательность случайных чисел'
   url: https://docs.python.org/3/library/random.html#random.seed
   module: random
+  level: 0
 - name: getstate
-  category: G
-  description: Возвращает текущее внутреннее состояние генератора.
+  description: Запоминает текущее положение генератора случайных чисел, чтобы потом вернуться к нему функцией setstate().
   class_name: ''
   parameters: []
   returns:
-    type: float
-    description: Возвращает текущее внутреннее состояние генератора.
+    type: tuple
+    description: Данные о положении генератора (передаются в setstate())
   examples:
-  - code: "import random\nrandom.getstate()"
-    output: Состояние генератора
+  - code: "# Запоминание положения генератора\nimport random\nstate = random.getstate()\nprint(type(state))"
+    output: <class 'tuple'>
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.getstate
   module: random
+  level: 1
 - name: setstate
-  category: S
-  description: Восстанавливает ранее сохранённое состояние генератора.
+  description: Возвращает генератор случайных чисел в положение, запомненное функцией getstate().
   class_name: ''
   parameters:
   - name: state
-    type_hint: object
+    type_hint: tuple
     required: true
-    description: Ранее сохранённое состояние
+    description: Данные, полученные от getstate()
   returns:
     type: None
-    description: Восстанавливает ранее сохранённое состояние генератора.
+    description: Не возвращает значения
   examples:
-  - code: "import random\nrandom.setstate(state)"
-    output: None
-  sideeffects: Изменяет состояние генератора случайных чисел
+  - code: "# Возврат к запомненному положению: числа повторяются\nimport random\nstate = random.getstate()\na = random.random()\nrandom.setstate(state)\nb = random.random()\nprint(a == b)"
+    output: 'True'
+  sideeffects: 'Возвращает генератор в запомненное положение: дальше выпадают те же числа, что после getstate()'
   url: https://docs.python.org/3/library/random.html#random.setstate
   module: random
+  level: 1
 - name: randbytes
-  category: R
   description: Возвращает n случайных байтов.
   class_name: ''
   parameters:
@@ -1195,15 +1291,15 @@
     description: Количество байтов
   returns:
     type: bytes
-    description: Возвращает n случайных байтов.
+    description: Случайные байты
   examples:
-  - code: "import random\nrandom.randbytes(4)"
-    output: b'...'
+  - code: "# Четыре случайных байта\nimport random\ndata = random.randbytes(4)\nprint(len(data))"
+    output: '4'
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.randbytes
   module: random
+  level: 1
 - name: randrange
-  category: R
   description: Возвращает случайный элемент заданного диапазона.
   class_name: ''
   parameters:
@@ -1229,8 +1325,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.randrange
   module: random
+  level: 0
 - name: randint
-  category: R
   description: Возвращает случайное целое число от a до b включительно.
   class_name: ''
   parameters:
@@ -1251,8 +1347,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.randint
   module: random
+  level: 0
 - name: getrandbits
-  category: G
   description: Возвращает неотрицательное целое число из k случайных битов.
   class_name: ''
   parameters:
@@ -1269,17 +1365,17 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.getrandbits
   module: random
+  level: 1
 - name: choice
-  category: C
   description: Выбирает случайный элемент непустой последовательности.
   class_name: ''
   parameters:
   - name: seq
-    type_hint: Sequence
+    type_hint: list | str | range
     required: true
-    description: Последовательность
+    description: 'Непустая последовательность: список, строка или диапазон'
   returns:
-    type: object
+    type: любой тип
     description: Выбирает случайный элемент непустой последовательности.
   examples:
   - code: "import random\nrandom.choice(['да', 'нет'])"
@@ -1287,24 +1383,24 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.choice
   module: random
+  level: 0
 - name: choices
-  category: C
   description: Выбирает k элементов с возвращением; можно задать веса.
   class_name: ''
   parameters:
   - name: population
-    type_hint: Sequence
+    type_hint: list | str | range
     required: true
-    description: Популяция
+    description: Последовательность, из которой выбираются элементы
   - name: weights
-    type_hint: Sequence | None
+    type_hint: list | None
     required: false
-    description: Относительные веса
+    description: 'Вес каждого элемента: чем больше вес, тем чаще он выбирается'
   - name: cum_weights
-    type_hint: Sequence | None
+    type_hint: list | None
     required: false
     keyword_only: true
-    description: Накопленные веса
+    description: Накопленные веса (используются вместо weights)
   - name: k
     type_hint: int
     required: false
@@ -1320,37 +1416,39 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.choices
   module: random
+  level: 0
 - name: shuffle
-  category: S
-  description: Перемешивает последовательность на месте.
+  description: Перемешивает элементы списка в случайном порядке.
   class_name: ''
   parameters:
   - name: x
-    type_hint: MutableSequence
+    type_hint: list
     required: true
-    description: Изменяемая последовательность
+    description: Список, элементы которого нужно перемешать
   returns:
     type: None
-    description: Перемешивает последовательность на месте.
+    description: Не возвращает значения, изменяется сам список
   examples:
-  - code: "import random\nitems = [1, 2, 3]\nrandom.shuffle(items)"
-    output: None
-  sideeffects: Изменяет состояние генератора случайных чисел
+  - code: "# Случайный порядок элементов (результат может быть другим)\nimport random\nitems = [1, 2, 3]\nrandom.shuffle(items)\nprint(items)"
+    output: '[3, 1, 2]'
+  - code: "# Состав списка не меняется, меняется только порядок\nimport random\nitems = [1, 2, 3, 4, 5]\nrandom.shuffle(items)\nprint(sorted(items))"
+    output: '[1, 2, 3, 4, 5]'
+  sideeffects: 'Изменяет сам список: элементы меняются местами'
   url: https://docs.python.org/3/library/random.html#random.shuffle
   module: random
+  level: 0
 - name: sample
-  category: S
   description: Выбирает k уникальных элементов без возвращения.
   class_name: ''
   parameters:
   - name: population
-    type_hint: Sequence
+    type_hint: list | str | range
     required: true
-    description: Популяция
+    description: Последовательность, из которой выбираются элементы
   - name: k
     type_hint: int
     required: true
-    description: Размер выборки
+    description: Количество выбираемых элементов
   returns:
     type: list
     description: Выбирает k уникальных элементов без возвращения.
@@ -1360,8 +1458,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.sample
   module: random
+  level: 0
 - name: random
-  category: R
   description: Возвращает случайное вещественное число в диапазоне [0.0, 1.0).
   class_name: ''
   parameters: []
@@ -1374,8 +1472,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.random
   module: random
+  level: 0
 - name: uniform
-  category: U
   description: Возвращает случайное вещественное число между a и b.
   class_name: ''
   parameters:
@@ -1396,8 +1494,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.uniform
   module: random
+  level: 0
 - name: triangular
-  category: T
   description: Возвращает случайное число из треугольного распределения.
   class_name: ''
   parameters:
@@ -1424,8 +1522,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.triangular
   module: random
+  level: 1
 - name: betavariate
-  category: B
   description: Возвращает случайное число из бета-распределения.
   class_name: ''
   parameters:
@@ -1446,8 +1544,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.betavariate
   module: random
+  level: 1
 - name: expovariate
-  category: E
   description: Возвращает случайное число из экспоненциального распределения.
   class_name: ''
   parameters:
@@ -1464,8 +1562,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.expovariate
   module: random
+  level: 1
 - name: gammavariate
-  category: G
   description: Возвращает случайное число из гамма-распределения.
   class_name: ''
   parameters:
@@ -1486,8 +1584,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.gammavariate
   module: random
+  level: 1
 - name: gauss
-  category: G
   description: Возвращает случайное число из нормального распределения.
   class_name: ''
   parameters:
@@ -1508,8 +1606,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.gauss
   module: random
+  level: 1
 - name: lognormvariate
-  category: L
   description: Возвращает случайное число из логнормального распределения.
   class_name: ''
   parameters:
@@ -1530,8 +1628,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.lognormvariate
   module: random
+  level: 1
 - name: normalvariate
-  category: N
   description: Возвращает случайное число из нормального распределения.
   class_name: ''
   parameters:
@@ -1552,8 +1650,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.normalvariate
   module: random
+  level: 1
 - name: vonmisesvariate
-  category: V
   description: Возвращает случайный угол из распределения фон Мизеса.
   class_name: ''
   parameters:
@@ -1574,8 +1672,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.vonmisesvariate
   module: random
+  level: 1
 - name: paretovariate
-  category: P
   description: Возвращает случайное число из распределения Парето.
   class_name: ''
   parameters:
@@ -1592,8 +1690,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.paretovariate
   module: random
+  level: 1
 - name: weibullvariate
-  category: W
   description: Возвращает случайное число из распределения Вейбулла.
   class_name: ''
   parameters:
@@ -1614,8 +1712,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/random.html#random.weibullvariate
   module: random
+  level: 1
 - name: ceil
-  category: C
   description: Округляет число вверх до ближайшего целого.
   class_name: ''
   parameters:
@@ -1632,8 +1730,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.ceil
   module: math
+  level: 0
 - name: comb
-  category: C
   description: Возвращает число сочетаний из n элементов по k.
   class_name: ''
   parameters:
@@ -1654,8 +1752,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.comb
   module: math
+  level: 1
 - name: copysign
-  category: C
   description: Возвращает модуль x со знаком числа y.
   class_name: ''
   parameters:
@@ -1676,8 +1774,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.copysign
   module: math
+  level: 1
 - name: fabs
-  category: F
   description: Возвращает абсолютное значение числа в виде float.
   class_name: ''
   parameters:
@@ -1694,8 +1792,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.fabs
   module: math
+  level: 0
 - name: factorial
-  category: F
   description: Возвращает факториал неотрицательного целого числа.
   class_name: ''
   parameters:
@@ -1712,8 +1810,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.factorial
   module: math
+  level: 1
 - name: floor
-  category: F
   description: Округляет число вниз до ближайшего целого.
   class_name: ''
   parameters:
@@ -1730,8 +1828,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.floor
   module: math
+  level: 0
 - name: fmod
-  category: F
   description: Возвращает остаток от деления x на y.
   class_name: ''
   parameters:
@@ -1752,8 +1850,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.fmod
   module: math
+  level: 1
 - name: frexp
-  category: F
   description: Возвращает мантиссу и показатель степени числа.
   class_name: ''
   parameters:
@@ -1770,15 +1868,15 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.frexp
   module: math
+  level: 1
 - name: fsum
-  category: F
   description: Точно суммирует значения вещественных чисел.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Iterable[float]
+    type_hint: list | range
     required: true
-    description: Итерируемый объект с числами для точного суммирования
+    description: 'Последовательность чисел: список или диапазон'
   returns:
     type: float
     description: Точно суммирует значения вещественных чисел.
@@ -1788,8 +1886,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.fsum
   module: math
+  level: 1
 - name: gcd
-  category: G
   description: Возвращает наибольший общий делитель целых чисел.
   class_name: ''
   parameters:
@@ -1806,8 +1904,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.gcd
   module: math
+  level: 1
 - name: isclose
-  category: I
   description: Проверяет, близки ли два числа с заданной точностью.
   class_name: ''
   parameters:
@@ -1840,8 +1938,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.isclose
   module: math
+  level: 1
 - name: isfinite
-  category: I
   description: Проверяет, является ли число конечным.
   class_name: ''
   parameters:
@@ -1858,8 +1956,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.isfinite
   module: math
+  level: 1
 - name: isinf
-  category: I
   description: Проверяет, является ли число бесконечностью.
   class_name: ''
   parameters:
@@ -1876,9 +1974,9 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.isinf
   module: math
+  level: 1
 - name: isnan
-  category: I
-  description: Проверяет, является ли значение NaN.
+  description: Проверяет, является ли значение «не числом» (NaN).
   class_name: ''
   parameters:
   - name: x
@@ -1887,15 +1985,15 @@
     description: Число для проверки на NaN
   returns:
     type: bool
-    description: Проверяет, является ли значение NaN.
+    description: Проверяет, является ли значение «не числом» (NaN).
   examples:
   - code: "import math\nmath.isnan(math.nan)"
     output: 'True'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.isnan
   module: math
+  level: 1
 - name: isqrt
-  category: I
   description: Возвращает целочисленный квадратный корень.
   class_name: ''
   parameters:
@@ -1912,8 +2010,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.isqrt
   module: math
+  level: 1
 - name: lcm
-  category: L
   description: Возвращает наименьшее общее кратное целых чисел.
   class_name: ''
   parameters:
@@ -1930,8 +2028,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.lcm
   module: math
+  level: 1
 - name: ldexp
-  category: L
   description: Возвращает x умноженное на 2 в степени i.
   class_name: ''
   parameters:
@@ -1952,8 +2050,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.ldexp
   module: math
+  level: 1
 - name: modf
-  category: M
   description: Возвращает дробную и целую части числа.
   class_name: ''
   parameters:
@@ -1970,8 +2068,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.modf
   module: math
+  level: 1
 - name: perm
-  category: P
   description: Возвращает число размещений из n элементов по k.
   class_name: ''
   parameters:
@@ -1992,22 +2090,22 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.perm
   module: math
+  level: 1
 - name: prod
-  category: P
   description: Возвращает произведение элементов последовательности.
   class_name: ''
   parameters:
   - name: iterable
-    type_hint: Iterable
+    type_hint: list | range
     required: true
-    description: Итерируемый объект с числами для перемножения
+    description: 'Последовательность чисел: список или диапазон'
   - name: start
     type_hint: int
     required: false
     default_value: '1'
     description: Начальное значение
   returns:
-    type: int
+    type: int | float
     description: Возвращает произведение элементов последовательности.
   examples:
   - code: "import math\nmath.prod([2, 3, 4])"
@@ -2015,9 +2113,9 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.prod
   module: math
+  level: 1
 - name: remainder
-  category: R
-  description: Возвращает остаток от деления согласно IEEE 754.
+  description: Возвращает остаток от деления x на y, при котором частное округляется до ближайшего целого (остаток по модулю не больше половины y).
   class_name: ''
   parameters:
   - name: x
@@ -2030,15 +2128,15 @@
     description: Делитель
   returns:
     type: float
-    description: Возвращает остаток от деления согласно IEEE 754.
+    description: Возвращает остаток от деления x на y, при котором частное округляется до ближайшего целого (остаток по модулю не больше половины y).
   examples:
   - code: "import math\nmath.remainder(7, 4)"
     output: '-1.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.remainder
   module: math
+  level: 1
 - name: sqrt
-  category: S
   description: Возвращает квадратный корень числа.
   class_name: ''
   parameters:
@@ -2055,8 +2153,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.sqrt
   module: math
+  level: 0
 - name: trunc
-  category: T
   description: Отбрасывает дробную часть числа.
   class_name: ''
   parameters:
@@ -2073,8 +2171,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.trunc
   module: math
+  level: 0
 - name: exp
-  category: E
   description: Возвращает e в степени x.
   class_name: ''
   parameters:
@@ -2087,12 +2185,12 @@
     description: Возвращает e в степени x.
   examples:
   - code: "import math\nmath.exp(1)"
-    output: 2.718281828...
+    output: '2.718281828459045'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.exp
   module: math
+  level: 0
 - name: exp2
-  category: E
   description: Возвращает 2 в степени x.
   class_name: ''
   parameters:
@@ -2109,8 +2207,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.exp2
   module: math
+  level: 1
 - name: expm1
-  category: E
   description: Возвращает e в степени x минус 1.
   class_name: ''
   parameters:
@@ -2123,12 +2221,12 @@
     description: Возвращает e в степени x минус 1.
   examples:
   - code: "import math\nmath.expm1(1)"
-    output: 1.718281828...
+    output: '1.718281828459045'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.expm1
   module: math
+  level: 1
 - name: log
-  category: L
   description: Возвращает логарифм числа по заданному основанию или натуральный логарифм.
   class_name: ''
   parameters:
@@ -2149,8 +2247,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.log
   module: math
+  level: 0
 - name: log1p
-  category: L
   description: Возвращает натуральный логарифм 1 + x.
   class_name: ''
   parameters:
@@ -2163,12 +2261,12 @@
     description: Возвращает натуральный логарифм 1 + x.
   examples:
   - code: "import math\nmath.log1p(1)"
-    output: 0.693147...
+    output: '0.6931471805599453'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.log1p
   module: math
+  level: 1
 - name: log2
-  category: L
   description: Возвращает логарифм числа по основанию 2.
   class_name: ''
   parameters:
@@ -2185,8 +2283,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.log2
   module: math
+  level: 1
 - name: log10
-  category: L
   description: Возвращает логарифм числа по основанию 10.
   class_name: ''
   parameters:
@@ -2203,8 +2301,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.log10
   module: math
+  level: 0
 - name: pow
-  category: P
   description: Возводит число x в степень y.
   class_name: ''
   parameters:
@@ -2224,9 +2322,9 @@
     output: '8.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.pow
-  module: Встроенные функции
+  module: math
+  level: 1
 - name: acos
-  category: A
   description: Возвращает арккосинус числа в радианах.
   class_name: ''
   parameters:
@@ -2243,8 +2341,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.acos
   module: math
+  level: 1
 - name: asin
-  category: A
   description: Возвращает арксинус числа в радианах.
   class_name: ''
   parameters:
@@ -2261,8 +2359,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.asin
   module: math
+  level: 1
 - name: atan
-  category: A
   description: Возвращает арктангенс числа в радианах.
   class_name: ''
   parameters:
@@ -2275,12 +2373,12 @@
     description: Возвращает арктангенс числа в радианах.
   examples:
   - code: "import math\nmath.atan(1)"
-    output: 0.785398...
+    output: '0.7853981633974483'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.atan
   module: math
+  level: 1
 - name: atan2
-  category: A
   description: Возвращает угол между положительной осью x и точкой (x, y).
   class_name: ''
   parameters:
@@ -2297,12 +2395,12 @@
     description: Возвращает угол между положительной осью x и точкой (x, y).
   examples:
   - code: "import math\nmath.atan2(1, 1)"
-    output: 0.785398...
+    output: '0.7853981633974483'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.atan2
   module: math
+  level: 1
 - name: cbrt
-  category: C
   description: Возвращает кубический корень числа.
   class_name: ''
   parameters:
@@ -2314,13 +2412,13 @@
     type: float
     description: Возвращает кубический корень числа.
   examples:
-  - code: "import math\nmath.cbrt(27)"
-    output: '3.0'
+  - code: "import math\nmath.cbrt(8)"
+    output: '2.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.cbrt
   module: math
+  level: 1
 - name: cos
-  category: C
   description: Возвращает косинус угла в радианах.
   class_name: ''
   parameters:
@@ -2337,30 +2435,30 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.cos
   module: math
+  level: 0
 - name: dist
-  category: D
-  description: Возвращает евклидово расстояние между двумя точками.
+  description: Возвращает расстояние между двумя точками, заданными списками координат.
   class_name: ''
   parameters:
   - name: p
-    type_hint: Iterable[float]
+    type_hint: list
     required: true
-    description: Первая точка, заданная последовательностью координат
+    description: 'Первая точка: список координат'
   - name: q
-    type_hint: Iterable[float]
+    type_hint: list
     required: true
-    description: Вторая точка, заданная последовательностью координат
+    description: 'Вторая точка: список координат'
   returns:
     type: float
-    description: Возвращает евклидово расстояние между двумя точками.
+    description: Возвращает расстояние между двумя точками, заданными списками координат.
   examples:
   - code: "import math\nmath.dist((0, 0), (3, 4))"
     output: '5.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.dist
   module: math
+  level: 1
 - name: degrees
-  category: D
   description: Преобразует угол из радиан в градусы.
   class_name: ''
   parameters:
@@ -2377,8 +2475,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.degrees
   module: math
+  level: 0
 - name: erf
-  category: E
   description: Возвращает функцию ошибок.
   class_name: ''
   parameters:
@@ -2395,8 +2493,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.erf
   module: math
+  level: 1
 - name: erfc
-  category: E
   description: Возвращает дополнительную функцию ошибок.
   class_name: ''
   parameters:
@@ -2413,8 +2511,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.erfc
   module: math
+  level: 1
 - name: gamma
-  category: G
   description: Возвращает гамма-функцию.
   class_name: ''
   parameters:
@@ -2431,9 +2529,9 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.gamma
   module: math
+  level: 1
 - name: hypot
-  category: H
-  description: Возвращает евклидову норму аргументов.
+  description: Возвращает расстояние от начала координат до точки с заданными координатами (для двух координат — длину гипотенузы).
   class_name: ''
   parameters:
   - name: coordinates
@@ -2442,15 +2540,15 @@
     description: Координаты
   returns:
     type: float
-    description: Возвращает евклидову норму аргументов.
+    description: Возвращает расстояние от начала координат до точки с заданными координатами (для двух координат — длину гипотенузы).
   examples:
   - code: "import math\nmath.hypot(3, 4)"
     output: '5.0'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.hypot
   module: math
+  level: 1
 - name: lgamma
-  category: L
   description: Возвращает натуральный логарифм абсолютного значения гамма-функции.
   class_name: ''
   parameters:
@@ -2463,12 +2561,12 @@
     description: Возвращает натуральный логарифм абсолютного значения гамма-функции.
   examples:
   - code: "import math\nmath.lgamma(5)"
-    output: 3.17805...
+    output: '3.178053830347945'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.lgamma
   module: math
+  level: 1
 - name: radians
-  category: R
   description: Преобразует угол из градусов в радианы.
   class_name: ''
   parameters:
@@ -2481,12 +2579,12 @@
     description: Преобразует угол из градусов в радианы.
   examples:
   - code: "import math\nmath.radians(180)"
-    output: 3.141592...
+    output: '3.141592653589793'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.radians
   module: math
+  level: 0
 - name: sin
-  category: S
   description: Возвращает синус угла в радианах.
   class_name: ''
   parameters:
@@ -2503,8 +2601,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.sin
   module: math
+  level: 0
 - name: cosh
-  category: C
   description: Возвращает гиперболический косинус.
   class_name: ''
   parameters:
@@ -2521,8 +2619,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.cosh
   module: math
+  level: 1
 - name: sinh
-  category: S
   description: Возвращает гиперболический синус.
   class_name: ''
   parameters:
@@ -2539,8 +2637,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.sinh
   module: math
+  level: 1
 - name: tanh
-  category: T
   description: Возвращает гиперболический тангенс.
   class_name: ''
   parameters:
@@ -2557,8 +2655,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.tanh
   module: math
+  level: 1
 - name: acosh
-  category: A
   description: Возвращает обратный гиперболический косинус.
   class_name: ''
   parameters:
@@ -2575,8 +2673,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.acosh
   module: math
+  level: 1
 - name: asinh
-  category: A
   description: Возвращает обратный гиперболический синус.
   class_name: ''
   parameters:
@@ -2593,8 +2691,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.asinh
   module: math
+  level: 1
 - name: atanh
-  category: A
   description: Возвращает обратный гиперболический тангенс.
   class_name: ''
   parameters:
@@ -2611,8 +2709,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.atanh
   module: math
+  level: 1
 - name: nextafter
-  category: N
   description: Возвращает следующее представимое число с плавающей точкой в направлении y.
   class_name: ''
   parameters:
@@ -2638,8 +2736,8 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.nextafter
   module: math
+  level: 1
 - name: ulp
-  category: U
   description: Возвращает значение младшего разряда числа с плавающей точкой.
   class_name: ''
   parameters:
@@ -2656,25 +2754,496 @@
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.ulp
   module: math
+  level: 1
 - name: sumprod
-  category: S
-  description: Возвращает сумму произведений соответствующих элементов двух итерируемых объектов.
+  description: Возвращает сумму произведений соответствующих элементов двух последовательностей.
   class_name: ''
   parameters:
   - name: p
-    type_hint: Iterable[float]
+    type_hint: list
     required: true
-    description: Первая последовательность чисел
+    description: Первая последовательность чисел (список)
   - name: q
-    type_hint: Iterable[float]
+    type_hint: list
     required: true
-    description: Вторая последовательность чисел
+    description: Вторая последовательность чисел (список)
   returns:
-    type: int
-    description: Возвращает сумму произведений соответствующих элементов двух итерируемых объектов.
+    type: int | float
+    description: Возвращает сумму произведений соответствующих элементов двух последовательностей.
   examples:
   - code: "import math\nmath.sumprod([1, 2], [3, 4])"
     output: '11'
   sideeffects: ''
   url: https://docs.python.org/3/library/math.html#math.sumprod
   module: math
+  level: 1
+- name: shape
+  description: Задаёт форму значка черепахи по имени или возвращает имя текущей формы.
+  class_name: ''
+  parameters:
+  - name: name
+    type_hint: str | None
+    required: false
+    default_value: None
+    description: 'Имя формы: ''arrow'', ''turtle'', ''circle'', ''square'', ''triangle'' или ''classic'''
+  returns:
+    type: str | None
+    description: Имя текущей формы, если аргумент не указан; иначе None
+  examples:
+  - code: "# Форма по умолчанию\nimport turtle\nprint(turtle.shape())"
+    output: classic
+  - code: "# Смена формы на черепаху\nimport turtle\nturtle.shape('turtle')\nprint(turtle.shape())"
+    output: turtle
+  - code: "# Круглый значок\nimport turtle\nturtle.shape('circle')"
+    output: ''
+  sideeffects: Изменяет внешний вид значка черепахи (если указано имя формы)
+  url: https://docs.python.org/3/library/turtle.html#turtle.shape
+  module: turtle
+  level: 0
+- name: penup
+  description: 'Поднимает перо: при перемещении черепаха не оставляет следа (короткие имена — pu() и up()).'
+  class_name: ''
+  parameters: []
+  returns:
+    type: None
+    description: Не возвращает значения
+  examples:
+  - code: "# Перемещение без рисования\nimport turtle\nturtle.penup()\nturtle.forward(50)"
+    output: ''
+  - code: "# Состояние пера после подъёма\nimport turtle\nturtle.penup()\nprint(turtle.isdown())"
+    output: 'False'
+  - code: "# Переход в новую точку без линии\nimport turtle\nturtle.penup()\nturtle.setpos(-100, 50)\nturtle.pendown()"
+    output: ''
+  sideeffects: 'Поднимает перо: последующие перемещения не оставляют следа'
+  url: https://docs.python.org/3/library/turtle.html#turtle.penup
+  module: turtle
+  level: 0
+- name: pendown
+  description: 'Опускает перо: при перемещении черепаха оставляет след (короткие имена — pd() и down()).'
+  class_name: ''
+  parameters: []
+  returns:
+    type: None
+    description: Не возвращает значения
+  examples:
+  - code: "# Возобновление рисования после penup()\nimport turtle\nturtle.penup()\nturtle.setpos(-50, 0)\nturtle.pendown()\nturtle.forward(100)"
+    output: ''
+  - code: "# Состояние пера по умолчанию\nimport turtle\nprint(turtle.isdown())"
+    output: 'True'
+  - code: "# Опущено ли перо после pendown()\nimport turtle\nturtle.penup()\nturtle.pendown()\nprint(turtle.isdown())"
+    output: 'True'
+  sideeffects: 'Опускает перо: последующие перемещения оставляют след'
+  url: https://docs.python.org/3/library/turtle.html#turtle.pendown
+  module: turtle
+  level: 0
+- name: forward
+  description: Перемещает черепаху вперёд на заданное расстояние в направлении её движения (короткое имя — fd()).
+  class_name: ''
+  parameters:
+  - name: distance
+    type_hint: int | float
+    required: true
+    description: Расстояние перемещения. Отрицательное значение перемещает черепаху назад
+  returns:
+    type: None
+    description: Не возвращает значения
+  examples:
+  - code: "# Линия длиной 100 шагов\nimport turtle\nturtle.forward(100)\nprint(turtle.position())"
+    output: (100.00,0.00)
+  - code: "# Отрицательное расстояние — движение назад\nimport turtle\nturtle.forward(-75)\nprint(turtle.position())"
+    output: (-75.00,0.00)
+  - code: "# Квадрат со стороной 50\nimport turtle\nfor i in range(4):\n    turtle.forward(50)\n    turtle.right(90)"
+    output: ''
+  sideeffects: Перемещает черепаху и рисует линию, если перо опущено
+  url: https://docs.python.org/3/library/turtle.html#turtle.forward
+  module: turtle
+  level: 0
+- name: backward
+  description: Перемещает черепаху назад на заданное расстояние, не меняя направления её движения (короткое имя — bk(), также доступно имя back()).
+  class_name: ''
+  parameters:
+  - name: distance
+    type_hint: int | float
+    required: true
+    description: Расстояние перемещения. Отрицательное значение перемещает черепаху вперёд
+  returns:
+    type: None
+    description: Не возвращает значения
+  examples:
+  - code: "# Движение назад на 30 шагов\nimport turtle\nturtle.backward(30)\nprint(turtle.position())"
+    output: (-30.00,0.00)
+  - code: "# Направление движения не меняется\nimport turtle\nturtle.backward(30)\nprint(turtle.heading())"
+    output: '0.0'
+  - code: "# Отрицательное расстояние — движение вперёд\nimport turtle\nturtle.backward(-40)\nprint(turtle.position())"
+    output: (40.00,0.00)
+  sideeffects: Перемещает черепаху и рисует линию, если перо опущено
+  url: https://docs.python.org/3/library/turtle.html#turtle.backward
+  module: turtle
+  level: 0
+- name: left
+  description: Поворачивает черепаху налево (против часовой стрелки) на заданный угол (короткое имя — lt()).
+  class_name: ''
+  parameters:
+  - name: angle
+    type_hint: int | float
+    required: true
+    description: Угол поворота (по умолчанию в градусах)
+  returns:
+    type: None
+    description: Не возвращает значения
+  examples:
+  - code: "# Поворот налево на 90 градусов\nimport turtle\nturtle.left(90)\nprint(turtle.heading())"
+    output: '90.0'
+  - code: "# Повороты складываются\nimport turtle\nturtle.left(30)\nturtle.left(60)\nprint(turtle.heading())"
+    output: '90.0'
+  - code: "# Равносторонний треугольник\nimport turtle\nfor i in range(3):\n    turtle.forward(100)\n    turtle.left(120)"
+    output: ''
+  sideeffects: Изменяет направление движения черепахи
+  url: https://docs.python.org/3/library/turtle.html#turtle.left
+  module: turtle
+  level: 0
+- name: right
+  description: Поворачивает черепаху направо (по часовой стрелке) на заданный угол (короткое имя — rt()).
+  class_name: ''
+  parameters:
+  - name: angle
+    type_hint: int | float
+    required: true
+    description: Угол поворота (по умолчанию в градусах)
+  returns:
+    type: None
+    description: Не возвращает значения
+  examples:
+  - code: "# Поворот направо на 90 градусов\nimport turtle\nturtle.right(90)\nprint(turtle.heading())"
+    output: '270.0'
+  - code: "# Поворот направо отменяет такой же поворот налево\nimport turtle\nturtle.left(45)\nturtle.right(45)\nprint(turtle.heading())"
+    output: '0.0'
+  - code: "# Квадрат поворотами направо\nimport turtle\nfor i in range(4):\n    turtle.forward(60)\n    turtle.right(90)"
+    output: ''
+  sideeffects: Изменяет направление движения черепахи
+  url: https://docs.python.org/3/library/turtle.html#turtle.right
+  module: turtle
+  level: 0
+- name: color
+  description: Задаёт цвет линии и заливки или возвращает текущую пару цветов.
+  class_name: ''
+  parameters:
+  - name: args
+    type_hint: str | tuple | int | float
+    required: false
+    variadic: true
+    description: 'Цвет линии (и заливки) или два цвета: линии и заливки. Цвет — название (''red''), строка ''#rrggbb'', кортеж (r, g, b) либо три числа r, g, b'
+  returns:
+    type: tuple | None
+    description: Пара (цвет линии, цвет заливки), если аргументы не указаны; иначе None
+  examples:
+  - code: "# Один цвет для линии и заливки\nimport turtle\nturtle.color('red')\nprint(turtle.color())"
+    output: ('red', 'red')
+  - code: "# Разные цвета линии и заливки\nimport turtle\nturtle.color('red', 'yellow')\nprint(turtle.color())"
+    output: ('red', 'yellow')
+  - code: "# Цвета в шестнадцатеричной записи (режим цвета 255)\nimport turtle\nturtle.colormode(255)\nturtle.color('#285078', '#a0c8f0')\nprint(turtle.color())"
+    output: ((40.0, 80.0, 120.0), (160.0, 200.0, 240.0))
+  sideeffects: Изменяет цвет линии и заливки (если указаны аргументы)
+  url: https://docs.python.org/3/library/turtle.html#turtle.color
+  module: turtle
+  level: 0
+- name: fillcolor
+  description: Задаёт цвет заливки или возвращает текущий цвет заливки.
+  class_name: ''
+  parameters:
+  - name: args
+    type_hint: str | tuple | int | float
+    required: false
+    variadic: true
+    description: Название цвета ('yellow'), строка '#rrggbb', кортеж (r, g, b) либо три числа r, g, b
+  returns:
+    type: str | tuple | None
+    description: Текущий цвет заливки, если аргументы не указаны; иначе None
+  examples:
+  - code: "# Цвет заливки по названию\nimport turtle\nturtle.fillcolor('violet')\nprint(turtle.fillcolor())"
+    output: violet
+  - code: "# Цвет заливки в шестнадцатеричной записи (режим цвета 255)\nimport turtle\nturtle.colormode(255)\nturtle.fillcolor('#ffffff')\nprint(turtle.fillcolor())"
+    output: (255.0, 255.0, 255.0)
+  - code: "# Цвет линии не меняется\nimport turtle\nturtle.pencolor('blue')\nturtle.fillcolor('yellow')\nprint(turtle.pencolor())"
+    output: blue
+  sideeffects: Изменяет цвет заливки фигур (если указаны аргументы)
+  url: https://docs.python.org/3/library/turtle.html#turtle.fillcolor
+  module: turtle
+  level: 0
+- name: bgcolor
+  description: Задаёт цвет фона окна черепахи или возвращает текущий цвет фона.
+  class_name: ''
+  parameters:
+  - name: args
+    type_hint: str | tuple | int | float
+    required: false
+    variadic: true
+    description: Название цвета ('orange'), строка '#rrggbb', кортеж (r, g, b) либо три числа r, g, b
+  returns:
+    type: str | tuple | None
+    description: Текущий цвет фона, если аргументы не указаны; иначе None
+  examples:
+  - code: "# Цвет фона по умолчанию\nimport turtle\nprint(turtle.bgcolor())"
+    output: white
+  - code: "# Оранжевый фон\nimport turtle\nturtle.bgcolor('orange')\nprint(turtle.bgcolor())"
+    output: orange
+  - code: "# Цвет фона в шестнадцатеричной записи (режим цвета 255)\nimport turtle\nturtle.colormode(255)\nturtle.bgcolor('#800080')\nprint(turtle.bgcolor())"
+    output: (128.0, 0.0, 128.0)
+  sideeffects: Изменяет цвет фона окна черепахи (если указаны аргументы)
+  url: https://docs.python.org/3/library/turtle.html#turtle.bgcolor
+  module: turtle
+  level: 0
+- name: pensize
+  description: Задаёт толщину линии или возвращает текущую толщину (синоним — width()).
+  class_name: ''
+  parameters:
+  - name: width
+    type_hint: int | float | None
+    required: false
+    default_value: None
+    description: Толщина линии (положительное число)
+  returns:
+    type: int | float | None
+    description: Текущая толщина линии, если аргумент не указан; иначе None
+  examples:
+  - code: "# Толщина линии по умолчанию\nimport turtle\nprint(turtle.pensize())"
+    output: '1'
+  - code: "# Установка толщины 10\nimport turtle\nturtle.pensize(10)\nprint(turtle.pensize())"
+    output: '10'
+  - code: "# Толстая линия\nimport turtle\nturtle.pensize(5)\nturtle.forward(100)"
+    output: ''
+  sideeffects: Изменяет толщину линии (если указано значение)
+  url: https://docs.python.org/3/library/turtle.html#turtle.pensize
+  module: turtle
+  level: 0
+- name: circle
+  description: Рисует окружность или дугу. Центр окружности находится слева от черепахи на расстоянии radius. Параметр steps позволяет рисовать правильные многоугольники.
+  class_name: ''
+  parameters:
+  - name: radius
+    type_hint: int | float
+    required: true
+    description: Радиус. При отрицательном значении окружность рисуется по часовой стрелке
+  - name: extent
+    type_hint: int | float | None
+    required: false
+    default_value: None
+    description: Угол дуги в градусах. Если не указан, рисуется полная окружность
+  - name: steps
+    type_hint: int | None
+    required: false
+    default_value: None
+    description: Число сторон вписанного многоугольника, которым приближается окружность. Если не указано, вычисляется автоматически
+  returns:
+    type: None
+    description: Не возвращает значения
+  examples:
+  - code: "# Окружность радиуса 50\nimport turtle\nturtle.circle(50)"
+    output: ''
+  - code: "# Полуокружность: направление меняется на величину extent\nimport turtle\nturtle.circle(50, 180)\nprint(turtle.heading())"
+    output: '180.0'
+  - code: "# Правильный шестиугольник\nimport turtle\nturtle.circle(50, steps=6)"
+    output: ''
+  - code: "# Правильный треугольник\nimport turtle\nturtle.circle(40, 360, 3)"
+    output: ''
+  sideeffects: Рисует линию, если перо опущено, и изменяет направление черепахи на величину extent
+  url: https://docs.python.org/3/library/turtle.html#turtle.circle
+  module: turtle
+  level: 0
+- name: begin_fill
+  description: Отмечает начало фигуры, которую нужно залить. Вызывается перед рисованием фигуры.
+  class_name: ''
+  parameters: []
+  returns:
+    type: None
+    description: Не возвращает значения
+  examples:
+  - code: "# Закрашенный квадрат\nimport turtle\nturtle.color('black', 'red')\nturtle.begin_fill()\nfor i in range(4):\n    turtle.forward(50)\n    turtle.left(90)\nturtle.end_fill()"
+    output: ''
+  - code: "# Признак того, что заливка началась\nimport turtle\nturtle.begin_fill()\nprint(turtle.filling())"
+    output: 'True'
+  sideeffects: Запоминает начало заливаемой фигуры
+  url: https://docs.python.org/3/library/turtle.html#turtle.begin_fill
+  module: turtle
+  level: 0
+- name: end_fill
+  description: Заливает фигуру, нарисованную после последнего вызова begin_fill().
+  class_name: ''
+  parameters: []
+  returns:
+    type: None
+    description: Не возвращает значения
+  examples:
+  - code: "# Закрашенный круг\nimport turtle\nturtle.color('black', 'yellow')\nturtle.begin_fill()\nturtle.circle(40)\nturtle.end_fill()"
+    output: ''
+  - code: "# Признак того, что заливка закончилась\nimport turtle\nturtle.begin_fill()\nturtle.end_fill()\nprint(turtle.filling())"
+    output: 'False'
+  sideeffects: Заливает нарисованную фигуру цветом заливки
+  url: https://docs.python.org/3/library/turtle.html#turtle.end_fill
+  module: turtle
+  level: 0
+- name: setpos
+  description: Перемещает черепаху в точку с абсолютными координатами (x, y). Направление движения не меняется (синонимы — goto() и setposition()).
+  class_name: ''
+  parameters:
+  - name: x
+    type_hint: int | float | tuple
+    required: true
+    description: Координата x либо пара координат (x, y), если y не указан
+  - name: y
+    type_hint: int | float | None
+    required: false
+    default_value: None
+    description: Координата y
+  returns:
+    type: None
+    description: Не возвращает значения
+  examples:
+  - code: "# Перемещение в точку (60, 30)\nimport turtle\nturtle.setpos(60, 30)\nprint(turtle.position())"
+    output: (60.00,30.00)
+  - code: "# Координаты в виде пары\nimport turtle\nturtle.setpos((20, 80))\nprint(turtle.position())"
+    output: (20.00,80.00)
+  - code: "# Линия из начала координат в точку (100, 100)\nimport turtle\nturtle.setpos(100, 100)"
+    output: ''
+  sideeffects: Перемещает черепаху и рисует линию, если перо опущено
+  url: https://docs.python.org/3/library/turtle.html#turtle.setpos
+  module: turtle
+  level: 0
+- name: setheading
+  description: Задаёт направление движения черепахи (абсолютный угол). В стандартном режиме 0 — восток, 90 — север, 180 — запад, 270 — юг (короткое имя — seth()).
+  class_name: ''
+  parameters:
+  - name: to_angle
+    type_hint: int | float
+    required: true
+    description: Угол направления (по умолчанию в градусах)
+  returns:
+    type: None
+    description: Не возвращает значения
+  examples:
+  - code: "# Направление на север\nimport turtle\nturtle.setheading(90)\nprint(turtle.heading())"
+    output: '90.0'
+  - code: "# Движение на запад: координата x уменьшается\nimport turtle\nturtle.setheading(180)\nturtle.forward(50)\nprint(turtle.xcor())"
+    output: '-50.0'
+  - code: "# Движение на север\nimport turtle\nturtle.setheading(90)\nturtle.forward(100)\nprint(turtle.position())"
+    output: (0.00,100.00)
+  sideeffects: Изменяет направление движения черепахи
+  url: https://docs.python.org/3/library/turtle.html#turtle.setheading
+  module: turtle
+  level: 0
+- name: setup
+  description: Задаёт размер и положение главного окна черепахи.
+  class_name: ''
+  parameters:
+  - name: width
+    type_hint: int | float
+    required: false
+    default_value: '0.5'
+    description: Ширина окна. Целое число — размер в пикселях, дробное — доля ширины экрана
+  - name: height
+    type_hint: int | float
+    required: false
+    default_value: '0.75'
+    description: Высота окна. Целое число — размер в пикселях, дробное — доля высоты экрана
+  - name: startx
+    type_hint: int | None
+    required: false
+    default_value: None
+    description: 'Положение левого края окна: положительное число — от левого края экрана, отрицательное — от правого, None — по центру'
+  - name: starty
+    type_hint: int | None
+    required: false
+    default_value: None
+    description: 'Положение верхнего края окна: положительное число — от верхнего края экрана, отрицательное — от нижнего, None — по центру'
+  returns:
+    type: None
+    description: Не возвращает значения
+  examples:
+  - code: "# Окно 450 на 250 пикселей\nimport turtle\nturtle.setup(450, 250)"
+    output: ''
+  - code: "# Окно 200 на 200 пикселей в левом верхнем углу экрана\nimport turtle\nturtle.setup(width=200, height=200, startx=0, starty=0)"
+    output: ''
+  - code: "# Окно в 75% ширины и 50% высоты экрана, по центру\nimport turtle\nturtle.setup(width=0.75, height=0.5, startx=None, starty=None)"
+    output: ''
+  sideeffects: Изменяет размер и положение окна черепахи
+  url: https://docs.python.org/3/library/turtle.html#turtle.setup
+  module: turtle
+  level: 0
+- name: write
+  description: Выводит значение (текст, число или результат выражения) в графическое окно в текущей позиции черепахи.
+  class_name: ''
+  parameters:
+  - name: arg
+    type_hint: любой тип
+    required: true
+    description: 'Выводимое значение: текст, число или выражение'
+  - name: move
+    type_hint: bool
+    required: false
+    default_value: 'False'
+    description: Если True, перо перемещается в правый нижний угол выведенного текста
+  - name: align
+    type_hint: str
+    required: false
+    default_value: '''left'''
+    description: 'Выравнивание относительно позиции черепахи: ''left'', ''center'' или ''right'''
+  - name: font
+    type_hint: tuple
+    required: false
+    default_value: ('Arial', 8, 'normal')
+    description: 'Шрифт: тройка (имя шрифта, размер, начертание), например (''Arial'', 8, ''normal'')'
+  returns:
+    type: None
+    description: Не возвращает значения
+  examples:
+  - code: "# Вывод текста в текущей позиции\nimport turtle\nturtle.write('Привет, мир!')"
+    output: ''
+  - code: "# Текст с заданным шрифтом\nimport turtle\nturtle.write('Привет, мир!', font=('Arial', 20, 'bold'))"
+    output: ''
+  - code: "# Значение арифметического выражения\nimport turtle\nturtle.write(2 + 2 * 2)"
+    output: ''
+  - code: "# Выравнивание по центру\nimport turtle\nturtle.write('Центр', align='center')"
+    output: ''
+  sideeffects: Выводит текст в графическое окно черепахи
+  url: https://docs.python.org/3/library/turtle.html#turtle.write
+  module: turtle
+  level: 0
+- name: done
+  description: Оставляет окно черепахи открытым после завершения рисования. Должна быть последней командой программы (синоним — mainloop()).
+  class_name: ''
+  parameters: []
+  returns:
+    type: None
+    description: Не возвращает значения
+  examples:
+  - code: "# Окно остаётся открытым после рисования\nimport turtle\nturtle.forward(100)\nturtle.done()"
+    output: ''
+  - code: "# Использование при импорте через from turtle import *\nfrom turtle import *\ncircle(50)\ndone()"
+    output: ''
+  sideeffects: Программа ждёт, пока окно черепахи не будет закрыто
+  url: https://docs.python.org/3/library/turtle.html#turtle.done
+  module: turtle
+  level: 0
+- name: colormode
+  description: Задаёт, как записываются цвета числами (1.0 или 255), или возвращает текущий режим. Значения r, g, b должны лежать в диапазоне от 0 до заданного режима.
+  class_name: ''
+  parameters:
+  - name: cmode
+    type_hint: int | float | None
+    required: false
+    default_value: None
+    description: 'Новый режим: 1.0 или 255'
+  returns:
+    type: int | float | None
+    description: Текущий режим, если аргумент не указан; иначе None
+  examples:
+  - code: "# Режим по умолчанию\nimport turtle\nprint(turtle.colormode())"
+    output: '1.0'
+  - code: "# Переключение на значения от 0 до 255\nimport turtle\nturtle.colormode(255)\nprint(turtle.colormode())"
+    output: '255'
+  - code: "# Цвет тремя составляющими RGB\nimport turtle\nturtle.colormode(255)\nturtle.color(240, 160, 80)\nprint(turtle.color())"
+    output: ((240.0, 160.0, 80.0), (240.0, 160.0, 80.0))
+  sideeffects: Изменяет допустимый диапазон значений r, g, b для всех цветов
+  url: https://docs.python.org/3/library/turtle.html#turtle.colormode
+  module: turtle
+  level: 0
