@@ -261,9 +261,14 @@ end
 function createSkAPISearch(div, options)
   local content = {}       -- содержимое блока
 
+  table.insert(content, pandoc.RawBlock("html",[[<div x-data="{apiLevel: false}">]]))
   table.insert(content, div) -- сохраняем исходную разметку
 
   local apiIndexMarkup = [[
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="search_advanced" x-model="apiLevel">
+          <label class="form-check-label" for="search_advanced">полный список функций и методов</label>
+        </div>
         <div class="api__index"
         x-data="{
           groups: Object.groupBy(window.__DOCS__, ({module})=>module),
@@ -291,7 +296,7 @@ function createSkAPISearch(div, options)
                 </svg> <span x-text="key"></span>
               </p>
               <ul class="functions__list">
-                <template x-for="(value, keyword) in values.sort(comp)" :key="keyword">
+                <template x-for="(value, keyword) in values.sort(comp).filter(({level}) => level < (apiLevel ? 2 : 1))" :key="keyword">
                   <li x-text="value.name" :title="value.description" @click="openModal(value);"></li>
                 </template>
               </ul>
@@ -330,6 +335,8 @@ function createSkAPISearch(div, options)
   if options["show-index"] == "true" then
     table.insert(content, pandoc.RawBlock("html", apiIndexMarkup))
   end
+
+    table.insert(content, pandoc.RawBlock("html",[[</div>]]))
 
   return pandoc.Div(content, { class = "sk-api-search__formated" })
 end
