@@ -100,6 +100,7 @@ local function addModal()
           <template x-if="$store.vis.selectedItem">
             <div style="overflow-y: auto;">
               <div x-ref="modalTop"></div>
+              <h4 x-text="$store.vis.selectedItem.module"></h4>
               <h4 class="signature">
                 <code class="language-python" x-text="signature($store.vis.selectedItem)"></code>
               </h4>
@@ -267,7 +268,7 @@ function createSkAPISearch(div, options)
   local apiIndexMarkup = [[
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" id="search_advanced" x-model="apiLevel">
-          <label class="form-check-label" for="search_advanced">полный список функций и методов</label>
+          <label class="form-check-label" for="search_advanced">]]..l10n("apiLevelLabel")..[[</label>
         </div>
         <div class="api__index"
         x-data="{
@@ -323,7 +324,7 @@ function createSkAPISearch(div, options)
       <div class="api__suggestions">
         <template x-for="result in results" :key="result.refIndex">
           <div class="api__suggestions__item" @click="openModal(result.item);">
-            <code class="language-python" x-text="result.item.name"></code></br>
+            <code class="language-python" x-text="result.item.name"></code> (<em><span x-text="result.item.module"></span></em>)</br>
             <span x-text="result.item.description"></span>
           </div>
         </template>
