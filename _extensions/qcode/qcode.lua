@@ -100,10 +100,8 @@ local function addModal()
           <template x-if="$store.vis.selectedItem">
             <div style="overflow-y: auto;">
               <div x-ref="modalTop"></div>
-              <h4 x-text="$store.vis.selectedItem.module"></h4>
-              <h4 class="signature">
-                <code class="language-python" x-text="signature($store.vis.selectedItem)"></code>
-              </h4>
+              <p class="api__section" x-text="$store.vis.selectedItem.module"></p>
+              <code class="signature language-python" x-text="signature($store.vis.selectedItem)"></code>
               <div x-show="$store.vis.visFilter.includes('blackBox')" class="blackbox">
                 <div class="blackbox__input">
                   <ul>
@@ -137,7 +135,7 @@ local function addModal()
               
               <template x-if="parametersFilter($store.vis.selectedItem).length !== 0">
               <div>
-                <h4>]]..l10n("parameters")..[[</h4>
+                <p class="api__section">]]..l10n("parameters")..[[</p>
                 <ul>
                   <template x-for="(param, index) in parametersFilter($store.vis.selectedItem)" :key="index">
                     <li>
@@ -150,7 +148,7 @@ local function addModal()
               </template>
               
                 <div>
-                  <h4>]]..l10n("returnValue")..[[</h4>
+                  <p class="api__section">]]..l10n("returnValue")..[[</p>
 
                   <code 
                     x-show="$store.vis.visFilter.includes('typeHints')" 
@@ -159,7 +157,7 @@ local function addModal()
                   <span x-text="$store.vis.selectedItem.returns.description"></span>
                 </div>
 
-              <h4>]]..l10n("examples")..[[</h4>
+              <p class="api__section">]]..l10n("examples")..[[</p>
               <template x-for="(example, index) in $store.vis.selectedItem.examples" :key="index">
                 <div class="api__example">
                   <div class="api__example__input">
