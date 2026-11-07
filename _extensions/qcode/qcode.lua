@@ -390,7 +390,7 @@ local function render_elements(options)
 
       local codeText = code.text
       local name = string.match(codeText, "(%a+)%(%)")
-      if functionNames[name] == nil or code.classes[1] ~= "python" then
+      if functionNames[name] == nil or (options["inline-with-class"] == "true" and code.classes[1] ~= "python") then 
         return code
       end
 
@@ -434,6 +434,7 @@ function Pandoc(doc)
   -- default options
   local options = {
     ["inline-doc"] = true,
+    ["inline-with-class"] = false,
     ["show-index"] = false,
     lang = pandoc.utils.stringify(doc.meta.lang)
   }

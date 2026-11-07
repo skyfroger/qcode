@@ -82,7 +82,16 @@ The documentation contains standard Python language functions and built-in type 
 :::
 ```
 
-Search works in real-time mode (with 300 ms debounce). Results are displayed in a dropdown list. Clicking a result opens a modal window with detailed function documentation.
+Search works in real-time mode. Results are displayed in a dropdown list. Clicking a result opens a modal window with detailed function documentation.
+
+For inline links to documentation, set `inline-doc` meta option to `true`:
+
+```markdown
+qcode:
+  inline-doc: true
+```
+
+All elements like \`function_name()\` will be turned in to the active links to the doc. Add option `inline-with-class: true` to convert to doc only elements with class .python: \`function_name()\`{.python}.
 
 ### Documentation Modal Window
 
